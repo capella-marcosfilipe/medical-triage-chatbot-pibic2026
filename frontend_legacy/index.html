@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Triagem Médica - Teste de Conceito</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <span>Unidade de Atendimento Médico Remoto</span>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <!-- Mensagens do chat vêm aqui -->
+    </div>
+
+    <!-- Indicador de carregamento -->
+     <div class="loading-spinner hidden" id="loadingSpinner">
+      <div class="spinner"></div>
+      <span class="loading-text">Processando...</span>
+     </div>
+
+     <!-- Form de Coleta de Dados -->
+     <div class="data-collection-form hidden" id="dataCollectionForm">
+      <form id="personalDataForm">
+        <div>
+          <label for="nome_completo">Nome Completo:</label>
+          <input type="text" id="nome_completo" required>
+          <div class="error-message hidden" id="errorNomeCompleto">Nome completo é obrigatório.</div>
+        </div>
+
+        <div>
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="endereco" required>
+          <div class="error-message hidden" id="errorEndereco">Endereço é obrigatório (ex.: Rua do Príncipe, 50, Soledade, Recife-PE).</div>
+        </div>
+
+        <div>
+          <label for="idade">Idade:</label>
+          <input type="number" id="idade" required min="0" max="3">
+          <div class="error-message hidden" id="errorIdade">Idade é obrigatória e deve ser um número válido.</div>
+        </div>
+
+        <button type="submit">Enviar Dados</button>
+      </form>
+     </div>
+
+     <!-- Área de Input do Chat -->
+     <div class="chat-input-area" id="chatInputArea">
+         <input type="text" id="messageInput" class="chat-input" placeholder="Digite sua mensagem aqui...">
+         <button id="sendMessageButton" class="send-button">Enviar</button>
+     </div>
+
+     <!-- Tela Final de Exibição da Ficha -->
+      <div class="final-ficha-container hidden" id="finalFichaContainer">
+        <h3>Ficha de Atendimento:</h3>
+        <!-- <pre id="fichaContent"></pre> -->
+        <div id="fichaContentFormatted"></div>
+      </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+version: "3.9"
+
+services:
+  chatbot-backend:
+    build:
+      context: ./chatbot-backend
+      dockerfile: Dockerfile
+    container_name: chatbot-backend
+    ports:
+      - "8001:8001"
+    environment:
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8001
+      DEBUG: "False"
+      CHATBOT_MICROSERVICE_URL: http://chatbot-microservice:8000
+      FRONTEND_URL: http://localhost:3000
+    depends_on:
+      chatbot-microservice:
+        condition: service_healthy
+
+  chatbot-microservice:
+    build:
+      context: ./chatbot-microservice
+      dockerfile: Dockerfile
+    container_name: chatbot-microservice
+    ports:
+      - "8000:8000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8000
+      DEBUG: "False"
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_VHOST: /
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RAG_KB_PATH: app/knowledge/triage_kb.md
+      LANGGRAPH_MEMORY_WINDOW: 16
+      RAG_TOP_K: 3
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=5)"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  chatbot-microservice-api-worker:
+    build:
+      context: ./chatbot-microservice
+      dockerfile: Dockerfile
+    container_name: chatbot-microservice-api-worker
+    command: ["python", "-m", "app.run_api_worker"]
+    environment:
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_VHOST: /
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  chatbot-microservice-gpu-worker:
+    build:
+      context: ./chatbot-microservice
+      dockerfile: Dockerfile
+    container_name: chatbot-microservice-gpu-worker
+    command: ["python", "-m", "app.run_gpu_worker"]
+    profiles: ["gpu"]
+    environment:
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_VHOST: /
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  rabbitmq:
+    image: rabbitmq:3.12-management-alpine
+    container_name: triagem-rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: triagem-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  rabbitmq_data:
+  redis_data:
