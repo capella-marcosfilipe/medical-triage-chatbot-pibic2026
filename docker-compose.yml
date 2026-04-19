@@ -1,4 +1,6 @@
-version: "3.9"
+networks:
+  medical-triage-network:
+    driver: bridge
 
 services:
   chatbot-backend:
@@ -17,6 +19,8 @@ services:
     depends_on:
       chatbot-microservice:
         condition: service_healthy
+    networks:
+      - medical-triage-network
 
   chatbot-microservice:
     build:
@@ -50,6 +54,8 @@ services:
       interval: 15s
       timeout: 5s
       retries: 5
+    networks:
+      - medical-triage-network
 
   chatbot-microservice-api-worker:
     build:
@@ -71,6 +77,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    networks:
+      - medical-triage-network
 
   chatbot-microservice-gpu-worker:
     build:
@@ -93,6 +101,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    networks:
+      - medical-triage-network
 
   rabbitmq:
     image: rabbitmq:3.12-management-alpine
@@ -110,6 +120,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - medical-triage-network
 
   redis:
     image: redis:7-alpine
@@ -124,6 +136,8 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
+    networks:
+      - medical-triage-network
 
 volumes:
   rabbitmq_data:
