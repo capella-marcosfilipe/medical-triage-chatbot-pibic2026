@@ -13,6 +13,8 @@ from app.models.async_schemas import (
     NLPJobStatusResponse,
     NLPJobContent,
     NLPJobStatus,
+    ChatHistoryResponse,
+    ChatHistoryMessage,
 )
 from app.models.schemas import (
     PacienteData,
@@ -149,6 +151,7 @@ async def chat_with_nemotron_status(
         response_payload = result.get("result")
         if response_payload:
             answer = response_payload.get("response", "")
+            session_manager.sync_assistant_message(chat_id, answer)
             content = NLPJobContent(
                 answer=answer,
                 processing_time_ms=response_payload.get("latency_ms"),
@@ -170,6 +173,19 @@ async def chat_with_nemotron_status(
         raise HTTPException(status_code=status_code, detail=f"Erro no chatbot-microservice: {detail}")
     except httpx.HTTPError as e:
         raise HTTPException(status_code=502, detail=f"Falha de comunicação com chatbot-microservice: {str(e)}")
+
+
+@router.get("/chat/{chat_id}", response_model=ChatHistoryResponse)
+async def get_chat_history(chat_id: str):
+    """Get the full conversation history for a chat id."""
+    history = session_manager.get_conversation_history(chat_id)
+    if not history:
+        raise HTTPException(status_code=404, detail="Conversa não encontrada")
+
+    return ChatHistoryResponse(
+        chat_id=chat_id,
+        messages=[ChatHistoryMessage.model_validate(message) for message in history],
+    )
 
 
 @router.get("/chat_with_nemotron/status/{job_id}", response_model=NLPJobStatusResponse)

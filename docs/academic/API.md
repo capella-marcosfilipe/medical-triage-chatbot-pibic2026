@@ -152,9 +152,26 @@ Check the current state of a chat job.
 - `content` only appears after the LLM response is available
 - `diagnosis_status` is either `ongoing` or `diagnosis_concluded`
 
+### 6. Resume Conversation
+
+Retrieve the full message history for a chat session.
+
+**Endpoint**: `GET /api/v1/chat/{chat_id}`
+
+**Response**:
+```json
+{
+  "chat_id": "uuid-v4-string",
+  "messages": [
+    { "role": "user", "content": "Estou com febre" },
+    { "role": "assistant", "content": "Há quanto tempo você está com febre?" }
+  ]
+}
+```
+
 ---
 
-### 6. Get Complete Medical Record
+### 7. Get Complete Medical Record
 
 Retrieve the complete medical record for a session.
 

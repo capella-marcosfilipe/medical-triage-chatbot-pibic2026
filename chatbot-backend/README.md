@@ -161,7 +161,23 @@ GET /api/v1/chat/status/{job_id}
 
 Quando o job ainda não tiver resposta do LLM, `content` fica ausente e `status` continua refletindo o estado do processamento.
 
-#### 5. Obter Ficha Completa
+#### 5. Retomar Conversa
+```http
+GET /api/v1/chat/{chat_id}
+```
+
+**Resposta:**
+```json
+{
+  "chat_id": "uuid-da-conversa",
+  "messages": [
+    { "role": "user", "content": "Estou com febre" },
+    { "role": "assistant", "content": "Há quanto tempo você está com febre?" }
+  ]
+}
+```
+
+#### 6. Obter Ficha Completa
 ```http
 GET /api/v1/obter_ficha_completa/{session_id}
 ```

@@ -31,6 +31,20 @@ class NLPJobContent(BaseModel):
     diagnosis_status: Literal["ongoing", "diagnosis_concluded"]
 
 
+class ChatHistoryMessage(BaseModel):
+    """Single message in a chat history."""
+
+    role: Literal["user", "assistant", "system"]
+    content: str
+
+
+class ChatHistoryResponse(BaseModel):
+    """Full chat history for a resumed conversation."""
+
+    chat_id: str
+    messages: list[ChatHistoryMessage]
+
+
 class NLPChatRequest(BaseModel):
     """Payload accepted by the gateway for asynchronous NLP processing."""
 

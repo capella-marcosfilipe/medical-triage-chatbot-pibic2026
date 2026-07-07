@@ -46,6 +46,17 @@ class SessionManager:
             "role": role,
             "content": content
         })
+
+    def sync_assistant_message(self, session_id: str, content: str) -> None:
+        """Store the assistant response once for a conversation."""
+        history = self.conversation_history.setdefault(session_id, [])
+        if history and history[-1].get("role") == "assistant" and history[-1].get("content") == content:
+            return
+
+        history.append({
+            "role": "assistant",
+            "content": content,
+        })
     
     def get_conversation_history(self, session_id: str) -> List[Dict[str, str]]:
         """Get the conversation history for a session."""
