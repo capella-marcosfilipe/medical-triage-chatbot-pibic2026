@@ -84,7 +84,7 @@ def _infer_diagnosis_status(answer: str) -> Literal["ongoing", "diagnosis_conclu
 async def chat(
     request: ChatNemotronRequest,
 ):
-    """Delegate chat processing to chatbot-microservice."""
+    """Delegate chat processing to chat-rag-microservice."""
     chat_id = request.chat_id or str(uuid.uuid4())
     idempotency_key = _build_idempotency_key(chat_id, request.engine, request.message)
 
@@ -124,15 +124,15 @@ async def chat(
             chat_id=chat_id,
             status=microservice_response["status"],
             idempotency_key=microservice_response.get("idempotency_key", idempotency_key),
-            queue="chatbot-microservice",
+            queue="chat-rag-microservice",
         )
 
         return response
     except httpx.HTTPStatusError as e:
         detail = e.response.text if e.response is not None else str(e)
-        raise HTTPException(status_code=502, detail=f"Erro no chatbot-microservice: {detail}")
+        raise HTTPException(status_code=502, detail=f"Erro no chat-rag-microservice: {detail}")
     except httpx.HTTPError as e:
-        raise HTTPException(status_code=502, detail=f"Falha de comunicação com chatbot-microservice: {str(e)}")
+        raise HTTPException(status_code=502, detail=f"Falha de comunicação com chat-rag-microservice: {str(e)}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao comunicar com Nemotron: {str(e)}")
 
@@ -141,7 +141,7 @@ async def chat(
 async def chat_with_nemotron_status(
     job_id: str,
 ):
-    """Get chat job status from chatbot-microservice."""
+    """Get chat job status from chat-rag-microservice."""
     try:
         result = await chatbot_microservice_client.get_chat_status(job_id)
         chat_id = session_manager.get_chat_id_by_job(job_id) or result.get("chat_id") or ""
@@ -169,9 +169,9 @@ async def chat_with_nemotron_status(
     except httpx.HTTPStatusError as e:
         status_code = 404 if e.response.status_code == 404 else 502
         detail = e.response.text if e.response is not None else str(e)
-        raise HTTPException(status_code=status_code, detail=f"Erro no chatbot-microservice: {detail}")
+        raise HTTPException(status_code=status_code, detail=f"Erro no chat-rag-microservice: {detail}")
     except httpx.HTTPError as e:
-        raise HTTPException(status_code=502, detail=f"Falha de comunicação com chatbot-microservice: {str(e)}")
+        raise HTTPException(status_code=502, detail=f"Falha de comunicação com chat-rag-microservice: {str(e)}")
 
 
 @router.get("/chat/{chat_id}", response_model=ChatHistoryResponse)

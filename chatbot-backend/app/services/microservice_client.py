@@ -1,4 +1,4 @@
-"""HTTP client used by chatbot-backend to consume chatbot-microservice."""
+"""HTTP client used by chatbot-backend to consume chat-rag-microservice."""
 from __future__ import annotations
 
 from typing import Any
@@ -9,7 +9,7 @@ from app.core.config import settings
 
 
 class ChatbotMicroserviceClient:
-    """Encapsulate outbound requests to chatbot-microservice."""
+    """Encapsulate outbound requests to chat-rag-microservice."""
 
     def __init__(self) -> None:
         self.base_url = settings.chatbot_microservice_url.rstrip("/")

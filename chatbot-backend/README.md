@@ -133,7 +133,7 @@ Content-Type: application/json
   "chat_id": "uuid-da-conversa",
   "status": "pending",
   "idempotency_key": "hash-da-requisicao",
-  "queue": "chatbot-microservice"
+  "queue": "chat-rag-microservice"
 }
 ```
 

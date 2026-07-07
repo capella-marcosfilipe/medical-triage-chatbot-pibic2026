@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
     
     # Downstream chatbot microservice
-    chatbot_microservice_url: str = "http://chatbot-microservice:8000"
+    chatbot_microservice_url: str = "http://chat-rag-microservice:8000"
     chatbot_microservice_timeout_seconds: float = 30.0
     
     # Application Settings
