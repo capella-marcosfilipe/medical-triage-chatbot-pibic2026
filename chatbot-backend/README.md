@@ -97,8 +97,10 @@ Content-Type: application/json
 
 #### 2. Obter Dados do Smartwatch
 ```http
-GET /api/v1/obter_dados_smartwatch/{session_id}
+GET /api/v1/get_smartwatch_data/{smartwatch_id}
 ```
+
+O identificador vem do dispositivo/módulo de origem dos dados fisiológicos; a rota não depende da sessão do paciente.
 
 **Resposta:**
 ```json

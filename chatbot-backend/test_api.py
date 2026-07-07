@@ -45,8 +45,9 @@ def test_workflow():
     print("\n⌚ Step 2: Retrieving smartwatch data...")
     time.sleep(1)
     
-    response = requests.get(f"{BASE_URL}/obter_dados_smartwatch/{session_id}")
-    print_response(response, "GET /obter_dados_smartwatch")
+    smartwatch_id = "mock-device-001"
+    response = requests.get(f"{BASE_URL}/get_smartwatch_data/{smartwatch_id}")
+    print_response(response, "GET /get_smartwatch_data")
     
     if response.status_code != 200:
         print("❌ Failed to get smartwatch data. Exiting.")

@@ -44,21 +44,20 @@ async def iniciar_atendimento(paciente_data: PacienteData):
         raise HTTPException(status_code=500, detail=f"Erro ao iniciar atendimento: {str(e)}")
 
 
-@router.get("/obter_dados_smartwatch/{session_id}", response_model=ObterDadosSmartWatchResponse)
-async def obter_dados_smartwatch(session_id: str):
-    """Get simulated smartwatch data for a session."""
-    session = session_manager.get_session(session_id)
-    if not session:
-        raise HTTPException(status_code=404, detail="Sessão não encontrada")
-    
+@router.get("/get_smartwatch_data/{smartwatch_id}", response_model=ObterDadosSmartWatchResponse)
+async def get_smartwatch_data(smartwatch_id: str):
+    """Get simulated smartwatch data by smartwatch device id."""
     try:
-        # Simulate smartwatch data
         dados = smartwatch_simulator.generate_data()
-        session_manager.add_smartwatch_data(session_id, dados)
-        
         return ObterDadosSmartWatchResponse(dados_fisiologicos=dados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao obter dados do smartwatch: {str(e)}")
+
+
+@router.get("/obter_dados_smartwatch/{session_id}", response_model=ObterDadosSmartWatchResponse)
+async def obter_dados_smartwatch(session_id: str):
+    """Legacy alias for smartwatch data retrieval."""
+    return await get_smartwatch_data(session_id)
 
 
 def _build_idempotency_key(chat_id: str, engine: str, message: str) -> str:

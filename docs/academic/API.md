@@ -63,10 +63,10 @@ Start a new medical triage session.
 
 Retrieve simulated physiological data from a smartwatch.
 
-**Endpoint**: `GET /api/v1/obter_dados_smartwatch/{session_id}`
+**Endpoint**: `GET /api/v1/get_smartwatch_data/{smartwatch_id}`
 
 **Parameters**:
-- `session_id` (path, required): Session UUID
+- `smartwatch_id` (path, required): Device/database identifier for the smartwatch data source
 
 **Response**: `200 OK`
 ```json
@@ -89,6 +89,7 @@ Retrieve simulated physiological data from a smartwatch.
 - Data is simulated with realistic values
 - Each call may return different values
 - Values are within normal physiological ranges
+- This endpoint is intentionally independent from the patient session
 
 ---
 
