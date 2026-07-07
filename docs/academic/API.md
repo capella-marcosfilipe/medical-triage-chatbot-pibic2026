@@ -92,61 +92,38 @@ Retrieve simulated physiological data from a smartwatch.
 
 ---
 
-### 4. Chat with Gemini AI
+### 4. Chat with Nemotron AI
 
 Send a message and receive AI-powered medical triage response.
 
-**Endpoint**: `POST /api/v1/chat_with_gemini`
+**Endpoint**: `POST /api/v1/chat`
 
 **Request Body**:
 ```json
 {
-  "session_id": "uuid-v4-string",
-  "user_message": "Estou com febre e dor de cabeça há 2 dias"
+  "message": "Estou com febre e dor de cabeça há 2 dias",
+  "engine": "nemotron"
 }
 ```
 
-**Response (Ongoing Conversation)**: `200 OK`
+**Response**: `202 Accepted`
 ```json
 {
-  "bot_message": "Entendo. Além da febre e dor de cabeça, você está sentindo mais algum sintoma?",
-  "status": "ongoing",
-  "ficha_de_atendimento": null
-}
-```
-
-**Response (Final)**: `200 OK`
-```json
-{
-  "bot_message": "Obrigado pelas informações. Vou preparar sua ficha de atendimento.",
-  "status": "final",
-  "ficha_de_atendimento": {
-    "session_id": "uuid-v4-string",
-    "nome_completo": "João Silva",
-    "endereco": "Rua Exemplo, 123",
-    "idade": 35,
-    "dados_fisiologicos": {...},
-    "queixa_principal": "Febre e dor de cabeça",
-    "historico_sintomas": "Sintomas iniciaram há 2 dias",
-    "historico_doencas_previas": "Não informado",
-    "alergias": "Não possui alergias conhecidas",
-    "medicamentos_em_uso": "Paracetamol 500mg",
-    "nivel_urgencia": "MÉDIA",
-    "especialidade_medica": "Clínica Geral",
-    "orientacao_ao_medico": "Investigar possível quadro viral. Avaliar necessidade de exames complementares."
-  }
+  "job_id": "uuid-v4-string",
+  "chat_id": "uuid-v4-string",
+  "status": "pending",
+  "idempotency_key": "hash-da-requisicao",
+  "queue": "chatbot-microservice"
 }
 ```
 
 **Errors**:
-- `404 Not Found`: Session not found
 - `500 Internal Server Error`: Server error or AI service unavailable
 
 **Notes**:
 - Requires Google Gemini API key to be configured
-- Conversation progresses through multiple questions
-- AI determines when to finalize the conversation
-- Medical record is generated automatically upon completion
+- `chat_id` is omitted on the first request and returned by the backend
+- The backend now returns an asynchronous job reference instead of the final AI answer
 
 ---
 
@@ -245,7 +222,7 @@ Retrieve the complete medical record for a session.
 
 1. **Start Session**: Call `POST /api/v1/iniciar_atendimento` with patient data
 2. **Get Vitals**: Call `GET /api/v1/obter_dados_smartwatch/{session_id}`
-3. **Chat Loop**: Call `POST /api/v1/chat_with_gemini` repeatedly until status is "final"
+3. **Chat Loop**: Call `POST /api/v1/chat` repeatedly, reusing the returned `chat_id`
 4. **Get Record**: (Optional) Call `GET /api/v1/obter_ficha_completa/{session_id}`
 
 ---

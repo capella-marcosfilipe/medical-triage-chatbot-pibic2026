@@ -64,21 +64,27 @@ def test_workflow():
         "Não tenho alergias conhecidas",
         "Não estou tomando nenhum medicamento"
     ]
+
+    chat_id = None
     
     for msg in user_messages:
         chat_data = {
-            "session_id": session_id,
-            "user_message": msg
+            "message": msg,
+            "engine": "nemotron",
         }
+
+        if chat_id:
+            chat_data["chat_id"] = chat_id
         
-        response = requests.post(f"{BASE_URL}/chat_with_gemini", json=chat_data)
-        print_response(response, f"POST /chat_with_gemini - User: {msg[:30]}...")
+        response = requests.post(f"{BASE_URL}/chat", json=chat_data)
+        print_response(response, f"POST /chat - User: {msg[:30]}...")
         
-        if response.status_code != 200:
+        if response.status_code != 202:
             print(f"❌ Failed to send message. Exiting.")
             return
         
         response_data = response.json()
+        chat_id = response_data.get("chat_id", chat_id)
         if response_data.get("status") == "final":
             print("\n✅ Conversation finalized!")
             print("\n📄 Medical Record Generated:")

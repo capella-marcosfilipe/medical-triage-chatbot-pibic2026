@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.endpoints import router as api_v1_router
 from app.core.config import settings
+import uvicorn
 
 app = FastAPI(
     title="Chatbot Triagem Médica API",
@@ -42,7 +43,6 @@ async def health_check():
 
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(
         "main:app",
         host=settings.app_host,

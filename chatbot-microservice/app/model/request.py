@@ -17,6 +17,7 @@ class ChatRequest(BaseModel):
     max_tokens: int = Field(default=512, ge=1, le=2048)
     temperature: float = Field(default=0.6, ge=0.0, le=1.0)
     use_reasoning: bool = Field(default=False, description="Enable reasoning tokens (API only)")
+    engine: str = Field(default="nemotron", description="Model engine for inference (API only)")
     
     # Async/Queue params
     idempotency_key: str = Field(..., description="Unique request identifier for idempotency")

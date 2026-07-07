@@ -2,7 +2,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 
-from app.models.async_schemas import NLPExecutionMode, NLPJobStatus
+from app.models.async_schemas import NLPJobStatus
 
 
 class PacienteData(BaseModel):
@@ -70,20 +70,16 @@ class ObterFichaCompletaResponse(BaseModel):
 class ChatNemotronRequest(BaseModel):
     """Request for chatting with Nemotron through async workers."""
 
-    session_id: str = Field(..., description="Session identifier")
-    user_message: str = Field(..., min_length=1, description="User message")
-    idempotency_key: str = Field(..., min_length=8, description="Idempotency key")
-    max_tokens: int = Field(default=512, ge=1, le=2048)
-    temperature: float = Field(default=0.6, ge=0.0, le=1.0)
-    use_reasoning: bool = Field(default=False)
-    mode: NLPExecutionMode = Field(default=NLPExecutionMode.AUTO)
-    priority: int = Field(default=5, ge=1, le=10)
+    message: str = Field(..., min_length=1, description="User message")
+    engine: str = Field(default="nemotron", description="Chat engine to use")
+    chat_id: Optional[str] = Field(default=None, description="Conversation identifier")
 
 
 class ChatNemotronEnqueueResponse(BaseModel):
     """Immediate async response for Nemotron chat requests."""
 
     job_id: str
+    chat_id: str
     status: NLPJobStatus = NLPJobStatus.PENDING
     idempotency_key: str
     queue: str

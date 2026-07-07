@@ -1,4 +1,9 @@
 """API v1 endpoints for medical triage chatbot."""
+from __future__ import annotations
+
+import hashlib
+import uuid
+
 from fastapi import APIRouter, HTTPException
 import httpx
 
@@ -50,46 +55,53 @@ async def obter_dados_smartwatch(session_id: str):
         raise HTTPException(status_code=500, detail=f"Erro ao obter dados do smartwatch: {str(e)}")
 
 
-@router.post("/chat_with_nemotron", response_model=ChatNemotronEnqueueResponse)
-async def chat_with_nemotron(
+def _build_idempotency_key(chat_id: str, engine: str, message: str) -> str:
+    digest = hashlib.sha256(f"{chat_id}:{engine}:{message}".encode("utf-8")).hexdigest()
+    return digest
+
+
+@router.post("/chat", response_model=ChatNemotronEnqueueResponse, status_code=202)
+async def chat(
     request: ChatNemotronRequest,
 ):
-    """Delegate Nemotron chat processing to chatbot-microservice."""
-    session = session_manager.get_session(request.session_id)
-    if not session:
-        raise HTTPException(status_code=404, detail="Sessão não encontrada")
+    """Delegate chat processing to chatbot-microservice."""
+    chat_id = request.chat_id or str(uuid.uuid4())
+    idempotency_key = _build_idempotency_key(chat_id, request.engine, request.message)
+
+    session = session_manager.get_session(chat_id)
 
     try:
-        session_manager.add_conversation_message(request.session_id, "user", request.user_message)
+        session_manager.add_conversation_message(chat_id, "user", request.message)
 
-        queue_request = {
-            "session_id": request.session_id,
-            "message": request.user_message,
-            "idempotency_key": request.idempotency_key,
-            "max_tokens": request.max_tokens,
-            "temperature": request.temperature,
-            "use_reasoning": request.use_reasoning,
-            "mode": request.mode.value,
-            "priority": request.priority,
-            "patient_context": {
+        queue_request: dict[str, object] = {
+            "session_id": chat_id,
+            "message": request.message,
+            "idempotency_key": idempotency_key,
+            "engine": request.engine,
+        }
+
+        if session:
+            patient_context: dict[str, object] = {
                 "nome_completo": session.nome_completo,
                 "idade": session.idade,
                 "endereco": session.endereco,
-            },
-        }
+            }
 
-        if session.dados_fisiologicos:
-            queue_request["patient_context"]["dados_fisiologicos"] = session.dados_fisiologicos.model_dump()
+            if session.dados_fisiologicos:
+                patient_context["dados_fisiologicos"] = session.dados_fisiologicos.model_dump()
+
+            queue_request["patient_context"] = patient_context
 
         microservice_response = await chatbot_microservice_client.enqueue_chat(
             payload=queue_request,
-            mode=request.mode.value,
+            mode="auto",
         )
 
         response = ChatNemotronEnqueueResponse(
             job_id=microservice_response["job_id"],
+            chat_id=chat_id,
             status=microservice_response["status"],
-            idempotency_key=microservice_response["idempotency_key"],
+            idempotency_key=microservice_response.get("idempotency_key", idempotency_key),
             queue="chatbot-microservice",
         )
 
@@ -103,11 +115,11 @@ async def chat_with_nemotron(
         raise HTTPException(status_code=500, detail=f"Erro ao comunicar com Nemotron: {str(e)}")
 
 
-@router.get("/chat_with_nemotron/status/{job_id}", response_model=NLPJobStatusResponse)
+@router.get("/chat/status/{job_id}", response_model=NLPJobStatusResponse)
 async def chat_with_nemotron_status(
     job_id: str,
 ):
-    """Get Nemotron job status from chatbot-microservice."""
+    """Get chat job status from chatbot-microservice."""
     try:
         result = await chatbot_microservice_client.get_chat_status(job_id)
         return NLPJobStatusResponse(**result)
@@ -117,6 +129,14 @@ async def chat_with_nemotron_status(
         raise HTTPException(status_code=status_code, detail=f"Erro no chatbot-microservice: {detail}")
     except httpx.HTTPError as e:
         raise HTTPException(status_code=502, detail=f"Falha de comunicação com chatbot-microservice: {str(e)}")
+
+
+@router.get("/chat_with_nemotron/status/{job_id}", response_model=NLPJobStatusResponse)
+async def chat_with_nemotron_status_legacy(
+    job_id: str,
+):
+    """Legacy alias for chat job status."""
+    return await chat_with_nemotron_status(job_id)
 
 
 @router.get("/obter_ficha_completa/{session_id}", response_model=ObterFichaCompletaResponse)
@@ -134,5 +154,5 @@ async def chat_with_gemini_deprecated():
     """Deprecated endpoint kept for compatibility with old clients."""
     raise HTTPException(
         status_code=410,
-        detail="Endpoint descontinuado. Use /api/v1/chat_with_nemotron.",
+        detail="Endpoint descontinuado. Use /api/v1/chat.",
     )

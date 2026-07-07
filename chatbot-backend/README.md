@@ -113,26 +113,29 @@ GET /api/v1/obter_dados_smartwatch/{session_id}
 }
 ```
 
-#### 3. Chat com Gemini AI
+#### 3. Chat com Nemotron
 ```http
-POST /api/v1/chat_with_gemini
+POST /api/v1/chat
 Content-Type: application/json
 
 {
-  "session_id": "uuid-da-sessao",
-  "user_message": "Estou com febre e dor de cabeça há 2 dias"
+  "message": "Estou com febre e dor de cabeça há 2 dias",
+  "engine": "nemotron"
 }
 ```
 
 **Resposta:**
 ```json
 {
-  "bot_message": "Entendo. Além da febre e dor de cabeça, você está sentindo mais algum sintoma?",
-  "status": "ongoing"
+  "job_id": "uuid-do-job",
+  "chat_id": "uuid-da-conversa",
+  "status": "pending",
+  "idempotency_key": "hash-da-requisicao",
+  "queue": "chatbot-microservice"
 }
 ```
 
-Quando a conversa finalizar, `status` será `"final"` e incluirá a `ficha_de_atendimento`.
+Na primeira mensagem, `chat_id` não precisa ser enviado; o backend gera esse identificador e o retorna para as próximas mensagens.
 
 #### 4. Obter Ficha Completa
 ```http
@@ -192,10 +195,10 @@ curl -X POST http://localhost:8001/api/v1/iniciar_atendimento \
 # Obter dados do smartwatch
 curl http://localhost:8001/api/v1/obter_dados_smartwatch/SESSION_ID
 
-# Chat com Gemini
-curl -X POST http://localhost:8001/api/v1/chat_with_gemini \
+# Chat com Nemotron
+curl -X POST http://localhost:8001/api/v1/chat \
   -H "Content-Type: application/json" \
-  -d '{"session_id":"SESSION_ID","user_message":"Estou com febre"}'
+  -d '{"message":"Estou com febre","engine":"nemotron"}'
 ```
 
 ### Usando Python
@@ -217,10 +220,10 @@ session_id = response.json()["session_id"]
 response = requests.get(f"{BASE_URL}/obter_dados_smartwatch/{session_id}")
 print(response.json())
 
-# Chat com Gemini
-response = requests.post(f"{BASE_URL}/chat_with_gemini", json={
-    "session_id": session_id,
-    "user_message": "Estou com febre há 2 dias"
+# Chat com Nemotron
+response = requests.post(f"{BASE_URL}/chat", json={
+  "message": "Estou com febre há 2 dias",
+  "engine": "nemotron"
 })
 print(response.json())
 ```
