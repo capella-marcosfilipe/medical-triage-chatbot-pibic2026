@@ -125,9 +125,36 @@ Send a message and receive AI-powered medical triage response.
 - `chat_id` is omitted on the first request and returned by the backend
 - The backend now returns an asynchronous job reference instead of the final AI answer
 
+### 5. Chat Status
+
+Check the current state of a chat job.
+
+**Endpoint**: `GET /api/v1/chat/status/{job_id}`
+
+**Response**:
+```json
+{
+  "job_id": "uuid-v4-string",
+  "chat_id": "uuid-v4-string",
+  "status": "completed",
+  "idempotency_key": "hash-da-requisicao",
+  "created_at": "2026-07-07T12:00:00",
+  "content": {
+    "answer": "...",
+    "processing_time_ms": 1240.3,
+    "diagnosis_status": "ongoing"
+  },
+  "error": null
+}
+```
+
+**Notes**:
+- `content` only appears after the LLM response is available
+- `diagnosis_status` is either `ongoing` or `diagnosis_concluded`
+
 ---
 
-### 5. Get Complete Medical Record
+### 6. Get Complete Medical Record
 
 Retrieve the complete medical record for a session.
 

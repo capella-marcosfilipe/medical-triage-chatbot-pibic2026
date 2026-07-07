@@ -1,7 +1,7 @@
 """Schemas for asynchronous NLP job communication."""
 from datetime import datetime
 from enum import Enum
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -21,6 +21,14 @@ class NLPJobStatus(str, Enum):
     PROCESSING = "processing"
     COMPLETED = "completed"
     FAILED = "failed"
+
+
+class NLPJobContent(BaseModel):
+    """Structured content returned after the LLM responds."""
+
+    answer: str
+    processing_time_ms: Optional[float] = None
+    diagnosis_status: Literal["ongoing", "diagnosis_concluded"]
 
 
 class NLPChatRequest(BaseModel):
@@ -57,8 +65,9 @@ class NLPJobStatusResponse(BaseModel):
     """Current status and optional result for asynchronous NLP jobs."""
 
     job_id: str
+    chat_id: str
     status: NLPJobStatus
     idempotency_key: str
     created_at: datetime
-    result: Optional[NLPJobResult] = None
+    content: Optional[NLPJobContent] = None
     error: Optional[str] = None

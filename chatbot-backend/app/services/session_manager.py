@@ -10,6 +10,7 @@ class SessionManager:
     def __init__(self):
         self.sessions: Dict[str, FichaDeAtendimento] = {}
         self.conversation_history: Dict[str, List[Dict[str, str]]] = {}
+        self.chat_jobs: Dict[str, str] = {}
     
     def create_session(self, paciente_data: PacienteData) -> str:
         """Create a new session for a patient."""
@@ -49,6 +50,14 @@ class SessionManager:
     def get_conversation_history(self, session_id: str) -> List[Dict[str, str]]:
         """Get the conversation history for a session."""
         return self.conversation_history.get(session_id, [])
+
+    def register_chat_job(self, job_id: str, chat_id: str) -> None:
+        """Track which chat_id belongs to a queued job."""
+        self.chat_jobs[job_id] = chat_id
+
+    def get_chat_id_by_job(self, job_id: str) -> Optional[str]:
+        """Resolve the chat conversation identifier for a queued job."""
+        return self.chat_jobs.get(job_id)
 
 
 # Global session manager instance

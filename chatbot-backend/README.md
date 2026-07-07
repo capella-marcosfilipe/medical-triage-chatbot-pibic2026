@@ -137,7 +137,31 @@ Content-Type: application/json
 
 Na primeira mensagem, `chat_id` não precisa ser enviado; o backend gera esse identificador e o retorna para as próximas mensagens.
 
-#### 4. Obter Ficha Completa
+#### 4. Status do Chat
+```http
+GET /api/v1/chat/status/{job_id}
+```
+
+**Resposta:**
+```json
+{
+  "job_id": "uuid-do-job",
+  "chat_id": "uuid-da-conversa",
+  "status": "completed",
+  "idempotency_key": "hash-da-requisicao",
+  "created_at": "2026-07-07T12:00:00",
+  "content": {
+    "answer": "...",
+    "processing_time_ms": 1420.55,
+    "diagnosis_status": "ongoing"
+  },
+  "error": null
+}
+```
+
+Quando o job ainda não tiver resposta do LLM, `content` fica ausente e `status` continua refletindo o estado do processamento.
+
+#### 5. Obter Ficha Completa
 ```http
 GET /api/v1/obter_ficha_completa/{session_id}
 ```
