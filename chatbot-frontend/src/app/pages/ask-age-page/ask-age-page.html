@@ -1,1 +1,13 @@
-<p>ask-age-page works!</p>
+<app-fullscreen-stage>
+  <h1 class="ask-page__title">Qual é a sua idade?</h1>
+  <form class="ask-page__form" (submit)="onSubmit($event)">
+    <app-form-field
+      label="Idade"
+      inputId="idade"
+      type="number"
+      [control]="idadeControl"
+      [errorMessage]="errorMessage"
+    />
+    <app-button-primary type="submit">Continuar</app-button-primary>
+  </form>
+</app-fullscreen-stage>

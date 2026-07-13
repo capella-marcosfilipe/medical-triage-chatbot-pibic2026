@@ -1,11 +1,20 @@
 <div class="form-field">
   <label [for]="inputId()">{{ label() }}</label>
-  <input
-    [id]="inputId()"
-    [type]="type()"
-    [formControl]="control()"
-    [class.form-field__input--invalid]="control().invalid && control().touched"
-  />
+  @if (type() === 'number') {
+    <input
+      [id]="inputId()"
+      type="number"
+      [formControl]="control()"
+      [class.form-field__input--invalid]="control().invalid && control().touched"
+    />
+  } @else {
+    <input
+      [id]="inputId()"
+      [type]="type()"
+      [formControl]="control()"
+      [class.form-field__input--invalid]="control().invalid && control().touched"
+    />
+  }
   @if (control().invalid && control().touched) {
     <p class="error-message">{{ errorMessage() }}</p>
   }
