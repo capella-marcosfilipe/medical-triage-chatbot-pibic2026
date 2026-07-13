@@ -47,7 +47,12 @@ export class TriagemService {
     };
   });
 
-  readonly sessionId = computed(() => this.sessionResource.value()?.session_id);
+  readonly sessionId = computed(() => {
+    if (this.sessionResource.error()) {
+      return undefined;
+    }
+    return this.sessionResource.value()?.session_id;
+  });
   readonly isSubmitting = this.sessionResource.isLoading;
   readonly submitError = this.sessionResource.error;
 
