@@ -31,8 +31,8 @@ def test_workflow():
         "idade": 35
     }
     
-    response = requests.post(f"{BASE_URL}/iniciar_atendimento", json=paciente_data)
-    print_response(response, "POST /iniciar_atendimento")
+    response = requests.post(f"{BASE_URL}/start_session", json=paciente_data)
+    print_response(response, "POST /start_session")
     
     if response.status_code != 200:
         print("❌ Failed to initialize session. Exiting.")

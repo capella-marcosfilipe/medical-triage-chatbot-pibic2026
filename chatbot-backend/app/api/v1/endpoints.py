@@ -31,8 +31,8 @@ from app.services.microservice_client import chatbot_microservice_client
 router = APIRouter()
 
 
-@router.post("/iniciar_atendimento", response_model=IniciarAtendimentoResponse)
-async def iniciar_atendimento(paciente_data: PacienteData):
+@router.post("/start_session", response_model=IniciarAtendimentoResponse)
+async def start_session(paciente_data: PacienteData):
     """Initialize a new patient session."""
     try:
         session_id = session_manager.create_session(paciente_data)
@@ -42,6 +42,12 @@ async def iniciar_atendimento(paciente_data: PacienteData):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao iniciar atendimento: {str(e)}")
+
+
+@router.post("/iniciar_atendimento", response_model=IniciarAtendimentoResponse)
+async def iniciar_atendimento(paciente_data: PacienteData):
+    """Legacy alias for starting a patient session."""
+    return await start_session(paciente_data)
 
 
 @router.get("/get_smartwatch_data/{smartwatch_id}", response_model=ObterDadosSmartWatchResponse)

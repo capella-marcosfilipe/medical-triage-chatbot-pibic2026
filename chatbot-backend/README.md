@@ -77,7 +77,7 @@ Após iniciar o servidor, acesse:
 
 #### 1. Iniciar Atendimento
 ```http
-POST /api/v1/iniciar_atendimento
+POST /api/v1/start_session
 Content-Type: application/json
 
 {
@@ -94,6 +94,8 @@ Content-Type: application/json
   "message": "Atendimento iniciado com sucesso"
 }
 ```
+
+> Alias legado: `POST /api/v1/iniciar_atendimento` continua funcionando e delega para `/start_session`.
 
 #### 2. Obter Dados do Smartwatch
 ```http
@@ -221,7 +223,7 @@ APP_PORT=8001
 DEBUG=False
 
 # CORS
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:4200
 ```
 
 ## 🧪 Testando a API
@@ -230,7 +232,7 @@ FRONTEND_URL=http://localhost:3000
 
 ```bash
 # Iniciar atendimento
-curl -X POST http://localhost:8001/api/v1/iniciar_atendimento \
+curl -X POST http://localhost:8001/api/v1/start_session \
   -H "Content-Type: application/json" \
   -d '{"nome_completo":"João Silva","endereco":"Rua Exemplo, 123","idade":35}'
 
@@ -251,7 +253,7 @@ import requests
 BASE_URL = "http://localhost:8001/api/v1"
 
 # Iniciar atendimento
-response = requests.post(f"{BASE_URL}/iniciar_atendimento", json={
+response = requests.post(f"{BASE_URL}/start_session", json={
     "nome_completo": "João Silva",
     "endereco": "Rua Exemplo, 123",
     "idade": 35

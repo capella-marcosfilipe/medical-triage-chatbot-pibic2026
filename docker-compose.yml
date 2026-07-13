@@ -15,7 +15,7 @@ services:
       APP_PORT: 8001
       DEBUG: "False"
       CHATBOT_MICROSERVICE_URL: http://chat-rag-microservice:8000
-      FRONTEND_URL: http://localhost:3000
+      FRONTEND_URL: http://localhost:4200
     depends_on:
       chat-rag-microservice:
         condition: service_healthy

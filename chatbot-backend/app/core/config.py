@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     debug: bool = False
     
     # CORS Settings
-    frontend_url: str = "http://localhost:3000"
+    frontend_url: str = "http://localhost:4200"
 
     # PostgreSQL (prepared for SQLAlchemy integration)
     postgres_host: str = "postgres"
