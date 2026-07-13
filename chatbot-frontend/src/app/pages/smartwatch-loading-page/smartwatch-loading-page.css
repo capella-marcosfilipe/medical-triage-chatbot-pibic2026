@@ -1,0 +1,18 @@
+.smartwatch-page__title {
+  font-size: var(--font-title);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.smartwatch-page__text {
+  font-size: var(--font-subtitle);
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 45rem;
+}
+
+.smartwatch-page__session-id {
+  font-size: var(--font-small);
+  color: var(--color-text-muted);
+  font-family: monospace;
+}

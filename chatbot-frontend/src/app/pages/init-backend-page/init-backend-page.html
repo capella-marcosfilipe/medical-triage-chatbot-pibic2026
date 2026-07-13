@@ -1,1 +1,10 @@
-<p>init-backend-page works!</p>
+<app-fullscreen-stage>
+  @if (triagem.submitError()) {
+    <app-error-banner
+      message="Não foi possível iniciar o seu atendimento. Verifique sua conexão e tente novamente."
+      (retry)="retry()"
+    />
+  } @else {
+    <app-spinner label="Iniciando o seu atendimento..." />
+  }
+</app-fullscreen-stage>

@@ -1,1 +1,10 @@
-<p>smartwatch-loading-page works!</p>
+<app-fullscreen-stage>
+  <h1 class="smartwatch-page__title">Atendimento iniciado!</h1>
+  <p class="smartwatch-page__text">
+    Sessão criada com sucesso. Agora vamos simular a leitura dos dados do seu smartwatch antes
+    de você conversar com a assistente virtual.
+  </p>
+  @if (triagem.sessionId(); as sessionId) {
+    <p class="smartwatch-page__session-id">ID da sessão: {{ sessionId }}</p>
+  }
+</app-fullscreen-stage>
