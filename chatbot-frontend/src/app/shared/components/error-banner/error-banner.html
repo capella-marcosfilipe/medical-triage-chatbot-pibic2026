@@ -1,0 +1,6 @@
+<div class="error-banner" role="alert">
+  <p class="error-banner__message">{{ message() }}</p>
+  <button type="button" class="error-banner__retry" (click)="retry.emit()">
+    {{ retryLabel() }}
+  </button>
+</div>
