@@ -1,0 +1,17 @@
+.welcome-page__illustration {
+  width: clamp(12rem, 10rem + 12vw, 22rem);
+  height: auto;
+}
+
+.welcome-page__title {
+  font-size: var(--font-title);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.welcome-page__subtitle {
+  font-size: var(--font-subtitle);
+  color: var(--color-text-muted);
+  margin: 0;
+  max-width: 45rem;
+}

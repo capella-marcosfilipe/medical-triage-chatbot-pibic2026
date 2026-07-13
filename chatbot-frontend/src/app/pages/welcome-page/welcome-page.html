@@ -1,1 +1,14 @@
-<p>welcome-page works!</p>
+<app-fullscreen-stage>
+  <img
+    class="welcome-page__illustration"
+    src="images/welcome-illustration.png"
+    alt="Ilustração de profissionais de saúde acolhendo um paciente"
+  />
+  <h1 class="welcome-page__title">Bem-vindo(a) ao seu atendimento de triagem</h1>
+  <p class="welcome-page__subtitle">
+    Vamos fazer algumas perguntas rápidas para preparar o seu atendimento antes de você
+    conversar com a nossa assistente virtual.
+  </p>
+  <app-button-primary (pressed)="comecar()">Começar</app-button-primary>
+  <app-irasutoya-credit />
+</app-fullscreen-stage>

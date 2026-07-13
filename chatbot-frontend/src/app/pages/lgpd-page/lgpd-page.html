@@ -1,1 +1,23 @@
-<p>lgpd-page works!</p>
+<app-fullscreen-stage>
+  <img
+    class="lgpd-page__illustration"
+    src="images/lgpd-privacy-illustration.png"
+    alt="Ilustração representando a proteção de dados pessoais"
+  />
+  <h1 class="lgpd-page__title">Privacidade dos seus dados</h1>
+  <div class="lgpd-page__info">
+    <p>
+      Para preparar o seu atendimento, vamos coletar seu <strong>nome completo</strong>,
+      <strong>endereço</strong> e <strong>idade</strong>, além de dados simulados do seu
+      smartwatch durante a conversa com a assistente virtual.
+    </p>
+    <p>
+      Essas informações são usadas apenas para montar uma ficha de triagem que será
+      enviada ao médico responsável. A assistente virtual não emite diagnóstico: ela
+      apenas organiza os sintomas relatados para apoiar a avaliação médica, conforme a
+      Lei Geral de Proteção de Dados (LGPD).
+    </p>
+  </div>
+  <app-button-primary (pressed)="aceitar()">Aceito</app-button-primary>
+  <app-irasutoya-credit />
+</app-fullscreen-stage>
