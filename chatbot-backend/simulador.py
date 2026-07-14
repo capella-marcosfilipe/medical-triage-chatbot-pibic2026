@@ -29,24 +29,6 @@ MAX_TURNS = 15
 POLL_INTERVAL_SECONDS = 0.5
 POLL_TIMEOUT_SECONDS = 30.0
 
-# Usada apenas para extrair, de forma best-effort, a especialidade citada no
-# texto livre de fechamento do LLM: o contrato atual do backend (NLPJobContent)
-# não tem um campo estruturado separado para isso (ver RELATORIO_EXECUCAO).
-ESPECIALIDADES_CONHECIDAS = [
-    "Cardiologia",
-    "Neurologia",
-    "Pneumologia",
-    "Gastroenterologia",
-    "Ortopedia",
-    "Pediatria",
-    "Clínica Geral",
-    "Urologia",
-    "Dermatologia",
-    "Psiquiatria",
-    "Oftalmologia",
-    "Otorrinolaringologia",
-]
-
 PATIENT_SYSTEM_PROMPT_TEMPLATE = """Você é um(a) paciente simulado(a) para teste de um chatbot de triagem médica.
 Perfil: {nome_ficticio}, {idade} anos, sexo {sexo}.
 Condição simulada (NÃO revele o nome da condição, apenas descreva sintomas como um paciente real faria): {condicao_simulada}.
@@ -59,16 +41,6 @@ simulação."""
 
 class SimulacaoError(Exception):
     """Falha esperada do domínio da simulação (não um bug do script)."""
-
-
-def extrair_especialidade(texto: str) -> str | None:
-    """Procura o nome de uma especialidade conhecida no texto livre de
-    fechamento do LLM. Best-effort: não há campo estruturado para isso."""
-    texto_lower = texto.lower()
-    for especialidade in ESPECIALIDADES_CONHECIDAS:
-        if especialidade.lower() in texto_lower:
-            return especialidade
-    return None
 
 
 async def gerar_resposta_paciente(
@@ -130,6 +102,7 @@ async def simular_paciente(
         "nome_ficticio": perfil["nome_ficticio"],
         "especialidade_esperada": perfil["especialidade_esperada"],
         "chamadas_http": [],
+        "especialidade_nula_apesar_de_concluido": False,
         "erro": None,
     }
 
@@ -200,7 +173,14 @@ async def simular_paciente(
             historico_llm.append({"role": "assistant", "content": resposta_bot})
 
             if diagnosis_status == "diagnosis_concluded":
-                especialidade_retornada = extrair_especialidade(resposta_bot)
+                # Lê o campo estruturado direto (ver docs/structured_output_contract.md
+                # no chat-rag-microservice) em vez de extrair por substring do texto livre.
+                especialidade_retornada = content.get("specialty")
+                if especialidade_retornada is None:
+                    # status concluído sem specialty indica falha de parsing do JSON
+                    # estruturado no chat-rag-microservice — dado relevante para a
+                    # análise de qualidade, não um bug deste script.
+                    log["especialidade_nula_apesar_de_concluido"] = True
                 break
 
             mensagem_paciente = await gerar_resposta_paciente(client, api_key, perfil, historico_llm)
