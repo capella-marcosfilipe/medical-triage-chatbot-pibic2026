@@ -18,11 +18,9 @@ import hashlib
 import json
 from pathlib import Path
 
-import chromadb
-from chromadb.utils import embedding_functions
-
 from app.infrastructure.settings import settings
 from app.infrastructure.logger import logger
+from app.rag.storage.manchester_repository import ManchesterRulesRepository
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
@@ -55,17 +53,10 @@ def build_index() -> int:
 
     records = json.loads(rules_path.read_text(encoding="utf-8"))
 
-    chroma_path = REPO_ROOT / settings.MANCHESTER_CHROMA_PATH
-    chroma_path.mkdir(parents=True, exist_ok=True)
-    client = chromadb.PersistentClient(path=str(chroma_path))
-
-    embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
-        model_name=settings.MANCHESTER_EMBEDDING_MODEL
-    )
-    collection = client.get_or_create_collection(
-        name=settings.MANCHESTER_COLLECTION_NAME,
-        embedding_function=embedding_function,
-        metadata={"hnsw:space": "cosine"},
+    repository = ManchesterRulesRepository(
+        chroma_path=REPO_ROOT / settings.MANCHESTER_CHROMA_PATH,
+        collection_name=settings.MANCHESTER_COLLECTION_NAME,
+        embedding_model=settings.MANCHESTER_EMBEDDING_MODEL,
     )
 
     group_counters: dict[tuple[str, str], int] = {}
@@ -88,8 +79,11 @@ def build_index() -> int:
         for r in records
     ]
 
-    collection.upsert(ids=ids, documents=documents, metadatas=metadatas)
-    logger.info(f"[build_index] {len(records)} registros indexados em '{collection.name}' ({chroma_path})")
+    repository.upsert(ids=ids, documents=documents, metadatas=metadatas)
+    logger.info(
+        f"[build_index] {len(records)} registros indexados em '{settings.MANCHESTER_COLLECTION_NAME}' "
+        f"({REPO_ROOT / settings.MANCHESTER_CHROMA_PATH})"
+    )
     return len(records)
 
 

@@ -36,16 +36,20 @@ O Chroma guarda os metadados (`fluxograma`, `cor`, `tempo_alvo`, `criterio`, `de
 
 **5** (`settings.MANCHESTER_RAG_TOP_K`), separado do `RAG_TOP_K` (3) do mecanismo de retrieval genérico já existente (`_retrieve_context`, sobre `app/knowledge/triage_kb.md`) — os blocos `[RAG_CONTEXT]` e `[REGRAS DE TRIAGEM RECUPERADAS]` coexistem no prompt final.
 
+## Acesso ao ChromaDB
+
+`app/rag/storage/manchester_repository.py` centraliza todo acesso ao ChromaDB desta base: `ManchesterRulesRepository` (client + embedding function, `upsert`/`query`/`count`) e o `Protocol` `ManchesterRulesReader` (interface de leitura usada para injeção de dependência). `build_index.py` e `LangGraphRAGService` dependem deste repositório em vez de instanciar o ChromaDB cada um por conta própria.
+
 ## Integração
 
 `app/graph/langgraph_rag_service.py`, classe `LangGraphRAGService`:
 
-- `_get_manchester_collection()` — abre a coleção ChromaDB persistente em `data/knowledge-base/chroma/` (lazy, cacheada só em caso de sucesso).
-- `_retrieve_manchester_rules(query)` — top-5 registros mais similares à mensagem mais recente do paciente; falhas são logadas e tratadas sem interromper a conversa.
+- Recebe um `ManchesterRulesReader` no construtor (`manchester_rules`), com um `ManchesterRulesRepository` real como padrão quando nenhum é injetado — permite testes substituírem por um fake sem tocar o ChromaDB.
+- `_retrieve_manchester_rules(query)` — delega ao repositório injetado (top-5 registros mais similares à mensagem mais recente do paciente); falhas são logadas e tratadas sem interromper a conversa.
 - `build_augmented_prompt(session_id, query)` — chama o retrieval a cada turno (não só no primeiro) e injeta o bloco `[REGRAS DE TRIAGEM RECUPERADAS]` no prompt final, antes da instrução de encerramento.
 
 ## Dívida técnica conhecida
 
 `app/graph/nodes/` e `app/graph/workflow.py` não são usados por nenhum caminho de execução real — `build_chat_graph()` monta um grafo `START → END` sem nós, e nada no repositório o invoca. O caminho realmente ativo é `LangGraphRAGService` (mesmo diretório `graph/`, classe diferente). O retrieval desta base foi implementado ali, não no módulo morto.
 
-Da mesma forma, `app/rag/{ingestion,indexing,retrieval,storage}/` contém `Protocol`s e stubs genéricos sem implementação concreta e sem uso real. `build_index.py` e o retrieval acima não foram construídos sobre esses stubs — são um pipeline independente e autocontido.
+Da mesma forma, `app/rag/{ingestion,indexing,retrieval,storage}/vector_store.py`/`embedder.py`/etc. contêm `Protocol`s e stubs genéricos sem uso real (trabalham com vetores pré-computados e strings simples, não com texto + metadados como o ChromaDB usa aqui). `manchester_repository.py` é uma implementação própria, não uma adaptação desses stubs.

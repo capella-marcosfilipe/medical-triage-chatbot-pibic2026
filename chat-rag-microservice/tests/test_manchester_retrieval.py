@@ -17,7 +17,9 @@ from app.graph.langgraph_rag_service import LangGraphRAGService
 @pytest.fixture(scope="module")
 def rag_service():
     service = LangGraphRAGService()
-    if service._get_manchester_collection() is None:
+    try:
+        service._manchester_rules.count()
+    except Exception:
         pytest.skip("Manchester collection not built; run 'python -m app.rag.build_index' first.")
     return service
 
@@ -74,8 +76,39 @@ def test_falha_de_retrieval_nao_derruba_a_conversa(rag_service, monkeypatch):
     def _boom(*args, **kwargs):
         raise RuntimeError("simulated ChromaDB failure")
 
-    monkeypatch.setattr(rag_service._get_manchester_collection(), "query", _boom)
+    monkeypatch.setattr(rag_service._manchester_rules, "query", _boom)
 
     rules = rag_service._retrieve_manchester_rules("qualquer sintoma")
 
     assert rules == []
+
+
+def test_retrieval_delegates_to_injected_reader():
+    """Proves constructor injection works, without touching a real collection."""
+
+    class _FakeManchesterRules:
+        def __init__(self, rules: list[dict]) -> None:
+            self._rules = rules
+            self.last_call: tuple[str, int] | None = None
+
+        def query(self, text: str, top_k: int) -> list[dict]:
+            self.last_call = (text, top_k)
+            return self._rules
+
+    fake_rules = [
+        {
+            "fluxograma": "Fake",
+            "cor": "VERMELHO",
+            "tempo_alvo": "imediato",
+            "criterio": "critério fake",
+            "descritor": "descritor fake",
+        }
+    ]
+    fake_reader = _FakeManchesterRules(fake_rules)
+
+    service = LangGraphRAGService(manchester_rules=fake_reader)
+    result = service._retrieve_manchester_rules("sintoma qualquer")
+
+    assert result == fake_rules
+    assert fake_reader.last_call is not None
+    assert fake_reader.last_call[0] == "sintoma qualquer"
