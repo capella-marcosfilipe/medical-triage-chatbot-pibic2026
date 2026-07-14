@@ -4,8 +4,11 @@ from __future__ import annotations
 import json
 import os
 import re
+from pathlib import Path
 from typing import Annotated, TypedDict
 
+import chromadb
+from chromadb.utils import embedding_functions
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -15,6 +18,8 @@ from app.infrastructure.settings import settings
 from app.infrastructure.cache import redis_cache
 from app.infrastructure.logger import logger
 from app.llm.structured_output import ESPECIALIDADES_CONHECIDAS
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
 class ConversationState(TypedDict):
@@ -30,6 +35,7 @@ class LangGraphRAGService:
         self._checkpointer = MemorySaver()
         self._graph = self._build_graph()
         self._knowledge_chunks = self._load_knowledge_chunks(settings.RAG_KB_PATH)
+        self._manchester_collection = None
 
     @staticmethod
     def _build_graph():
@@ -78,6 +84,55 @@ class LangGraphRAGService:
 
         scored.sort(key=lambda item: item[0], reverse=True)
         return [chunk for score, chunk in scored[:top_k] if score > 0]
+
+    def _get_manchester_collection(self):
+        """Lazily open the ChromaDB collection built by app/rag/build_index.py.
+
+        Caches the collection handle once opened successfully, but does not
+        cache a failure — if the collection isn't built yet (or ChromaDB is
+        otherwise unavailable) this retries on the next call instead of
+        staying broken for the service's whole lifetime.
+        """
+        if self._manchester_collection is not None:
+            return self._manchester_collection
+
+        try:
+            chroma_path = REPO_ROOT / settings.MANCHESTER_CHROMA_PATH
+            client = chromadb.PersistentClient(path=str(chroma_path))
+            embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
+                model_name=settings.MANCHESTER_EMBEDDING_MODEL
+            )
+            self._manchester_collection = client.get_collection(
+                name=settings.MANCHESTER_COLLECTION_NAME,
+                embedding_function=embedding_function,
+            )
+            return self._manchester_collection
+        except Exception as exc:
+            logger.warning(
+                f"Manchester rules collection unavailable ({exc}); continuing without retrieved rules. "
+                "Run 'python -m app.rag.build_index' to build it."
+            )
+            return None
+
+    def _retrieve_manchester_rules(self, query: str) -> list[dict]:
+        """Retrieve the top-k Manchester/Maringá triage rules for this query.
+
+        Never raises: any failure (collection missing, embedding error, etc.)
+        is logged as a warning and treated as "no rules retrieved this turn"
+        rather than a critical failure of the conversation.
+        """
+        collection = self._get_manchester_collection()
+        if collection is None:
+            return []
+
+        try:
+            result = collection.query(query_texts=[query], n_results=settings.MANCHESTER_RAG_TOP_K)
+        except Exception as exc:
+            logger.warning(f"Manchester rules retrieval failed for this turn, continuing without it: {exc}")
+            return []
+
+        metadatas = result.get("metadatas") or [[]]
+        return metadatas[0] if metadatas else []
 
     async def _ensure_redis_connected(self) -> None:
         if redis_cache.client is None:
@@ -207,6 +262,18 @@ class LangGraphRAGService:
             lines.append("[RAG_CONTEXT]")
             for idx, chunk in enumerate(retrieved, start=1):
                 lines.append(f"Fonte {idx}: {chunk}")
+
+        # Runs on every turn (not just the first) since the reported symptom
+        # can change or become more specific as the conversation progresses.
+        manchester_rules = self._retrieve_manchester_rules(query)
+        if manchester_rules:
+            lines.append("[REGRAS DE TRIAGEM RECUPERADAS]")
+            for idx, rule in enumerate(manchester_rules, start=1):
+                lines.append(
+                    f"{idx}. Fluxograma: {rule['fluxograma']} | Cor: {rule['cor']} | "
+                    f"Tempo-alvo: {rule['tempo_alvo']} | Critério: {rule['criterio']} | "
+                    f"Descritor: {rule['descritor']}"
+                )
 
         lines.append(
             "Continue a triagem com perguntas curtas e seguras. Se não houver dados suficientes, peça mais detalhes."
