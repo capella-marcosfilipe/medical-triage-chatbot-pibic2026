@@ -14,6 +14,7 @@ from langgraph.graph.message import add_messages
 from app.infrastructure.settings import settings
 from app.infrastructure.cache import redis_cache
 from app.infrastructure.logger import logger
+from app.llm.structured_output import ESPECIALIDADES_CONHECIDAS
 
 
 class ConversationState(TypedDict):
@@ -149,10 +150,19 @@ class LangGraphRAGService:
             if patient_context:
                 context_text = "\n".join(f"- {key}: {value}" for key, value in patient_context.items())
 
+            especialidades_lista = ", ".join(ESPECIALIDADES_CONHECIDAS)
             system_prompt = (
                 "Você é um assistente de triagem médica. Não forneça diagnóstico final. "
                 "Colete dados com empatia e objetividade para encaminhamento clínico.\n"
-                "Use o contexto recuperado apenas como apoio e priorize segurança clínica."
+                "Use o contexto recuperado apenas como apoio e priorize segurança clínica.\n\n"
+                "FORMATO DE SAÍDA OBRIGATÓRIO: responda SEMPRE com um único objeto JSON, "
+                "sem cercas de código Markdown e sem texto fora do JSON, no formato:\n"
+                '{"status": "ongoing" | "diagnosis_concluded", "message": "texto para o paciente", '
+                '"specialty": null ou uma das especialidades abaixo, "orientation": null ou um resumo '
+                "clínico objetivo para o médico}.\n"
+                f"Quando status for \"diagnosis_concluded\", 'specialty' deve ser exatamente uma destas "
+                f"{len(ESPECIALIDADES_CONHECIDAS)} opções (nunca uma variação livre): {especialidades_lista}. "
+                "Use \"Clínica Geral\" quando nenhuma especialidade mais específica se aplicar claramente."
             )
             if context_text:
                 system_prompt += f"\n\nContexto do paciente:\n{context_text}"
