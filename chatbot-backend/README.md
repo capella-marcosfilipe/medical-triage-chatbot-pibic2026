@@ -95,8 +95,6 @@ Content-Type: application/json
 }
 ```
 
-> Alias legado: `POST /api/v1/iniciar_atendimento` continua funcionando e delega para `/start_session`.
-
 #### 2. Obter Dados do Smartwatch
 ```http
 GET /api/v1/get_smartwatch_data/{smartwatch_id}
@@ -237,7 +235,7 @@ curl -X POST http://localhost:8001/api/v1/start_session \
   -d '{"nome_completo":"João Silva","endereco":"Rua Exemplo, 123","idade":35}'
 
 # Obter dados do smartwatch
-curl http://localhost:8001/api/v1/obter_dados_smartwatch/SESSION_ID
+curl http://localhost:8001/api/v1/get_smartwatch_data/SMARTWATCH_ID
 
 # Chat com Nemotron
 curl -X POST http://localhost:8001/api/v1/chat \
@@ -261,7 +259,8 @@ response = requests.post(f"{BASE_URL}/start_session", json={
 session_id = response.json()["session_id"]
 
 # Obter dados do smartwatch
-response = requests.get(f"{BASE_URL}/obter_dados_smartwatch/{session_id}")
+smartwatch_id = "mock-device-001"
+response = requests.get(f"{BASE_URL}/get_smartwatch_data/{smartwatch_id}")
 print(response.json())
 
 # Chat com Nemotron

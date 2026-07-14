@@ -44,12 +44,6 @@ async def start_session(paciente_data: PacienteData):
         raise HTTPException(status_code=500, detail=f"Erro ao iniciar atendimento: {str(e)}")
 
 
-@router.post("/iniciar_atendimento", response_model=IniciarAtendimentoResponse)
-async def iniciar_atendimento(paciente_data: PacienteData):
-    """Legacy alias for starting a patient session."""
-    return await start_session(paciente_data)
-
-
 @router.get("/get_smartwatch_data/{smartwatch_id}", response_model=ObterDadosSmartWatchResponse)
 async def get_smartwatch_data(smartwatch_id: str):
     """Get simulated smartwatch data by smartwatch device id."""
@@ -58,12 +52,6 @@ async def get_smartwatch_data(smartwatch_id: str):
         return ObterDadosSmartWatchResponse(dados_fisiologicos=dados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao obter dados do smartwatch: {str(e)}")
-
-
-@router.get("/obter_dados_smartwatch/{session_id}", response_model=ObterDadosSmartWatchResponse)
-async def obter_dados_smartwatch(session_id: str):
-    """Legacy alias for smartwatch data retrieval."""
-    return await get_smartwatch_data(session_id)
 
 
 def _build_idempotency_key(chat_id: str, engine: str, message: str) -> str:
@@ -193,14 +181,6 @@ async def get_chat_history(chat_id: str):
     )
 
 
-@router.get("/chat_with_nemotron/status/{job_id}", response_model=NLPJobStatusResponse)
-async def chat_with_nemotron_status_legacy(
-    job_id: str,
-):
-    """Legacy alias for chat job status."""
-    return await chat_with_nemotron_status(job_id)
-
-
 @router.get("/obter_ficha_completa/{session_id}", response_model=ObterFichaCompletaResponse)
 async def obter_ficha_completa(session_id: str):
     """Get the complete medical record for a session."""
@@ -209,12 +189,3 @@ async def obter_ficha_completa(session_id: str):
         raise HTTPException(status_code=404, detail="Sessão não encontrada")
     
     return ObterFichaCompletaResponse(ficha_de_atendimento=session)
-
-
-@router.post("/chat_with_gemini")
-async def chat_with_gemini_deprecated():
-    """Deprecated endpoint kept for compatibility with old clients."""
-    raise HTTPException(
-        status_code=410,
-        detail="Endpoint descontinuado. Use /api/v1/chat.",
-    )

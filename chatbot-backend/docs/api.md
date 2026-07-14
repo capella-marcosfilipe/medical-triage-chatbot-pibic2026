@@ -24,9 +24,6 @@ Response:
 
 `POST /api/v1/start_session`
 
-Notes:
-- Legacy alias: `POST /api/v1/iniciar_atendimento` remains available and delegates to this endpoint.
-
 Request:
 ```json
 {

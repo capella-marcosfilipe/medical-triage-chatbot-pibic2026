@@ -19,10 +19,10 @@ A solução adota uma arquitetura orientada a eventos e microsserviços, alinhad
 ## 3. Fluxo de Dados e Endpoints Principais
 O fluxo do paciente foi mapeado a partir dos protótipos em Figma e implementado nos seguintes contratos:
 
-1.  **Sessão:** `POST /api/v1/iniciar_atendimento` -> Cria UUID, recebe demografia.
-2.  **Sensores:** `GET /api/v1/obter_dados_smartwatch/{session_id}` -> (Atualmente Simulado) Coleta Altura, Peso, PAS/PAD, SpO2 (Saturação de Oxigênio) e Nível de Estresse.
-3.  **Chat/Anamnese:** `POST /api/v1/chat_with_gemini` -> Processa a queixa. O modelo atua sob um prompt estrito para retornar `status: ongoing` ou `status: final` (com a especialidade sugerida).
-4.  **Processamento NLP Extra:** `POST /chat?mode={auto|gpu|api}` -> Aciona o worker assíncrono do Nemotron via mensageria.
+1.  **Sessão:** `POST /api/v1/start_session` -> Cria UUID, recebe demografia.
+2.  **Sensores:** `GET /api/v1/get_smartwatch_data/{smartwatch_id}` -> (Atualmente Simulado) Coleta Altura, Peso, PAS/PAD, SpO2 (Saturação de Oxigênio) e Nível de Estresse.
+3.  **Chat/Anamnese:** `POST /api/v1/chat` -> Processa a queixa via Nemotron (enfileirado, poll em `/chat/status/{job_id}`). O modelo atua sob um prompt estrito para retornar `status: ongoing` ou `status: diagnosis_concluded` (com a especialidade sugerida).
+4.  **Processamento NLP Extra:** `POST /chat?mode={auto|gpu|api}` (no `chat-rag-microservice`) -> Aciona o worker assíncrono do Nemotron via mensageria.
 
 ## 4. Constraints Críticas de Negócio e Segurança
 1.  **Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018):** O armazenamento dos dados fisiológicos do gêmeo digital (Personal Digital Twin - PDT) requer rigor na anonimização e trânsito seguro em banco.
@@ -31,5 +31,5 @@ O fluxo do paciente foi mapeado a partir dos protótipos em Figma e implementado
 
 ## 5. Próximos Passos (Roadmap de Desenvolvimento)
 * **[Pendente]** Migrar a memória em cache da sessão de chat do Gemini para o PostgreSQL usando SQLAlchemy.
-* **[Pendente]** Consolidar a interface frontend (React/Flutter) consumindo os endpoints consolidados do novo API Gateway.
+* **[Concluído]** Interface frontend consolidada em Angular 22 (`chatbot-frontend/`, substituindo o protótipo `frontend_legacy/`), consumindo `/start_session` até o estado `smartwatch_loading`.
 * **[Pendente]** Substituir a simulação de hardware por coleta real via APIs de saúde mobile (ex: Samsung Health) conforme documentado no artigo base.

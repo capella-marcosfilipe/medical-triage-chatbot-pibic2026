@@ -24,7 +24,7 @@ app/
 
 ## Public API Surface
 
-- `POST /api/v1/iniciar_atendimento`
+- `POST /api/v1/start_session`
 - `GET /api/v1/get_smartwatch_data/{smartwatch_id}`
 - `POST /api/v1/chat`
 - `GET /api/v1/chat/status/{job_id}`
