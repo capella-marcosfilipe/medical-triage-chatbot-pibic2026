@@ -5,7 +5,8 @@ export type ChatFlowState =
   | 'ask_address'
   | 'ask_age'
   | 'init_backend'
-  | 'smartwatch_loading';
+  | 'smartwatch_loading'
+  | 'nemotron_chat';
 
 export const FLOW_ORDER: readonly ChatFlowState[] = [
   'welcome',
@@ -15,4 +16,5 @@ export const FLOW_ORDER: readonly ChatFlowState[] = [
   'ask_age',
   'init_backend',
   'smartwatch_loading',
+  'nemotron_chat',
 ] as const;

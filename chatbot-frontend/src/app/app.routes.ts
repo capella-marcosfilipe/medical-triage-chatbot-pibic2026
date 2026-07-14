@@ -50,5 +50,12 @@ export const routes: Routes = [
     canActivate: [chatFlowStepGuard],
     data: { flowState: 'smartwatch_loading' },
   },
+  {
+    path: 'atendimento/chat',
+    loadComponent: () =>
+      import('./pages/nemotron-chat-page/nemotron-chat-page').then((m) => m.NemotronChatPage),
+    canActivate: [chatFlowStepGuard],
+    data: { flowState: 'nemotron_chat' },
+  },
   { path: '**', redirectTo: 'welcome' },
 ];
