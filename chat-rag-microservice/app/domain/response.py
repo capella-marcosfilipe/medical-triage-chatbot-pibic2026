@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional
+from typing import Literal, Optional
 from datetime import datetime
 from enum import Enum
 
@@ -12,9 +12,17 @@ class JobStatus(str, Enum):
 
 
 class ChatResponse(BaseModel):
-    response: str
+    response: str = Field(description="Sanitized message text shown to the patient (mirrors `message`).")
     mode: str = Field(description="Execution mode (gpu or api)")
     latency_ms: Optional[float] = None
+
+    # Structured-output contract fields (see docs/structured_output_contract.md).
+    # `response` is kept for backward compatibility with existing consumers
+    # (e.g. LangGraphRAGService.sync_assistant_from_job reads `.response`).
+    status: Literal["ongoing", "diagnosis_concluded"] = "ongoing"
+    message: str = Field(default="", description="Same text as `response`, named per the structured contract.")
+    specialty: Optional[str] = Field(default=None, description="One of the 12 known specialties, or None.")
+    orientation: Optional[str] = Field(default=None, description="Clinical summary for the attending physician.")
 
 
 class ChatAsyncResponse(BaseModel):

@@ -13,6 +13,7 @@ from app.jobs.queue_service import queue_service, QueueType
 from app.infrastructure.cache import redis_cache
 from app.infrastructure.logger import logger
 from app.infrastructure.retry import retry_policy
+from app.llm.structured_output import parse_structured_response
 
 
 class BaseWorker(ABC):
@@ -195,14 +196,23 @@ class BaseWorker(ABC):
         try:
             # Call specialized processing method
             response_text = await self.generate_response(request)
-            
+
             # Calculate latency
             latency_ms = (datetime.now() - start_time).total_seconds() * 1000
-            
+
+            # Parse the structured-output contract (see docs/structured_output_contract.md).
+            # Never raises: parsing failures degrade to status="ongoing" with the raw
+            # text as the message, logged via logger.warning inside parse_structured_response.
+            parsed = parse_structured_response(response_text)
+
             return ChatResponse(
-                response=response_text,
+                response=parsed.message,
                 mode=self.queue_type,
-                latency_ms=round(latency_ms, 2)
+                latency_ms=round(latency_ms, 2),
+                status=parsed.status,
+                message=parsed.message,
+                specialty=parsed.specialty,
+                orientation=parsed.orientation,
             )
         
         except Exception as e:
