@@ -7,6 +7,8 @@ from openai import OpenAI
 import os
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+from app.infrastructure.constants import NEMOTRON_GPU_MODEL, NVIDIA_API_BASE_URL
+
 EngineMode = Literal["gpu", "api"]
 
 
@@ -52,19 +54,19 @@ class NemotronEngine:
             "your_default_api_key_here"
         )
         return OpenAI(
-            base_url="https://integrate.api.nvidia.com/v1",
+            base_url=NVIDIA_API_BASE_URL,
             api_key=api_key
         )
-    
+
     def _init_gpu_model(self):
         """Initialize local GPU model."""
-        
-        
+
+
         print("Loading Nemotron GPU model...")
-        tokenizer = AutoTokenizer.from_pretrained("nvidia/NVIDIA-Nemotron-Nano-9B-v2")
-        
+        tokenizer = AutoTokenizer.from_pretrained(NEMOTRON_GPU_MODEL)
+
         model = AutoModelForCausalLM.from_pretrained(
-            "nvidia/NVIDIA-Nemotron-Nano-9B-v2",
+            NEMOTRON_GPU_MODEL,
             torch_dtype=torch.bfloat16,
             trust_remote_code=True,
             device_map="auto"

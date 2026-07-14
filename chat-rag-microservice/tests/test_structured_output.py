@@ -5,7 +5,8 @@ implements.
 """
 import pytest
 
-from app.llm.structured_output import ESPECIALIDADES_CONHECIDAS, parse_structured_response
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
+from app.llm.structured_output import parse_structured_response
 
 
 def test_parseia_json_limpo_ongoing():

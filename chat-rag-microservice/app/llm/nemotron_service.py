@@ -5,6 +5,12 @@ from openai.types.chat import (ChatCompletionSystemMessageParam,
                                ChatCompletionUserMessageParam)
 
 from app.llm.engine import EngineMode, nemotron_engine
+from app.infrastructure.constants import (
+    NEMOTRON_API_MODEL,
+    REASONING_MAX_THINKING_TOKENS,
+    REASONING_MIN_THINKING_TOKENS,
+    REASONING_TRIGGER_TOKEN,
+)
 from app.infrastructure.logger import Logger
 
 logger = Logger()
@@ -33,7 +39,7 @@ class NemotronService:
         ]
         
         if use_reasoning:
-            messages.insert(0, ChatCompletionSystemMessageParam(role="system", content="/think"))
+            messages.insert(0, ChatCompletionSystemMessageParam(role="system", content=REASONING_TRIGGER_TOKEN))
         
         return messages
     
@@ -109,12 +115,12 @@ class NemotronService:
         extra_body = {}
         if use_reasoning:
             extra_body = {
-                "min_thinking_tokens": 256,
-                "max_thinking_tokens": 1024
+                "min_thinking_tokens": REASONING_MIN_THINKING_TOKENS,
+                "max_thinking_tokens": REASONING_MAX_THINKING_TOKENS
             }
         
         completion = self._engine.api_client.chat.completions.create(
-            model="nvidia/nvidia-nemotron-nano-9b-v2",
+            model=NEMOTRON_API_MODEL,
             messages=messages,
             temperature=temperature,
             top_p=0.95,
@@ -189,12 +195,12 @@ class NemotronService:
         extra_body = {}
         if use_reasoning:
             extra_body = {
-                "min_thinking_tokens": 256,
-                "max_thinking_tokens": 1024
+                "min_thinking_tokens": REASONING_MIN_THINKING_TOKENS,
+                "max_thinking_tokens": REASONING_MAX_THINKING_TOKENS
             }
         
         completion = self._engine.api_client.chat.completions.create(
-            model="nvidia/nvidia-nemotron-nano-9b-v2",
+            model=NEMOTRON_API_MODEL,
             messages=messages,
             temperature=temperature,
             top_p=0.95,

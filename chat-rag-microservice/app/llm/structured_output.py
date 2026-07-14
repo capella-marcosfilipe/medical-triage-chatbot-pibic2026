@@ -13,29 +13,10 @@ import re
 from dataclasses import dataclass
 from typing import Literal
 
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
 from app.infrastructure.logger import logger
 
 DiagnosisStatus = Literal["ongoing", "diagnosis_concluded"]
-
-# Same 12 specialties used in chatbot-backend/pacientes_sinteticos.json (Dia 10).
-# Kept as a literal duplicate across services on purpose: chat-rag-microservice
-# and chatbot-backend/simulador.py are separate Python packages with no shared
-# module today, and this list is small and stable enough that duplicating it is
-# simpler than introducing a cross-service dependency for one constant.
-ESPECIALIDADES_CONHECIDAS = (
-    "Cardiologia",
-    "Neurologia",
-    "Pneumologia",
-    "Gastroenterologia",
-    "Ortopedia",
-    "Pediatria",
-    "Clínica Geral",
-    "Urologia",
-    "Dermatologia",
-    "Psiquiatria",
-    "Oftalmologia",
-    "Otorrinolaringologia",
-)
 
 _MARKDOWN_FENCE_PATTERN = re.compile(r"^```(?:json)?\s*|\s*```$", re.IGNORECASE | re.MULTILINE)
 

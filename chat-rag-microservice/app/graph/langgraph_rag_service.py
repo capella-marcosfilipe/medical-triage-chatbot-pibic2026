@@ -13,10 +13,10 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
 from app.infrastructure.settings import settings
 from app.infrastructure.cache import redis_cache
 from app.infrastructure.logger import logger
-from app.llm.structured_output import ESPECIALIDADES_CONHECIDAS
 from app.rag.storage.manchester_repository import ManchesterRulesReader, ManchesterRulesRepository
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

@@ -15,6 +15,8 @@ from chromadb.api import ClientAPI
 from chromadb.api.types import Embeddable, EmbeddingFunction, Metadata
 from chromadb.utils import embedding_functions
 
+from app.infrastructure.constants import CHROMA_DISTANCE_METRIC
+
 
 class ManchesterRulesReader(Protocol):
     """Read-side interface consumed by LangGraphRAGService.
@@ -60,7 +62,7 @@ class ManchesterRulesRepository:
             return client.get_or_create_collection(
                 name=self._collection_name,
                 embedding_function=embedding_function,
-                metadata={"hnsw:space": "cosine"},
+                metadata={"hnsw:space": CHROMA_DISTANCE_METRIC},
             )
         return client.get_collection(name=self._collection_name, embedding_function=embedding_function)
 
