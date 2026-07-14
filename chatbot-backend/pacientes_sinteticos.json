@@ -1,0 +1,205 @@
+{
+  "_nota_revisao": "Perfis fictícios gerados para simulação de carga e de fluxo de triagem (PIBIC 2025-2026). As condições, sintomas, especialidades esperadas e classificações de urgência (Protocolo de Manchester) são rascunhos para fins de teste automatizado e NÃO passaram por validação clínica. A decisão final sobre a adequação clínica de cada caso é de responsabilidade do pesquisador responsável antes de qualquer uso além de testes de software.",
+  "pacientes": [
+    {
+      "id": 1,
+      "nome_ficticio": "Antônio Ferreira",
+      "idade": 67,
+      "sexo": "M",
+      "condicao_simulada": "Infarto agudo do miocárdio",
+      "sintomas": "Dor forte no peito irradiando para o braço esquerdo, sudorese fria e falta de ar há 20 minutos",
+      "especialidade_esperada": "Cardiologia",
+      "nivel_urgencia_esperado": "vermelho"
+    },
+    {
+      "id": 2,
+      "nome_ficticio": "Marisa Ondina Campos",
+      "idade": 54,
+      "sexo": "F",
+      "condicao_simulada": "Acidente vascular cerebral (AVC) isquêmico",
+      "sintomas": "Fraqueza súbita do lado direito do corpo, fala embolada e desvio de rosto há 10 minutos",
+      "especialidade_esperada": "Neurologia",
+      "nivel_urgencia_esperado": "vermelho"
+    },
+    {
+      "id": 3,
+      "nome_ficticio": "Kauê Rodrigues Lima",
+      "idade": 8,
+      "sexo": "M",
+      "condicao_simulada": "Crise asmática grave",
+      "sintomas": "Chiado no peito intenso, dificuldade para falar frases completas e lábios arroxeados",
+      "especialidade_esperada": "Pneumologia",
+      "nivel_urgencia_esperado": "laranja"
+    },
+    {
+      "id": 4,
+      "nome_ficticio": "Isabel Trindade",
+      "idade": 29,
+      "sexo": "F",
+      "condicao_simulada": "Apendicite aguda",
+      "sintomas": "Dor abdominal intensa do lado direito que piorou nas últimas 6 horas, febre e náusea",
+      "especialidade_esperada": "Gastroenterologia",
+      "nivel_urgencia_esperado": "laranja"
+    },
+    {
+      "id": 5,
+      "nome_ficticio": "Wesley do Nascimento",
+      "idade": 34,
+      "sexo": "M",
+      "condicao_simulada": "Fratura exposta no antebraço após queda de moto",
+      "sintomas": "Dor intensa e deformidade visível no braço direito após acidente, com sangramento moderado",
+      "especialidade_esperada": "Ortopedia",
+      "nivel_urgencia_esperado": "laranja"
+    },
+    {
+      "id": 6,
+      "nome_ficticio": "Elza Guimarães",
+      "idade": 71,
+      "sexo": "F",
+      "condicao_simulada": "Pneumonia comunitária",
+      "sintomas": "Tosse com catarro amarelado há 5 dias, febre persistente e cansaço ao caminhar poucos metros",
+      "especialidade_esperada": "Pneumologia",
+      "nivel_urgencia_esperado": "amarelo"
+    },
+    {
+      "id": 7,
+      "nome_ficticio": "Thiago Almeida Souza",
+      "idade": 41,
+      "sexo": "M",
+      "condicao_simulada": "Enxaqueca com aura",
+      "sintomas": "Dor de cabeça latejante de um lado só, sensibilidade à luz e visão com pontos brilhantes há 2 horas",
+      "especialidade_esperada": "Neurologia",
+      "nivel_urgencia_esperado": "amarelo"
+    },
+    {
+      "id": 8,
+      "nome_ficticio": "Cecília Prado Martins",
+      "idade": 3,
+      "sexo": "F",
+      "condicao_simulada": "Gastroenterite aguda",
+      "sintomas": "Vômitos e diarreia há 2 dias, pouca urina e choro sem lágrimas",
+      "especialidade_esperada": "Pediatria",
+      "nivel_urgencia_esperado": "amarelo"
+    },
+    {
+      "id": 9,
+      "nome_ficticio": "Rogério Batista",
+      "idade": 52,
+      "sexo": "M",
+      "condicao_simulada": "Crise hipertensiva",
+      "sintomas": "Pressão arterial muito alta, dor de cabeça forte e visão embaçada, sem dor no peito",
+      "especialidade_esperada": "Clínica Geral",
+      "nivel_urgencia_esperado": "amarelo"
+    },
+    {
+      "id": 10,
+      "nome_ficticio": "Aline Ferreira Dutra",
+      "idade": 26,
+      "sexo": "F",
+      "condicao_simulada": "Infecção urinária",
+      "sintomas": "Ardência ao urinar, vontade frequente de ir ao banheiro e leve dor na região lombar há 3 dias",
+      "especialidade_esperada": "Urologia",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 11,
+      "nome_ficticio": "Heitor Sampaio",
+      "idade": 45,
+      "sexo": "M",
+      "condicao_simulada": "Dermatite de contato",
+      "sintomas": "Vermelhidão e coceira intensa no braço após uso de um sabonete novo, sem febre",
+      "especialidade_esperada": "Dermatologia",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 12,
+      "nome_ficticio": "Vanessa Cordeiro Reis",
+      "idade": 33,
+      "sexo": "F",
+      "condicao_simulada": "Transtorno de ansiedade generalizada",
+      "sintomas": "Palpitações, insônia e preocupação excessiva há semanas, sem dor no peito",
+      "especialidade_esperada": "Psiquiatria",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 13,
+      "nome_ficticio": "Douglas Pereira Nunes",
+      "idade": 60,
+      "sexo": "M",
+      "condicao_simulada": "Catarata",
+      "sintomas": "Visão embaçada progressiva no olho esquerdo há meses, sem dor",
+      "especialidade_esperada": "Oftalmologia",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 14,
+      "nome_ficticio": "Priscila Vasconcelos",
+      "idade": 19,
+      "sexo": "F",
+      "condicao_simulada": "Amigdalite",
+      "sintomas": "Dor de garganta forte, dificuldade para engolir e febre baixa há 2 dias",
+      "especialidade_esperada": "Otorrinolaringologia",
+      "nivel_urgencia_esperado": "amarelo"
+    },
+    {
+      "id": 15,
+      "nome_ficticio": "Edmilson Carvalho",
+      "idade": 77,
+      "sexo": "M",
+      "condicao_simulada": "Osteoartrite de joelho",
+      "sintomas": "Dor crônica no joelho que piora ao subir escadas, presente há anos",
+      "especialidade_esperada": "Ortopedia",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 16,
+      "nome_ficticio": "Juliana Aparecida Ribeiro",
+      "idade": 31,
+      "sexo": "F",
+      "condicao_simulada": "Cefaleia tensional leve",
+      "sintomas": "Dor de cabeça leve, tipo peso na nuca, há 1 dia, sem outros sintomas",
+      "especialidade_esperada": "Clínica Geral",
+      "nivel_urgencia_esperado": "azul"
+    },
+    {
+      "id": 17,
+      "nome_ficticio": "Gabriel Henrique Costa",
+      "idade": 15,
+      "sexo": "M",
+      "condicao_simulada": "Acne leve",
+      "sintomas": "Espinhas no rosto há alguns meses, sem dor, buscando orientação de tratamento",
+      "especialidade_esperada": "Dermatologia",
+      "nivel_urgencia_esperado": "azul"
+    },
+    {
+      "id": 18,
+      "nome_ficticio": "Solange Meireles",
+      "idade": 68,
+      "sexo": "F",
+      "condicao_simulada": "Acompanhamento de rotina de diabetes tipo 2",
+      "sintomas": "Sem queixas agudas, deseja renovar receita de medicamento para diabetes controlada",
+      "especialidade_esperada": "Clínica Geral",
+      "nivel_urgencia_esperado": "azul"
+    },
+    {
+      "id": 19,
+      "nome_ficticio": "Fábio Renan Souza",
+      "idade": 37,
+      "sexo": "M",
+      "condicao_simulada": "Refluxo gastroesofágico leve",
+      "sintomas": "Azia ocasional após refeições pesadas, há semanas, sem sinais de alarme",
+      "especialidade_esperada": "Gastroenterologia",
+      "nivel_urgencia_esperado": "verde"
+    },
+    {
+      "id": 20,
+      "nome_ficticio": "Natália Borges Lira",
+      "idade": 24,
+      "sexo": "F",
+      "condicao_simulada": "Cefaleia leve por privação de sono",
+      "sintomas": "Dor de cabeça leve após noites maldormidas, sem outros sintomas",
+      "especialidade_esperada": "Neurologia",
+      "nivel_urgencia_esperado": "azul"
+    }
+  ]
+}
