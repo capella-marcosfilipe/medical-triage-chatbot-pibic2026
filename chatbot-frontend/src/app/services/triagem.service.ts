@@ -59,4 +59,11 @@ export class TriagemService {
   retry(): void {
     this.sessionResource.reload();
   }
+
+  reset(): void {
+    this._nomeCompleto.set('');
+    this._endereco.set('');
+    this._idade.set(null);
+    this._pacienteData.set(null);
+  }
 }

@@ -1,3 +1,46 @@
 <app-fullscreen-stage>
-  <app-spinner label="Preparando o resumo do seu atendimento..." />
+  <div class="final-page__container">
+    <h1 class="final-page__title">Atendimento concluído</h1>
+
+    @if (triagem.nomeCompleto(); as nome) {
+      <p class="final-page__patient">Paciente: <strong>{{ nome }}</strong></p>
+    }
+
+    @if (smartwatch.dadosFisiologicos(); as dados) {
+      <section class="final-page__section">
+        <h2 class="final-page__section-title">Dados fisiológicos coletados</h2>
+        <dl class="final-page__vitals">
+          <div class="final-page__vital">
+            <dt>Frequência cardíaca</dt>
+            <dd>{{ dados.frequencia_cardiaca }} bpm</dd>
+          </div>
+          <div class="final-page__vital">
+            <dt>Saturação de oxigênio</dt>
+            <dd>{{ dados.saturacao_oxigenio }}%</dd>
+          </div>
+          <div class="final-page__vital">
+            <dt>Pressão arterial</dt>
+            <dd>{{ dados.pressao_arterial_sistolica }}/{{ dados.pressao_arterial_diastolica }} mmHg</dd>
+          </div>
+          <div class="final-page__vital">
+            <dt>Temperatura corporal</dt>
+            <dd>{{ dados.temperatura_corporal }} °C</dd>
+          </div>
+        </dl>
+      </section>
+    }
+
+    <section class="final-page__section">
+      <h2 class="final-page__section-title">Orientação ao médico</h2>
+      @if (chat.finalAnswer(); as resumo) {
+        <p class="final-page__summary">{{ resumo }}</p>
+      } @else {
+        <p class="final-page__summary final-page__summary--empty">
+          Resumo não disponível para esta sessão.
+        </p>
+      }
+    </section>
+
+    <app-button-primary (pressed)="novoAtendimento()">Novo Atendimento</app-button-primary>
+  </div>
 </app-fullscreen-stage>

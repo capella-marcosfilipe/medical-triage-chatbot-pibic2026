@@ -1,0 +1,76 @@
+.final-page__container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  width: 100%;
+  text-align: left;
+}
+
+.final-page__title {
+  font-size: var(--font-title);
+  color: var(--color-text);
+  margin: 0;
+  text-align: center;
+}
+
+.final-page__patient {
+  font-size: var(--font-subtitle);
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+}
+
+.final-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.final-page__section-title {
+  font-size: var(--font-subtitle);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.final-page__vitals {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.final-page__vital {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+}
+
+.final-page__vital dt {
+  font-size: var(--font-small);
+  color: var(--color-text-muted);
+}
+
+.final-page__vital dd {
+  margin: 0;
+  font-size: var(--font-subtitle);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.final-page__summary {
+  font-size: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bot-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.final-page__summary--empty {
+  background: transparent;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 0;
+}

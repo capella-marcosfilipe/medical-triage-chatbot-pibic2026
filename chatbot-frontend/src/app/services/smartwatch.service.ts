@@ -37,4 +37,8 @@ export class SmartwatchService {
   retry(): void {
     this.dataResource.reload();
   }
+
+  reset(): void {
+    this._shouldFetch.set(false);
+  }
 }

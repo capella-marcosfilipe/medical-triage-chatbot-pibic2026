@@ -26,4 +26,9 @@ export class ChatFlowService {
       this._highestReachedIndex.set(targetIndex);
     }
   }
+
+  reset(): void {
+    this._current.set(FLOW_ORDER[0]);
+    this._highestReachedIndex.set(0);
+  }
 }
