@@ -246,3 +246,6 @@ yarn-error.log*
 
 .claude
 CLAUDE.md
+
+# Output logs from research scripts (simulador.py, locustfile.py)
+chatbot-backend/log_simulacao*.json
