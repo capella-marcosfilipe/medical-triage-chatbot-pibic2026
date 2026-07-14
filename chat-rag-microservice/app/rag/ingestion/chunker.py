@@ -1,8 +1,6 @@
 """Chunking utilities for offline RAG preparation."""
 from __future__ import annotations
 
-from typing import Iterable
-
 
 def chunk_text(text: str, chunk_size: int = 800, overlap: int = 120) -> list[str]:
     """Split text into overlapping chunks.
