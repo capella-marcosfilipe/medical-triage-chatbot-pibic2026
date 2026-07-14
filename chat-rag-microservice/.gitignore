@@ -1,6 +1,9 @@
 .github
 */logs
 
+# Generated ChromaDB index (reproducible via `python -m app.rag.build_index`)
+data/knowledge-base/chroma/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]

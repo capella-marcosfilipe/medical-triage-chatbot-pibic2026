@@ -51,7 +51,14 @@ class Settings(BaseSettings):
     LANGGRAPH_MEMORY_WINDOW: int = 16
     RAG_TOP_K: int = 3
     RAG_KB_PATH: str = "app/knowledge/triage_kb.md"
-    
+
+    # Manchester protocol knowledge base (ChromaDB), see docs/RAG_KNOWLEDGE_BASE.md
+    MANCHESTER_RULES_PATH: str = "data/knowledge-base/regras_manchester_maringa.json"
+    MANCHESTER_CHROMA_PATH: str = "data/knowledge-base/chroma"
+    MANCHESTER_COLLECTION_NAME: str = "manchester_maringa"
+    MANCHESTER_EMBEDDING_MODEL: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    MANCHESTER_RAG_TOP_K: int = 5
+
     class Config:
         env_file = ".env"
         case_sensitive = True
