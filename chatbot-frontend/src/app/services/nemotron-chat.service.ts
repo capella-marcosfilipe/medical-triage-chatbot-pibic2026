@@ -73,14 +73,14 @@ export class NemotronChatService {
     }
   }
 
-  retry(): void {
+  retry(): Promise<void> {
     const lastMessage = this._lastFailedMessage();
     if (!lastMessage) {
-      return;
+      return Promise.resolve();
     }
     this._messages.update((messages) => messages.slice(0, -1));
     this._lastFailedMessage.set(undefined);
-    void this.sendMessage(lastMessage);
+    return this.sendMessage(lastMessage);
   }
 
   private poll(jobId: string, startedAt: number, originalMessage: string): void {
