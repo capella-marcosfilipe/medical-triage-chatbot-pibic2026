@@ -9,4 +9,5 @@ export const ROUTE_PATH_BY_STATE: Record<ChatFlowState, string> = {
   init_backend: '/atendimento/iniciando',
   smartwatch_loading: '/atendimento/smartwatch',
   nemotron_chat: '/atendimento/chat',
+  final_display: '/atendimento/resultado',
 };

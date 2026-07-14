@@ -1,3 +1,34 @@
 <app-fullscreen-stage>
-  <app-spinner label="Preparando a conversa com a assistente virtual..." />
+  <div class="chat-page__container">
+    <h1 class="chat-page__title">Converse com a assistente virtual</h1>
+    <div class="chat-page__messages" role="log" aria-live="polite">
+      @for (message of chat.messages(); track $index) {
+        <div class="chat-page__message chat-page__message--{{ message.role }}">
+          <p>{{ message.content }}</p>
+        </div>
+      }
+      @if (chat.isWaitingForReply()) {
+        <div class="chat-page__message chat-page__message--assistant">
+          <app-spinner label="A assistente está digitando..." />
+        </div>
+      }
+    </div>
+
+    @if (chat.error()) {
+      <app-error-banner [message]="chat.error()!" (retry)="retry()" />
+    } @else {
+      <form class="chat-page__form" (submit)="onSubmit($event)">
+        <input
+          class="chat-page__input"
+          type="text"
+          [formControl]="messageControl"
+          placeholder="Descreva o que você está sentindo..."
+          [attr.disabled]="chat.isWaitingForReply() ? true : null"
+        />
+        <app-button-primary type="submit" [disabled]="chat.isWaitingForReply()">
+          Enviar
+        </app-button-primary>
+      </form>
+    }
+  </div>
 </app-fullscreen-stage>
