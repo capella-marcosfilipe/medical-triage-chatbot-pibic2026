@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Protocol
 
 import chromadb
+from chromadb.api import ClientAPI
 from chromadb.utils import embedding_functions
 
 
@@ -32,10 +33,10 @@ class ManchesterRulesRepository:
         self._chroma_path = Path(chroma_path)
         self._collection_name = collection_name
         self._embedding_model = embedding_model
-        self._client: chromadb.ClientAPI | None = None
+        self._client: ClientAPI | None = None
         self._embedding_function: embedding_functions.SentenceTransformerEmbeddingFunction | None = None
 
-    def _get_client(self) -> chromadb.ClientAPI:
+    def _get_client(self) -> ClientAPI:
         if self._client is None:
             self._chroma_path.mkdir(parents=True, exist_ok=True)
             self._client = chromadb.PersistentClient(path=str(self._chroma_path))
