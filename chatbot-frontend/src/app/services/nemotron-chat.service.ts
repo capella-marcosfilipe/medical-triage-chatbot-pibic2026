@@ -20,7 +20,8 @@ export class NemotronChatService {
   private readonly _isWaitingForReply = signal(false);
   private readonly _error = signal<string | undefined>(undefined);
   private readonly _diagnosisConcluded = signal(false);
-  private readonly _finalAnswer = signal<string | undefined>(undefined);
+  private readonly _finalSpecialty = signal<string | undefined>(undefined);
+  private readonly _finalOrientation = signal<string | undefined>(undefined);
   private readonly _chatId = signal<string | undefined>(undefined);
   private readonly _lastFailedMessage = signal<string | undefined>(undefined);
 
@@ -28,21 +29,18 @@ export class NemotronChatService {
   readonly isWaitingForReply = this._isWaitingForReply.asReadonly();
   readonly error = this._error.asReadonly();
   readonly diagnosisConcluded = this._diagnosisConcluded.asReadonly();
-  /**
-   * Free-text closing answer from the LLM once diagnosis_status reaches
-   * "diagnosis_concluded". There is no separate structured field for
-   * especialidade_medica/orientacao_ao_medico in the current backend
-   * contract (NLPJobContent only has `answer`), so this raw text is the
-   * best available source for both on the final-display screen.
-   */
-  readonly finalAnswer = this._finalAnswer.asReadonly();
+  /** Specialty recommended by the LLM once diagnosis_status reaches "diagnosis_concluded". */
+  readonly finalSpecialty = this._finalSpecialty.asReadonly();
+  /** Clinical orientation for the attending physician, from the same structured turn. */
+  readonly finalOrientation = this._finalOrientation.asReadonly();
 
   reset(): void {
     this._messages.set([{ role: 'assistant', content: INITIAL_GREETING }]);
     this._isWaitingForReply.set(false);
     this._error.set(undefined);
     this._diagnosisConcluded.set(false);
-    this._finalAnswer.set(undefined);
+    this._finalSpecialty.set(undefined);
+    this._finalOrientation.set(undefined);
     this._chatId.set(undefined);
     this._lastFailedMessage.set(undefined);
   }
@@ -102,7 +100,8 @@ export class NemotronChatService {
           ]);
           this._isWaitingForReply.set(false);
           if (result.content.diagnosis_status === 'diagnosis_concluded') {
-            this._finalAnswer.set(result.content.answer);
+            this._finalSpecialty.set(result.content.specialty ?? undefined);
+            this._finalOrientation.set(result.content.orientation ?? undefined);
             this._diagnosisConcluded.set(true);
           }
         } else if (result.status === 'failed') {

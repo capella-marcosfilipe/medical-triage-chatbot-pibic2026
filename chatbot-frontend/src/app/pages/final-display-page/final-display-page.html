@@ -31,12 +31,23 @@
     }
 
     <section class="final-page__section">
-      <h2 class="final-page__section-title">Orientação ao médico</h2>
-      @if (chat.finalAnswer(); as resumo) {
-        <p class="final-page__summary">{{ resumo }}</p>
+      <h2 class="final-page__section-title">Especialidade recomendada</h2>
+      @if (chat.finalSpecialty(); as especialidade) {
+        <p class="final-page__specialty">{{ especialidade }}</p>
       } @else {
         <p class="final-page__summary final-page__summary--empty">
-          Resumo não disponível para esta sessão.
+          Especialidade não disponível para esta sessão.
+        </p>
+      }
+    </section>
+
+    <section class="final-page__section">
+      <h2 class="final-page__section-title">Orientação ao médico</h2>
+      @if (chat.finalOrientation(); as orientacao) {
+        <p class="final-page__summary">{{ orientacao }}</p>
+      } @else {
+        <p class="final-page__summary final-page__summary--empty">
+          Orientação não disponível para esta sessão.
         </p>
       }
     </section>

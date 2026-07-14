@@ -18,6 +18,8 @@ export interface NLPJobContent {
   answer: string;
   processing_time_ms?: number;
   diagnosis_status: DiagnosisStatus;
+  specialty?: string | null;
+  orientation?: string | null;
 }
 
 export type NLPJobStatusValue = 'pending' | 'processing' | 'completed' | 'failed';

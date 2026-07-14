@@ -74,3 +74,15 @@
   font-style: italic;
   padding: 0;
 }
+
+.final-page__specialty {
+  display: inline-block;
+  font-size: var(--font-subtitle);
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  margin: 0;
+  width: fit-content;
+}
