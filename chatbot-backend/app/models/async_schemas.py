@@ -29,6 +29,8 @@ class NLPJobContent(BaseModel):
     answer: str
     processing_time_ms: Optional[float] = None
     diagnosis_status: Literal["ongoing", "diagnosis_concluded"]
+    specialty: Optional[str] = None
+    orientation: Optional[str] = None
 
 
 class ChatHistoryMessage(BaseModel):

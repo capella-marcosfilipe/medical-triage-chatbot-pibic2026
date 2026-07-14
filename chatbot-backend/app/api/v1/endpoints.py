@@ -4,7 +4,7 @@ from __future__ import annotations
 import hashlib
 import uuid
 from datetime import datetime
-from typing import Literal
+from typing import Literal, Optional
 
 from fastapi import APIRouter, HTTPException
 import httpx
@@ -59,6 +59,12 @@ def _build_idempotency_key(chat_id: str, engine: str, message: str) -> str:
     return digest
 
 
+# FALLBACK APENAS: chat-rag-microservice agora retorna diagnosis_status,
+# specialty e orientation já estruturados (ver docs/structured_output_contract.md
+# no chat-rag-microservice e _resolve_diagnosis_content abaixo). Esta função de
+# busca por palavra-chave só é usada em defesa de profundidade, caso o
+# microserviço responda sem os campos estruturados (ex.: versão antiga rodando
+# durante a transição). Não é mais o caminho principal.
 def _infer_diagnosis_status(answer: str) -> Literal["ongoing", "diagnosis_concluded"]:
     normalized = answer.lower()
     concluding_markers = (
@@ -72,6 +78,24 @@ def _infer_diagnosis_status(answer: str) -> Literal["ongoing", "diagnosis_conclu
         "diagnóstico conclu",
     )
     return "diagnosis_concluded" if any(marker in normalized for marker in concluding_markers) else "ongoing"
+
+
+def _resolve_diagnosis_content(
+    response_payload: dict,
+) -> tuple[Literal["ongoing", "diagnosis_concluded"], Optional[str], Optional[str]]:
+    """Resolve (diagnosis_status, specialty, orientation) for a completed job.
+
+    Prefers the structured fields returned by chat-rag-microservice
+    (`status`/`specialty`/`orientation`). Falls back to `_infer_diagnosis_status`
+    over the raw `response` text only when the microservice response doesn't
+    carry the structured fields yet.
+    """
+    structured_status = response_payload.get("status")
+    if structured_status in ("ongoing", "diagnosis_concluded"):
+        return structured_status, response_payload.get("specialty"), response_payload.get("orientation")
+
+    answer = response_payload.get("response", "")
+    return _infer_diagnosis_status(answer), None, None
 
 
 @router.post("/chat", response_model=ChatNemotronEnqueueResponse, status_code=202)
@@ -145,10 +169,13 @@ async def chat_with_nemotron_status(
         if response_payload:
             answer = response_payload.get("response", "")
             session_manager.sync_assistant_message(chat_id, answer)
+            diagnosis_status, specialty, orientation = _resolve_diagnosis_content(response_payload)
             content = NLPJobContent(
                 answer=answer,
                 processing_time_ms=response_payload.get("latency_ms"),
-                diagnosis_status=_infer_diagnosis_status(answer),
+                diagnosis_status=diagnosis_status,
+                specialty=specialty,
+                orientation=orientation,
             )
 
         return NLPJobStatusResponse(
