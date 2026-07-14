@@ -1,0 +1,2907 @@
+[
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oliguria."
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor: um som resultante do fluxo turbulento de ar na via aérea superior"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Edema difuso de face",
+    "descritor": "Inchaço envolvendo a derme profunda, tecido subcutâneo. Representando um edema localizado. O angioedema frequentemente ocorre na face, lábios, língua e laringe"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Perfusão comprometida",
+    "descritor": "TEC > 2 seg com sinais de cianose"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Com abcesso ou flutuação"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Ferida de difícil controle de sangramento",
+    "descritor": "Lesão com sangramento que mesmo após compressão persiste com sangramento visível"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Toxemiado, prostrado ou febril",
+    "descritor": "Cianótico, taquicardíaco, dispneico"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Contato com produtos químicos de alta letalidade",
+    "descritor": "A toxicidade aguda é a capacidade de um produto causar um efeito prejudicial após uma única exposição, em um período de tempo curto."
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa com abcesso ou flutuação"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Ferida com sangramento controlado",
+    "descritor": "Lesão com sangramento contido após compressão"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Abscesso e Febre (>38,5)",
+    "descritor": "Resultado de uma quebra na barreira pele com contaminação bacteriana"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Placas eritematosas de início súbito",
+    "descritor": "Rubor na pele ocasionado pela vasodilatação capilar associado ou não a exposição solar, processos infecciosos ou inflamatórios, uso de substâncias medicamentosas, processos alérgicos. Quando pressionado embranquece, reaparecendo após cessar a pressão"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Erupções secretantes ou bolhosas em mais de 10% corpo associado a prurido",
+    "descritor": "Lesões com conteúdo líquido que pode ser serosidade, sangue ou pus, maior que um centímetro"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Com infecção secundária",
+    "descritor": "Presença de sinais flogísticos (dor, calor e rubor)"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-5/10)",
+    "descritor": "Com abcesso ou flutuação"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Abscesso SEM Febre",
+    "descritor": "Abcesso sem flutuação"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Ferida infectada",
+    "descritor": "Sem sinais sistêmicos"
+  },
+  {
+    "fluxograma": "Alterações cutâneas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Ferida superficial",
+    "descritor": "Lesão pequena e sem sangramento"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Estado mental alterado",
+    "descritor": "Desorientado no tempo, lugar e desconhecimento de pessoas; Incapacidade de cumprir ordens simples; Pensamento desconexo"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação O² < 85%",
+    "descritor": "Saturação O² < 85%"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Deficit neurológico agudo",
+    "descritor": "Paresia, plegia, disfagia, afasia, ataxia, paralisia facial"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de trauma craniano RECENTE",
+    "descritor": "História de TCE inferior a sete dias"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de overdose ou envenenamento",
+    "descritor": "Dosagem excessiva de medicamentos e/ou outras substâncias"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Extrema agitação / alucinações",
+    "descritor": "Inquietação, aumento da excitabilidade psíquica, resposta exacerbada a estímulos, irritabilidade, atividade motora e verbal inadequada e repetitiva, podendo cursar com agressividade"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35 ou >40"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Saturação O² < 85-89%",
+    "descritor": "Saturação O² < 85-89%"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Potencial suicida / homicida",
+    "descritor": "Presença de ideação, intenção ou planos suicidas ou homicidas"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Saturação O² 90-94%",
+    "descritor": "Saturação O² 90-94%"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito persistente",
+    "descritor": "Reflexo incontrolável que expele conteúdo gástrico pela boca e que não cessa com medidas para aliviar do sintoma"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "Perda da capacidade de permanecer alerta"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Saturação O² > ou = 95%",
+    "descritor": "Saturação O² > ou = 95%"
+  },
+  {
+    "fluxograma": "Alterações do nível de consciência, comportamento ou sensório",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Vômitos esparsos",
+    "descritor": "Vômitos esparsos"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Convulsão ativa",
+    "descritor": "Contratura muscular involuntária de todo o corpo ou de parte dele"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução, deslocamento da mesma)"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Alterações glicêmicas",
+    "descritor": "Glicemia >500 ou <50 mg/dl"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36 irpm com incapacidade de falar; cianose; letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Crise convulsiva reentrante",
+    "descritor": "Crise repetida sem a recuperação completa da consciência entre elas"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais meningismo",
+    "descritor": "Rigidez na nuca e sinais radiculares Laséguea e Kernig"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História overdose ou envenenamento",
+    "descritor": "Dosagem excessiva de medicamentos e/ou outras substâncias"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de trauma craniano RECENTE",
+    "descritor": "História de TCE inferior a sete dias"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Em pós-comicial",
+    "descritor": "Momento posterior a crise convulsiva que pode se caracterizar por perda da consciência, confusão ou desorientação mental e letargia"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de epilepsia em tratamento",
+    "descritor": "Histórico pessoal de epilepsia em uso de anticonvulsivante"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Crise convulsiva há menos de 12 h e alerta",
+    "descritor": "Relato de crise convulsiva nas últimas 12 horas"
+  },
+  {
+    "fluxograma": "Convulsões",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Nenhum dos determinantes anteriores",
+    "descritor": "Nenhum dos determinantes anteriores"
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG <9)."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução, deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Alterações glicêmicas",
+    "descritor": "Glicemia >500 ou <50 mg/dl."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Dor torácica",
+    "descritor": "Dor intensa em aperto ou peso no meio do peito, irradiando para o braço esquerdo ou pescoço. Pode-se associar sudorese, náuseas e epigastralgia."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Rigidez de nuca / muscular, hipertonicidade",
+    "descritor": "Incapacidade de flexionar a cabeça para frente devido a rigidez muscular e resistência a movimentação passiva."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Deficit neurológico agudo",
+    "descritor": "Paresia, plegia, disfagia, afasia, ataxia, paralisia facial."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Pulso anormal (FILIFORME)",
+    "descritor": "Tipo de pulso arterial muito fraco."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Distúrbio súbito do equilíbrio",
+    "descritor": "Associado a náuseas e vômitos."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Em pós-comicial e torporoso/comatoso",
+    "descritor": "Momento posterior a crise convulsiva que pode se caracterizar por perda da consciência, confusão ou desorientação mental e letargia."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dispneia aguda",
+    "descritor": "Sensação de dificuldade para respirar de instalação súbita (<30 dias)."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >40°C."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História importante de alergia",
+    "descritor": "Relato de reação alérgica conhecida."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Cefaleia intensa (8-10/10) de início súbito",
+    "descritor": "Dor intolerável, geralmente descrita como “A pior dor de cabeça da vida”."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de trauma craniano RECENTE",
+    "descritor": "História de TCE inferior a sete dias."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "Perda da capacidade de permanecer alerta."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Em pós-comicial",
+    "descritor": "Momento posterior a crise convulsiva que pode se caracterizar por perda da consciência."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Relato de primeira crise convulsiva",
+    "descritor": "Relato de primeira crise convulsiva"
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Relato de crise convulsiva há menos de 12 h e alerta",
+    "descritor": "Relato de crise convulsiva nas últimas 12 horas."
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor leve (1-4/10)"
+  },
+  {
+    "fluxograma": "Desmaio, tontura, vertigem",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Parestesias bilaterais ou migratórias",
+    "descritor": "Sensações cutâneas subjetivas (ex., frio, calor, formigamento, pressão) que são percebidas espontaneamente na ausência de estimulação."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG <9)."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução, deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Dor torácica",
+    "descritor": "Dor intensa em aperto ou peso no meio do peito, irradiando para o braço esquerdo ou pescoço. Pode-se associar sudorese, náuseas e epigastralgia."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Rigidez de nuca / muscular, hipertonicidade",
+    "descritor": "Incapacidade de flexionar a cabeça para frente devido a rigidez muscular e resistência a movimentação passiva."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Deficit neurológico agudo",
+    "descritor": "Paresia, plegia, disfagia, afasia, ataxia, paralisia facial."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor Intensa",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Perfusão comprometida",
+    "descritor": "TEC > 2 seg com sinais de cianose."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >38,5°C."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Fezes enegrecidas ou em geleia de groselha",
+    "descritor": "Presença sangue fresco com coágulos nas fezes."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sinais de desidratação",
+    "descritor": "Diminuição da urina e da turgidez da pele (a pele demora para voltar ao lugar, se esticada), fraqueza e tonturas, boca e língua secas."
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor leve (1-4/10)"
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Vômitos esparsos",
+    "descritor": "Vômitos esparsos"
+  },
+  {
+    "fluxograma": "Diarreia e vômitos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento de início < 6 horas",
+    "descritor": "Evento de início < 6 horas"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de Choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Vômito com sangue",
+    "descritor": "Presença de grande quantidade de sangue no vômito presenciado ou relatado com repercussão hemodinâmica, Hipotensão (PA sistólica ≤ 80mmHg); Taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm)."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor irradiando para o dorso",
+    "descritor": "Dor irradiando para o dorso"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor epigástrica",
+    "descritor": "Dor epigástrica"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >40°C."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Fezes enegrecidas ou em geleia de groselha",
+    "descritor": "Presença sangue fresco com coágulos nas fezes."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de vômito COM sangue < 6 HORAS",
+    "descritor": "História de vômito COM sangue < 6 HORAS"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sangramento vaginal",
+    "descritor": "Sangramento vaginal"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Possível gravidez",
+    "descritor": "Possível gravidez"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Irradiação para ombro",
+    "descritor": "Irradiação para ombro"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito persistente",
+    "descritor": "Reflexo incontrolável que expele conteúdo gástrico pela boca e que não cessa com medidas para aliviar o sintoma."
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor leve (1-4/10)"
+  },
+  {
+    "fluxograma": "Dor abdominal ou queixas abdominais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Parestesias bilaterais ou migratórias",
+    "descritor": "Sensações cutâneas subjetivas (ex., frio, calor, formigamento, pressão) que são percebidas espontaneamente na ausência de estimulação."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36 irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Manifestações hemorrágicas",
+    "descritor": "Presença de petéquias, equimoses, sangramentos espontâneos."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Sinais de meningismo",
+    "descritor": "Rigidez na nuca e sinais radiculares Laséguea e Kernig."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (7-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >40°C."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Trauma direto no pescoço",
+    "descritor": "Inclui traumatismos de garganta, nuca e região supraclavicular."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa com abcesso ou flutuação"
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente < 7 dias",
+    "descritor": "Aparecimento <7 dias."
+  },
+  {
+    "fluxograma": "Dor cervical",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor leve (1-4/10)"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Estado mental alterado",
+    "descritor": "Desorientado no tempo, lugar e desconhecimento de pessoas; Incapacidade de cumprir ordens simples; Pensamento desconexos; Rebaixamento do nível de consciência, letargia e/ou confusão mental."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Convulsão ativa",
+    "descritor": "Contratura muscular involuntária de todo o corpo ou de parte dele."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais meningismo",
+    "descritor": "Rigidez na nuca e sinais radiculares Laséguea e Kernig."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Início súbito de maior intensidade já sentida",
+    "descritor": "Dor intolerável, geralmente descrita como “A pior dor de cabeça da vida”."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Perda aguda completa da visão",
+    "descritor": "Perda aguda completa da visão"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "Perda da capacidade de permanecer alerta"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >38,5°C"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Náuseas e vômitos",
+    "descritor": "Associados a dor"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Diminuição recente da visão",
+    "descritor": "Diminuição recente da visão"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente < 7 dias",
+    "descritor": "Aparecimento <7 dias"
+  },
+  {
+    "fluxograma": "Dor de cabeça",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor leve (1-4/10)"
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor: um som resultante do fluxo turbulento de ar na via aérea superior."
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35°C ou >38,5°C."
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de viagem recente",
+    "descritor": "História de viagem recente"
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dificuldade para deglutir",
+    "descritor": "Dificuldade para deglutir"
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Ardência na garganta sem sialorreia",
+    "descritor": "Ardência na garganta sem sialorreia"
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Tosse, coriza, obstrução",
+    "descritor": "Tosse, coriza, obstrução"
+  },
+  {
+    "fluxograma": "Dor de garganta",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de isquemia",
+    "descritor": "Sinais de isquemia"
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Sinais flogísticos ou com drenagem em articulação",
+    "descritor": "Edema, hiperemia, calor e rubor."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura: <35 ou >40."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Comprometimento vascular distal",
+    "descritor": "Comprometimento vascular distal"
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Grave mecanismo de trauma",
+    "descritor": "Desaceleração frontal rápida; desaceleração vertical rápida; penetração de projétil."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dificuldade de andar",
+    "descritor": "Dificuldade de andar"
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sem sinais de isquemia",
+    "descritor": "Sem sinais de isquemia"
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sinais flogísticos locais não articulares",
+    "descritor": "Edema, hiperemia, calor e rubor."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Limitação dos movimentos/função",
+    "descritor": "Limitação dos movimentos/função"
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10) Descritor: Dor suportável.",
+    "descritor": "Dor leve (1-4/10) Descritor: Dor suportável."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Edema articular sem flogose",
+    "descritor": "Flogose é uma resposta do organismo ao agente agressor, caracterizado pela saída de líquidos e de células do sangue para o interstício."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Aparecimento < 7 dias."
+  },
+  {
+    "fluxograma": "Dor na coluna e em extremidades",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Limitação leve dos movimentos sem perda da função",
+    "descritor": "Limitação leve dos movimentos sem perda da função"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Dor precordial",
+    "descritor": "Dor intensa em aperto ou peso no meio do peito, irradiando para o braço esquerdo, pescoço ou mandíbula. Pode-se associar sudorese e náuseas."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Trauma penetrante",
+    "descritor": "Trauma penetrante"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Hemoptise ativa",
+    "descritor": "Sangramento ativo vermelho vivo em quantidade maior que uma colher de chá."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Trauma torácico com falta de ar",
+    "descritor": "Trauma torácico com falta de ar"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Pulso anormal (FILIFORME)",
+    "descritor": "Tipo de pulso arterial muito fraco."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História cardíaca importante",
+    "descritor": "História cardíaca importante"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor pleurítica",
+    "descritor": "Dor aguda provocada pela irritação do revestimento dos pulmões – torna-se mais intensa com a respiração profunda e com a tosse."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Epistaxe",
+    "descritor": "Sangramento ativo controlado por compressão direta."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito persistente",
+    "descritor": "Vômito persistente"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor que piora ao movimento",
+    "descritor": "Dor de característica muscular (localizada, evidenciada à palpação, que piora com movimentos do tronco ou membros superiores)"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dificuldade para deglutir",
+    "descritor": "Dificuldade para deglutir"
+  },
+  {
+    "fluxograma": "Dor torácica",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Tosse produtiva",
+    "descritor": "Tosse produtiva"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Estado mental alterado",
+    "descritor": "Desorientado no tempo, lugar e desconhecimento de pessoas; Incapacidade de cumprir ordens simples; Pensamento desconexos; rebaixamento do nível de consciência, letargia e/ou confusão mental."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação O² < 85%",
+    "descritor": "Saturação O² < 85%"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Edema facial",
+    "descritor": "Edema facial"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Edema de língua",
+    "descritor": "Edema de língua"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Convulsão ativa",
+    "descritor": "Contratura muscular involuntária de todo o corpo ou de parte dele."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Risco de contaminação contínua",
+    "descritor": "Risco de contaminação contínua"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Lesão ocular química aguda",
+    "descritor": "Lesão ocular química aguda"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Ingestão há menos de 6 h sem sintomas",
+    "descritor": "Ingestão há menos de 6 h sem sintomas"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Substância de alto risco de intoxicação",
+    "descritor": "Substância de alto risco de intoxicação"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Saturação O² < 85-89%",
+    "descritor": "Saturação O² < 85-89%"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (7-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "História de inconsciência"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor é um som resultante do fluxo turbulento de ar na via aérea superior."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História psiquiátrica importante",
+    "descritor": "História psiquiátrica importante"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Acidente perfurocortante com material biológico",
+    "descritor": "Acidente perfurocortante com material biológico"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Prurido e/ou irritação intensa",
+    "descritor": "Prurido e/ou irritação intensa"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Saturação O² 90-94%",
+    "descritor": "Saturação O² 90-94%"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Saturação O² > ou = 95%",
+    "descritor": "Saturação O² > ou = 95%"
+  },
+  {
+    "fluxograma": "Exposição a agentes químicos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Alterações dérmicas locais",
+    "descritor": "Alterações dérmicas locais"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Hemorragia sem controle ou lesão de grandes vasos ou hemorragia grave",
+    "descritor": "Lesões com sangramento visível a despeito de medidas compressivas em jatos ou esguichos de sangue. Perda ≥ 1.500 ml(um lençol encharcado abruptamente);FC ≥ 120 bpm e PAS ≤ 70 mmHg."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou linguá, em uso de traqueostomia (obstrução ou deslocamento da mesma). 3-Respiração inadequada FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 150bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação O² < 85%",
+    "descritor": "Saturação O² < 85%"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação de oxigênio < 95% com O² e < 90% em ar ambiente",
+    "descritor": "Saturação de oxigênio < 95% com O² e < 90% em ar ambiente"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor é um som resultante do fluxo turbulento de ar na via aérea superior."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Edema de face",
+    "descritor": "Edema de face"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Edema de língua",
+    "descritor": "Edema de língua"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Saturação O² 85-89%",
+    "descritor": "Saturação O² 85-89%"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Ferimentos profundos",
+    "descritor": "Ferimentos profundos"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História importante de alergia",
+    "descritor": "História importante de alergia"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Veneno alta mortalidade",
+    "descritor": "Veneno alta mortalidade"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sem sinais sistêmicos",
+    "descritor": "Sem sinais sistêmicos"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Eritema ou bolhas disseminadas",
+    "descritor": "Eritema ou bolhas disseminadas"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Saturação O² 90-94%",
+    "descritor": "Saturação O² 90-94%"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Prurido intenso",
+    "descritor": "Prurido intenso"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Ferida com sangramento controlado",
+    "descritor": "Lesão com sangramento contido após compressão."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Saturação O² > ou = 95%",
+    "descritor": "Saturação O² > ou = 95%"
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Inflamação local",
+    "descritor": "Edema, hiperemia, calor e rubor."
+  },
+  {
+    "fluxograma": "Mordeduras e picadas de animais",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Infecção local",
+    "descritor": "Infecção local"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Hipoglicemia grave",
+    "descritor": "Glicemia < 50 mg/dL e sinais: mudança de comportamento (agressividade, apatia, perda de consciência, crise convulsiva), sudorese intensa e necessidade de ajuda de terceiros."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de meningismo",
+    "descritor": "Rigidez na nuca e sinais radiculares Laséguea e Kernig."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência Escore na Escala de Coma de Glasgow (ECG 9-13).",
+    "descritor": "Alteração do nível de consciência Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10) Dor intolerável, geralmente descrita como jamais sentida.",
+    "descritor": "Dor intensa (8-10/10) Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Petéquias e/ou equimoses",
+    "descritor": "Petéquias e/ou equimoses"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sudorese fria",
+    "descritor": "Sudorese fria"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sinais vitais alterados",
+    "descritor": "PAS > 220 ou PAD >130 mmHg; PAS < 80 mmHg; FC < 40 ou >150 bpm; FR < 10 ou > 36 ipm."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Bolhas ou manchas disseminadas",
+    "descritor": "Bolhas ou manchas disseminadas"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Imunossupressão conhecida",
+    "descritor": "Imunossupressão conhecida"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História hematológica importante",
+    "descritor": "História hematológica importante"
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura <35°C ou >37,8°C."
+  },
+  {
+    "fluxograma": "Mal-estar geral",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente de viagem para regiões endêmicas",
+    "descritor": "Intervalo < 7 dias 3-Dor leve (1-4/10) Dor suportável."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Dor torácica",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dispneia aguda",
+    "descritor": "Sensação de dificuldade para respirar de instalação súbita (<30 dias)."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Pulso anormal (FILIFORME)",
+    "descritor": "Tipo de pulso arterial muito fraco."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História de overdose ou envenenamento",
+    "descritor": "Dosagem excessiva de medicamentos e/ou outras substâncias."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Palpitação no momento",
+    "descritor": "Palpitação no momento"
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História cardíaca importante",
+    "descritor": "História cardíaca importante"
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "Perda da capacidade de permanecer alerta."
+  },
+  {
+    "fluxograma": "Palpitações",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Evento recente"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução, deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Hemorragia sem controle ou lesão de grandes vasos ou hemorragia grave",
+    "descritor": "Lesões com sangramento visível a despeito de medidas compressivas em jatos ou esguicho de sangue. Perda > 1.500 ml (um lençol encharcado abruptamente; FC > 120 bpm e PAS < 70 mmHg"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Amputação traumática",
+    "descritor": "Amputação traumática"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Sinais neurológicos focais"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Otorragia",
+    "descritor": "Otorragia"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Palidez cutânea e sudorese fria dor pleurítica",
+    "descritor": "Dor aguda provocada pela irritação do revestimento dos pulmões – torna-se mais intensa com a respiração profunda e com a tosse."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor cervical",
+    "descritor": "Dor cervical"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor ou instabilidade da pelve",
+    "descritor": "Dor ou instabilidade da pelve"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Náuseas / vômitos",
+    "descritor": "Náuseas / vômitos"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Evisceração",
+    "descritor": "É uma lesão onde ocorre a extrusão de vísceras abdominais."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Ferimento perfurante",
+    "descritor": "Ferimento perfurante"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Trauma direto no pescoço",
+    "descritor": "Trauma direto no pescoço"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Envolvimento em mecanismo de trauma grave",
+    "descritor": "Queda de altura; acidente automobilístico; acidente com motocicleta, atropelamento de pedestre ou ciclista."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "História de inconsciência",
+    "descritor": "Perda da capacidade de permanecer alerta."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Hemorragia controlável",
+    "descritor": "Sangramento ativo contido por compressão."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Cefaleia moderada (5-7/10)",
+    "descritor": "Sem perda de consciência, náuseas, vômitos, crise convulsiva ou ferimento perfurante."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Cefaleia pós alta",
+    "descritor": "Cefaleia pós alta"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Contusões e escoriações",
+    "descritor": "Contusões e escoriações"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Evento recente"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento (trauma) há mais de 6 h",
+    "descritor": "Evento (trauma) há mais de 6 h"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Edema local",
+    "descritor": "Edema local"
+  },
+  {
+    "fluxograma": "Politraumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Deformidade local sem lesões",
+    "descritor": "Deformidade local sem lesões"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Estado mental alterado",
+    "descritor": "Desorientado no tempo, lugar e desconhecimento de pessoas; Incapacidade de cumprir ordens simples; Pensamento desconexos; rebaixamento do nível de consciência, letargia e/ou confusão mental"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação O² < 85%",
+    "descritor": "Saturação de oxigênio < 95% com O2 e < 90% em ar ambiente"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Queimaduras circunferenciais",
+    "descritor": "Queimaduras circunferenciais"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Queimaduras de 2º/3º graus > 10% SCQ",
+    "descritor": ">10 e 25% SCQ"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Queimaduras de 2º/3º graus em face e períneo",
+    "descritor": "Queimaduras de 2º/3º graus em face e períneo"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Queimaduras elétricas",
+    "descritor": "Queimaduras elétricas"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Queimaduras em ambientes confinados",
+    "descritor": "Queimaduras em ambientes confinados"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Saturação O² 85-89%",
+    "descritor": "Saturação O² 85-89%"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor é um som resultante do fluxo turbulento de ar na via aérea superior"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Queimaduras de 2º/3º graus < 10% SCQ",
+    "descritor": "Queimaduras de 2º/3º graus < 10% SCQ"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Queimaduras de 1º grau > 10% SCQ",
+    "descritor": "> 10% SCQ em áreas não críticas"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Queimaduras de 1º grau em face e períneo",
+    "descritor": "Queimaduras de 1º grau em face e períneo"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Queimaduras de mãos e pés de qualquer grau",
+    "descritor": "Queimaduras de mãos e pés de qualquer grau"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Saturação O² 90-94%",
+    "descritor": "Saturação O² 90-94%"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Saturação O² > ou = 95%",
+    "descritor": "Saturação O² > ou = 95%"
+  },
+  {
+    "fluxograma": "Queimaduras",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Queimaduras de 1º grau",
+    "descritor": "<10% SCQ em áreas não críticas"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dados vitais alterados",
+    "descritor": "PAS ≥ 220 ou PAD ≥ 130 mmHg; PAS ≤ 80mmHg; FC ≤ 40 ou ≥ 150bpm; FR ≤ 10 ou ≥ 36irpm; Febre > 40 ºC em adultos; Febre (T. axilar ≥ 38,5 ºC) em imunocomprometidos; PAS entre 190-220 / PAD entre 120-130mmHg; Febre (T. axilar ≥ 38,5 ºC) em imunocompetentes e com toxemia."
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (7-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Perda visual súbita ou diplopia",
+    "descritor": "Perda visual súbita ou diplopia"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (4-6/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Celulite periorbitária",
+    "descritor": "Celulite periorbitária"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-3/10)",
+    "descritor": "Dor leve (1-3/10)"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Sensação de corpo estranho",
+    "descritor": "Sensação de corpo estranho"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Hemorragia na esclera",
+    "descritor": "Sem história de trauma."
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Olho avermelhado",
+    "descritor": "Sem história de trauma, contatado com substâncias químicas ou solda."
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Prurido ocular",
+    "descritor": "Prurido ocular"
+  },
+  {
+    "fluxograma": "Queixas oculares",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Terçol ou calázio",
+    "descritor": "Terçol ou calázio"
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do estado mental",
+    "descritor": "Confusão mental, agitação, delírio."
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Otorragia",
+    "descritor": "Sangramento pelo conduto auditivo externo."
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa"
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Perda recente da audição",
+    "descritor": "Perda recente da audição"
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Zumbidos",
+    "descritor": "Zumbidos"
+  },
+  {
+    "fluxograma": "Queixas otológicas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Presença de corpo estranho",
+    "descritor": "Presença de corpo estranho"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Início agudo após trauma",
+    "descritor": "Início agudo após trauma"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Exaustão",
+    "descritor": "Apresentando tiragem intercostal."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "Respiração inadequada"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Saturação O² < 85%",
+    "descritor": "Saturação O² < 85%"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Uso inadequado da musculatura acessória",
+    "descritor": "Uso inadequado da musculatura acessória"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do estado mental",
+    "descritor": "Confusão mental, agitação, delírios."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor cardíaca",
+    "descritor": "Dor intensa em aperto ou peso no meio do peito, irradiando para o braço esquerdo ou pescoço. Pode-se associar sudorese e náuseas."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Incapacidade de falar sentenças",
+    "descritor": "Incapacidade de falar sentenças"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Estridor laríngeo ou dificuldade de falar",
+    "descritor": "Estridor é um som resultante do fluxo turbulento de ar na via aérea superior."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Frequência cardíaca irregular ou alterada",
+    "descritor": "Frequência cardíaca irregular ou alterada"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Saturação O² < 85-89%",
+    "descritor": "Saturação O² < 85-89%"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História respiratória importante",
+    "descritor": "Internação hospitalar anterior por problema respiratório."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Saturação O² 90-94%",
+    "descritor": "Saturação O² 90-94%"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Alteração de temperatura",
+    "descritor": "Temperatura <35°C ou >37,5°C."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor de garganta",
+    "descritor": "Dor de garganta"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Tosse produtiva",
+    "descritor": "Tosse produtiva"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Saturação O² > ou = 95%",
+    "descritor": "Saturação O² > ou = 95%"
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Aparecimento < 7 dias."
+  },
+  {
+    "fluxograma": "Queixas respiratórias",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "História de chieira noturna",
+    "descritor": "História de chieira noturna"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Prostração, palidez cutânea ou sudorese",
+    "descritor": "Prostração, palidez cutânea ou sudorese"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor escrotal aguda",
+    "descritor": "Dor escrotal aguda"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Priapismo",
+    "descritor": "Ereção peniana dolorosa."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Hematúria",
+    "descritor": "Urina escurecida, avermelhada ou com coágulos de sangue."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Gangrena escroto",
+    "descritor": "Gangrena escroto"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Celulite de escroto",
+    "descritor": "Celulite de escroto"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Retenção urinária aguda com bexigoma",
+    "descritor": "Retenção urinária aguda com bexigoma"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Disúria intensa com polaciúria e/ou hematúria",
+    "descritor": "Disúria intensa com polaciúria e/ou hematúria"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Alteração de temperatura (<35 ou >38,5°C)",
+    "descritor": "Alteração de temperatura (<35 ou >38,5°C)"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito persistente",
+    "descritor": "Reflexo incontrolável que expele conteúdo gástrico pela boca e que não cessa com medidas para aliviar do sintoma."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Trauma superficial de escroto",
+    "descritor": "Trauma superficial de escroto"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Corrimento uretral amarelado e fétido",
+    "descritor": "Corrimento uretral amarelado e fétido"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Troca de sonda obstruída",
+    "descritor": "Troca de sonda obstruída"
+  },
+  {
+    "fluxograma": "Queixas urinárias / Dor testicular",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente < 7 DIAS",
+    "descritor": "Evento recente < 7 DIAS"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Distúrbio de coagulação",
+    "descritor": "Pacientes hemofílicos."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Hemorragia sem controle ou lesão de grandes vasos ou hemorragia grave",
+    "descritor": "Lesões com sangramento visível a despeito de medidas compressivas em jatos ou esguichos de sangue. Perda ≥ 1.500 ml (um lençol encharcado abruptamente);FC ≥ 120 bpm e PAS ≤ 70 mmHg e/ou pacientes sob o uso de anticoagulantes."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Distúrbio de coagulação de paciente cardiopata em uso de anticoagulante",
+    "descritor": "Distúrbio de coagulação de paciente cardiopata em uso de anticoagulante"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Epistaxe SEM CONTROLE COM TAMPONAMENTO",
+    "descritor": "Epistaxe SEM CONTROLE COM TAMPONAMENTO"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Evacuação de sangue vivo ou alterado",
+    "descritor": "Evacuação de sangue vivo ou alterado"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "História importante de sangramento digestivo",
+    "descritor": "História importante de sangramento digestivo"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (7-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgowow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Vômito de sangue",
+    "descritor": "Vômito de sangue"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (4-6/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Fezes enegrecidas ou em geleia de groselha",
+    "descritor": "Presença sangue fresco com coágulos nas fezes."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sangramento vaginal",
+    "descritor": "Com uso de mais ou menos oito absorventes dia porém com sinais vitais estáveis."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito persistente",
+    "descritor": "Reflexo incontrolável que expele conteúdo gástrico pela boca e que não cessa com medidas para aliviar do sintoma."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-3/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Relato de hemorroidas",
+    "descritor": "Com dor leve, sem sangramento."
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Relato de epistaxe",
+    "descritor": "Relato de epistaxe"
+  },
+  {
+    "fluxograma": "Sangramentos",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Aparecimento < 7 dias."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou língua, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Respiração inadequada",
+    "descritor": "FR < 10 ou ≥ 36irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Hemorragia sem controle ou lesão de grandes vasos ou hemorragia grave",
+    "descritor": "Lesões com sangramento visível a despeito de medidas compressivas em jatos ou esguichos de sangue. Perda ≥ 1.500 ml (um lençol encharcado abruptamente);FC ≥ 120 bpm e PAS ≤ 70 mmHg e/ou pacientes sob o uso de anticoagulantes."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alteração do nível de consciência",
+    "descritor": "Escore na Escala de Coma de Glasgow (ECG 9-13)."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dispneia aguda",
+    "descritor": "Sensação de dificuldade para respirar de instalação súbita (<30 dias)."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Evisceração",
+    "descritor": "É uma lesão onde ocorre a extrusão de vísceras abdominais."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Grave mecanismo de trauma",
+    "descritor": "Desaceleração frontal rápida; desaceleração vertical rápida; penetração de projétil."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Hemorragia controlável",
+    "descritor": "Sangramento ativo contido por compressão."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Aparecimento < 7 dias."
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Infecção loca",
+    "descritor": "Infecção loca"
+  },
+  {
+    "fluxograma": "Trauma torocoabdominal",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Inflamação local",
+    "descritor": "Edema, hiperemia, calor e rubor."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de choque",
+    "descritor": "Hipotensão (PA sistólica ≤ 80mmHg), Taquicardia (FC ≥ 140bpm) ou Bradicardia (FC ≤ 40bpm), palidez acentuada, sudorese, pele fria, pulso fino, perfusão diminuída, irritabilidade, alteração do nível de consciência e oligúria."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Comprometimento/obstrução de vias aéreas",
+    "descritor": "Início súbito de grave dificuldade respiratória sem febre ou sintomas respiratórios prévios, presença de secreção, sangue, corpo estranho, edema de lábio ou linguá, em uso de traqueostomia (obstrução ou deslocamento da mesma)."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais de isquemia",
+    "descritor": "Sinais de isquemia"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Fratura exposta",
+    "descritor": "Fratura exposta"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERMELHO",
+    "tempo_alvo": "imediato",
+    "criterio": "Sinais neurológicos focais",
+    "descritor": "Paresia, parestesia, disfasia, afasia, ataxia, distúrbio do equilíbrio."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Dor intensa (8-10/10)",
+    "descritor": "Dor intolerável, geralmente descrita como jamais sentida."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Ferida com sangramento ativo",
+    "descritor": "Ferida com sangramento ativo"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Edema (++ / 4 +)",
+    "descritor": "Edema (++ / 4 +)"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Alterações Respiratórias",
+    "descritor": "FR < 10 ou ≥ 36 irpm com incapacidade de falar; Cianose; Letargia e/ou confusão mental; FC ≤ 40 ou ≥ 150bpm."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Incapacidade de andar",
+    "descritor": "Incapacidade de andar"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "LARANJA",
+    "tempo_alvo": "10 minutos",
+    "criterio": "Grave mecanismo de trauma",
+    "descritor": "Desaceleração frontal rápida; desaceleração vertical rápida; penetração de projétil."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Dor moderada (5-7/10)",
+    "descritor": "Dor suportável, mas intensa."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Ferimento sem sangramento ativo",
+    "descritor": "Ferimento sem sangramento ativo"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Deformidade em membros",
+    "descritor": "Deformidade em membros"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Cefaleia",
+    "descritor": "Cefaleia"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Vômito",
+    "descritor": "Se não se puder excluir trauma craniano, ingestão de drogas ou doença de base."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sem sinais de isquemia",
+    "descritor": "Sem sinais de isquemia"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Sinais flogísticos locais",
+    "descritor": "Edema, hiperemia, calor e rubor."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "AMARELO",
+    "tempo_alvo": "60 minutos",
+    "criterio": "Limitação dos movimentos/função",
+    "descritor": "Limitação dos movimentos/função"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Dor leve (1-4/10)",
+    "descritor": "Dor suportável."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Evento recente",
+    "descritor": "Aparecimento < 7 dias."
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Edema articular sem flogose",
+    "descritor": "Edema articular sem flogose"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Limitação leve dos movimentos",
+    "descritor": "Limitação leve dos movimentos"
+  },
+  {
+    "fluxograma": "Traumas",
+    "cor": "VERDE",
+    "tempo_alvo": "120 minutos",
+    "criterio": "Sem perda da função",
+    "descritor": "Sem perda da função"
+  }
+]
