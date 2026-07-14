@@ -8,10 +8,11 @@ function directly. See docs/RAG_KNOWLEDGE_BASE.md.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Protocol
+from typing import Protocol, Sequence, cast
 
 import chromadb
 from chromadb.api import ClientAPI
+from chromadb.api.types import Embeddable, EmbeddingFunction, Metadata
 from chromadb.utils import embedding_functions
 
 
@@ -23,7 +24,7 @@ class ManchesterRulesReader(Protocol):
     in a fake reader without touching a real collection.
     """
 
-    def query(self, text: str, top_k: int) -> list[dict]: ...
+    def query(self, text: str, top_k: int) -> list[Metadata]: ...
 
 
 class ManchesterRulesRepository:
@@ -54,7 +55,7 @@ class ManchesterRulesRepository:
         uses get_collection, so a not-yet-built collection surfaces as an
         error instead of silently behaving like an empty collection."""
         client = self._get_client()
-        embedding_function = self._get_embedding_function()
+        embedding_function = cast(EmbeddingFunction[Embeddable], self._get_embedding_function())
         if create:
             return client.get_or_create_collection(
                 name=self._collection_name,
@@ -63,12 +64,12 @@ class ManchesterRulesRepository:
             )
         return client.get_collection(name=self._collection_name, embedding_function=embedding_function)
 
-    def upsert(self, ids: list[str], documents: list[str], metadatas: list[dict]) -> None:
+    def upsert(self, ids: list[str], documents: list[str], metadatas: Sequence[Metadata]) -> None:
         """Create or overwrite records. Safe to call repeatedly with the same IDs."""
         collection = self._get_collection(create=True)
-        collection.upsert(ids=ids, documents=documents, metadatas=metadatas)
+        collection.upsert(ids=ids, documents=documents, metadatas=list(metadatas))
 
-    def query(self, text: str, top_k: int) -> list[dict]:
+    def query(self, text: str, top_k: int) -> list[Metadata]:
         """Return the top-k most similar rule records, as metadata dicts.
 
         Raises if the collection doesn't exist yet or the query otherwise

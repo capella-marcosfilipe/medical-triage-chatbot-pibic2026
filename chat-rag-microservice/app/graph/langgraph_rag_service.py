@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 from typing import Annotated, TypedDict
 
+from chromadb.api.types import Metadata
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -88,7 +89,7 @@ class LangGraphRAGService:
         scored.sort(key=lambda item: item[0], reverse=True)
         return [chunk for score, chunk in scored[:top_k] if score > 0]
 
-    def _retrieve_manchester_rules(self, query: str) -> list[dict]:
+    def _retrieve_manchester_rules(self, query: str) -> list[Metadata]:
         """Retrieve the top-k Manchester/Maringá triage rules for this query.
 
         Never raises: any failure from the injected repository (collection
