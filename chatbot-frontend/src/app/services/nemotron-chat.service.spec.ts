@@ -27,7 +27,14 @@ describe('NemotronChatService', () => {
     return req;
   }
 
-  function flushStatusCompleted(jobId: string, chatId: string, answer: string, diagnosisStatus: 'ongoing' | 'diagnosis_concluded') {
+  function flushStatusCompleted(
+    jobId: string,
+    chatId: string,
+    answer: string,
+    diagnosisStatus: 'ongoing' | 'diagnosis_concluded',
+    specialty: string | null = null,
+    orientation: string | null = null,
+  ) {
     const req = httpMock.expectOne(`${environment.apiBaseUrl}/chat/status/${jobId}`);
     req.flush({
       job_id: jobId,
@@ -35,7 +42,7 @@ describe('NemotronChatService', () => {
       status: 'completed',
       idempotency_key: 'k',
       created_at: new Date().toISOString(),
-      content: { answer, diagnosis_status: diagnosisStatus },
+      content: { answer, diagnosis_status: diagnosisStatus, specialty, orientation },
     });
   }
 
@@ -77,7 +84,7 @@ describe('NemotronChatService', () => {
     expect(service.messages().some((m) => m.role === 'user' && m.content === longMessage)).toBe(true);
   });
 
-  it('marca diagnosisConcluded e guarda finalAnswer quando diagnosis_status é diagnosis_concluded', async () => {
+  it('marca diagnosisConcluded e guarda specialty/orientation estruturados quando diagnosis_status é diagnosis_concluded', async () => {
     const promise = service.sendMessage('Já fiz os exames pedidos');
     flushEnqueue('job-3', 'chat-3');
     await promise;
@@ -85,12 +92,27 @@ describe('NemotronChatService', () => {
     flushStatusCompleted(
       'job-3',
       'chat-3',
-      'Triagem concluída. Encaminhamento sugerido: Clínica Geral.',
+      'Triagem concluída.',
       'diagnosis_concluded',
+      'Clínica Geral',
+      'Paciente relata fadiga persistente há duas semanas.',
     );
 
     expect(service.diagnosisConcluded()).toBe(true);
-    expect(service.finalAnswer()).toBe('Triagem concluída. Encaminhamento sugerido: Clínica Geral.');
+    expect(service.finalSpecialty()).toBe('Clínica Geral');
+    expect(service.finalOrientation()).toBe('Paciente relata fadiga persistente há duas semanas.');
+  });
+
+  it('finalSpecialty/finalOrientation ficam undefined quando o backend retorna null (ex.: falha de parsing)', async () => {
+    const promise = service.sendMessage('Já fiz os exames pedidos');
+    flushEnqueue('job-3b', 'chat-3b');
+    await promise;
+
+    flushStatusCompleted('job-3b', 'chat-3b', 'Triagem concluída.', 'diagnosis_concluded', null, null);
+
+    expect(service.diagnosisConcluded()).toBe(true);
+    expect(service.finalSpecialty()).toBeUndefined();
+    expect(service.finalOrientation()).toBeUndefined();
   });
 
   it('trata falha de rede ao enviar mensagem e permite tentar novamente', async () => {
@@ -150,7 +172,7 @@ describe('NemotronChatService', () => {
     const promise = service.sendMessage('teste');
     flushEnqueue('job-6', 'chat-6');
     await promise;
-    flushStatusCompleted('job-6', 'chat-6', 'Resumo final.', 'diagnosis_concluded');
+    flushStatusCompleted('job-6', 'chat-6', 'Resumo final.', 'diagnosis_concluded', 'Clínica Geral', 'resumo');
     expect(service.diagnosisConcluded()).toBe(true);
 
     service.reset();
@@ -159,7 +181,8 @@ describe('NemotronChatService', () => {
       { role: 'assistant', content: 'O que você está sentindo hoje?' },
     ]);
     expect(service.diagnosisConcluded()).toBe(false);
-    expect(service.finalAnswer()).toBeUndefined();
+    expect(service.finalSpecialty()).toBeUndefined();
+    expect(service.finalOrientation()).toBeUndefined();
     expect(service.error()).toBeUndefined();
   });
 });
