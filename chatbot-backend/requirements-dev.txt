@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Dev/test-only dependencies
+pytest==8.3.4
+locust==2.45.0
