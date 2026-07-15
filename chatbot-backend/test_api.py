@@ -46,7 +46,9 @@ def test_workflow():
     time.sleep(1)
     
     smartwatch_id = "mock-device-001"
-    response = requests.get(f"{BASE_URL}/get_smartwatch_data/{smartwatch_id}")
+    response = requests.get(
+        f"{BASE_URL}/get_smartwatch_data/{smartwatch_id}", params={"session_id": session_id}
+    )
     print_response(response, "GET /get_smartwatch_data")
     
     if response.status_code != 200:
@@ -66,16 +68,16 @@ def test_workflow():
         "Não estou tomando nenhum medicamento"
     ]
 
-    chat_id = None
-    
+    # Seeds chat_id with session_id so the backend finds the session (and its
+    # patient_context, including smartwatch vitals) on the first message.
+    chat_id = session_id
+
     for msg in user_messages:
         chat_data = {
             "message": msg,
             "engine": "nemotron",
+            "chat_id": chat_id,
         }
-
-        if chat_id:
-            chat_data["chat_id"] = chat_id
         
         response = requests.post(f"{BASE_URL}/chat", json=chat_data)
         print_response(response, f"POST /chat - User: {msg[:30]}...")

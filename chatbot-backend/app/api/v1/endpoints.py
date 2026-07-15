@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime
 from typing import Literal, Optional
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 import httpx
 
 from app.models.async_schemas import (
@@ -45,10 +45,17 @@ async def start_session(paciente_data: PacienteData):
 
 
 @router.get("/get_smartwatch_data/{smartwatch_id}", response_model=ObterDadosSmartWatchResponse)
-async def get_smartwatch_data(smartwatch_id: str):
-    """Get simulated smartwatch data by smartwatch device id."""
+async def get_smartwatch_data(
+    smartwatch_id: str,
+    session_id: str = Query(..., description="Session identifier from /start_session"),
+):
+    """Get simulated smartwatch data by device id and attach it to the session."""
+    if session_manager.get_session(session_id) is None:
+        raise HTTPException(status_code=404, detail="Sessão não encontrada")
+
     try:
         dados = smartwatch_simulator.generate_data()
+        session_manager.add_smartwatch_data(session_id, dados)
         return ObterDadosSmartWatchResponse(dados_fisiologicos=dados)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao obter dados do smartwatch: {str(e)}")
