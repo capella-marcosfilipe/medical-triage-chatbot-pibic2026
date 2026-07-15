@@ -3,6 +3,18 @@ networks:
     driver: bridge
 
 services:
+  chatbot-frontend:
+    build:
+      context: ./chatbot-frontend
+      dockerfile: Dockerfile
+    container_name: chatbot-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - chatbot-backend
+    networks:
+      - medical-triage-network
+
   chatbot-backend:
     build:
       context: ./chatbot-backend
@@ -63,30 +75,6 @@ services:
       dockerfile: Dockerfile
     container_name: chat-rag-microservice-api-worker
     command: ["python", "-m", "app.run_api_worker"]
-    environment:
-      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_PORT: 5672
-      RABBITMQ_USER: guest
-      RABBITMQ_PASSWORD: guest
-      RABBITMQ_VHOST: /
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-    depends_on:
-      rabbitmq:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    networks:
-      - medical-triage-network
-
-  chat-rag-microservice-gpu-worker:
-    build:
-      context: ./chat-rag-microservice
-      dockerfile: Dockerfile
-    container_name: chat-rag-microservice-gpu-worker
-    command: ["python", "-m", "app.run_gpu_worker"]
-    profiles: ["gpu"]
     environment:
       NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
       RABBITMQ_HOST: rabbitmq

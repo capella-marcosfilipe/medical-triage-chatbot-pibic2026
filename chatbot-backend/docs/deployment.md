@@ -27,7 +27,19 @@ From the repository root:
 docker compose up --build
 ```
 
+This brings up the full stack CPU-only (frontend, backend, microservice, API worker, RabbitMQ, Redis).
+
 The backend will call the microservice through `CHATBOT_MICROSERVICE_URL`.
+
+### Full stack with GPU worker
+
+The GPU worker lives in a separate override file so the base stack never requires a GPU:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+
+This requires the NVIDIA Container Toolkit on the host.
 
 ## Environment Variables
 
@@ -46,14 +58,16 @@ The backend will call the microservice through `CHATBOT_MICROSERVICE_URL`.
 
 ## Docker Compose
 
-The root `docker-compose.yml` starts:
+The root `docker-compose.yml` starts the CPU-only full stack:
 
+- `chatbot-frontend`
 - `chatbot-backend`
 - `chat-rag-microservice`
 - API worker
-- optional GPU worker
 - RabbitMQ
 - Redis
+
+`docker-compose.dev.yml` is an override that adds the GPU worker (`chat-rag-microservice-gpu-worker`) with an NVIDIA device reservation. Apply it alongside the base file (see above) on machines with a GPU.
 
 ## Production Notes
 

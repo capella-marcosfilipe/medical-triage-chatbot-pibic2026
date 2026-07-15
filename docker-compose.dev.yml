@@ -1,0 +1,30 @@
+services:
+  chat-rag-microservice-gpu-worker:
+    build:
+      context: ./chat-rag-microservice
+      dockerfile: Dockerfile
+    container_name: chat-rag-microservice-gpu-worker
+    command: ["python", "-m", "app.run_gpu_worker"]
+    environment:
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY:-}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: guest
+      RABBITMQ_PASSWORD: guest
+      RABBITMQ_VHOST: /
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - medical-triage-network
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

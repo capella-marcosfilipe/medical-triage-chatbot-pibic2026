@@ -1,4 +1,4 @@
-"""Teste de carga (Dia 12, PIBIC 2025-2026) do início do fluxo de triagem.
+"""Teste de carga do início do fluxo de triagem.
 
 Simula usuários chamando, em sequência: POST /start_session,
 GET /get_smartwatch_data/{smartwatch_id} e POST /chat (uma mensagem).
