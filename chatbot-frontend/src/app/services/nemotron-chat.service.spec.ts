@@ -1,11 +1,14 @@
+import { ApplicationRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NemotronChatService } from './nemotron-chat.service';
+import { TriagemService } from './triagem.service';
 import { environment } from '../../environments/environment';
 
 describe('NemotronChatService', () => {
   let service: NemotronChatService;
+  let triagem: TriagemService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -13,6 +16,7 @@ describe('NemotronChatService', () => {
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(NemotronChatService);
+    triagem = TestBed.inject(TriagemService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -45,6 +49,26 @@ describe('NemotronChatService', () => {
       content: { answer, diagnosis_status: diagnosisStatus, specialty, orientation },
     });
   }
+
+  it('usa o session_id do TriagemService como chat_id no primeiro envio', async () => {
+    triagem.setNomeCompleto('Ana Souza');
+    triagem.setEndereco('Rua A, 1');
+    triagem.confirmIdade(30);
+    TestBed.tick();
+    httpMock.expectOne(`${environment.apiBaseUrl}/start_session`).flush({
+      session_id: 'session-abc',
+      message: 'ok',
+    });
+    await TestBed.inject(ApplicationRef).whenStable();
+
+    const promise = service.sendMessage('dor de cabeça');
+    const req = httpMock.expectOne(`${environment.apiBaseUrl}/chat`);
+    expect(req.request.body.chat_id).toBe('session-abc');
+    req.flush({ job_id: 'job-x', chat_id: 'session-abc', status: 'pending', idempotency_key: 'k', queue: 'q' });
+    await promise;
+
+    flushStatusCompleted('job-x', 'session-abc', 'Pode detalhar?', 'ongoing');
+  });
 
   it('mostra a saudação inicial fixa antes de qualquer envio', () => {
     expect(service.messages()).toEqual([

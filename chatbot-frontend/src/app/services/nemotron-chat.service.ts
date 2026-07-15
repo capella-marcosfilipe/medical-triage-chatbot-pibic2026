@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { ChatEnqueueResponse, ChatMessage, NLPJobStatusResponse } from '../models/chat';
+import { TriagemService } from './triagem.service';
 
 const POLL_INTERVAL_MS = 500;
 const POLL_TIMEOUT_MS = 30_000;
@@ -13,6 +14,7 @@ const INITIAL_GREETING = 'O que você está sentindo hoje?';
 @Injectable({ providedIn: 'root' })
 export class NemotronChatService {
   private readonly http = inject(HttpClient);
+  private readonly triagem = inject(TriagemService);
 
   private readonly _messages = signal<ChatMessage[]>([
     { role: 'assistant', content: INITIAL_GREETING },
@@ -57,11 +59,17 @@ export class NemotronChatService {
     this._isWaitingForReply.set(true);
 
     try {
+      // Seeds chat_id with the /start_session session id on the first
+      // message. The backend looks up patient_context (name, age, address,
+      // smartwatch vitals) by this same id, so an unseeded (backend-random)
+      // chat_id would never match a real session and patient_context would
+      // never reach the LLM.
+      const chatId = this._chatId() ?? this.triagem.sessionId();
       const response = await firstValueFrom(
         this.http.post<ChatEnqueueResponse>(`${environment.apiBaseUrl}/chat`, {
           message: trimmed,
           engine: 'nemotron',
-          chat_id: this._chatId(),
+          chat_id: chatId,
         }),
       );
       this._chatId.set(response.chat_id);
