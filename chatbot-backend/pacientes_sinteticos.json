@@ -1,5 +1,5 @@
 {
-  "_nota_revisao": "Perfis fictícios gerados para simulação de carga e de fluxo de triagem (PIBIC 2025-2026). As condições, sintomas, especialidades esperadas e classificações de urgência (Protocolo de Manchester) são rascunhos para fins de teste automatizado e NÃO passaram por validação clínica. A decisão final sobre a adequação clínica de cada caso é de responsabilidade do pesquisador responsável antes de qualquer uso além de testes de software.",
+  "_nota_revisao": "Perfis fictícios gerados para simulação de carga e de fluxo de triagem (PIBIC 2025-2026). As condições, sintomas, especialidades esperadas e classificações de urgência (Protocolo de Manchester) são rascunhos para fins de teste automatizado e NÃO passaram por validação clínica. Os 5 perfis vermelho/laranja (ids 1-5) ganharam também um campo 'dados_fisiologicos_esperados' com sinais vitais plausíveis para cada condição, elaborados com apoio de literatura geral de sinais vitais em emergência e do Protocolo de Manchester de Maringá já usado como base do RAG — também não validados clinicamente. A decisão final sobre a adequação clínica de cada caso, incluindo os sinais vitais, é de responsabilidade do pesquisador responsável antes de qualquer uso além de testes de software.",
   "pacientes": [
     {
       "id": 1,
@@ -9,7 +9,14 @@
       "condicao_simulada": "Infarto agudo do miocárdio",
       "sintomas": "Dor forte no peito irradiando para o braço esquerdo, sudorese fria e falta de ar há 20 minutos",
       "especialidade_esperada": "Cardiologia",
-      "nivel_urgencia_esperado": "vermelho"
+      "nivel_urgencia_esperado": "vermelho",
+      "dados_fisiologicos_esperados": {
+        "frequencia_cardiaca": 118,
+        "saturacao_oxigenio": 91,
+        "pressao_arterial_sistolica": 96,
+        "pressao_arterial_diastolica": 62,
+        "temperatura_corporal": 36.3
+      }
     },
     {
       "id": 2,
@@ -19,7 +26,14 @@
       "condicao_simulada": "Acidente vascular cerebral (AVC) isquêmico",
       "sintomas": "Fraqueza súbita do lado direito do corpo, fala embolada e desvio de rosto há 10 minutos",
       "especialidade_esperada": "Neurologia",
-      "nivel_urgencia_esperado": "vermelho"
+      "nivel_urgencia_esperado": "vermelho",
+      "dados_fisiologicos_esperados": {
+        "frequencia_cardiaca": 92,
+        "saturacao_oxigenio": 96,
+        "pressao_arterial_sistolica": 178,
+        "pressao_arterial_diastolica": 102,
+        "temperatura_corporal": 36.9
+      }
     },
     {
       "id": 3,
@@ -29,7 +43,14 @@
       "condicao_simulada": "Crise asmática grave",
       "sintomas": "Chiado no peito intenso, dificuldade para falar frases completas e lábios arroxeados",
       "especialidade_esperada": "Pneumologia",
-      "nivel_urgencia_esperado": "laranja"
+      "nivel_urgencia_esperado": "laranja",
+      "dados_fisiologicos_esperados": {
+        "frequencia_cardiaca": 138,
+        "saturacao_oxigenio": 86,
+        "pressao_arterial_sistolica": 108,
+        "pressao_arterial_diastolica": 68,
+        "temperatura_corporal": 37.1
+      }
     },
     {
       "id": 4,
@@ -39,7 +60,14 @@
       "condicao_simulada": "Apendicite aguda",
       "sintomas": "Dor abdominal intensa do lado direito que piorou nas últimas 6 horas, febre e náusea",
       "especialidade_esperada": "Gastroenterologia",
-      "nivel_urgencia_esperado": "laranja"
+      "nivel_urgencia_esperado": "laranja",
+      "dados_fisiologicos_esperados": {
+        "frequencia_cardiaca": 104,
+        "saturacao_oxigenio": 98,
+        "pressao_arterial_sistolica": 122,
+        "pressao_arterial_diastolica": 78,
+        "temperatura_corporal": 38.3
+      }
     },
     {
       "id": 5,
@@ -49,7 +77,14 @@
       "condicao_simulada": "Fratura exposta no antebraço após queda de moto",
       "sintomas": "Dor intensa e deformidade visível no braço direito após acidente, com sangramento moderado",
       "especialidade_esperada": "Ortopedia",
-      "nivel_urgencia_esperado": "laranja"
+      "nivel_urgencia_esperado": "laranja",
+      "dados_fisiologicos_esperados": {
+        "frequencia_cardiaca": 112,
+        "saturacao_oxigenio": 97,
+        "pressao_arterial_sistolica": 108,
+        "pressao_arterial_diastolica": 70,
+        "temperatura_corporal": 36.6
+      }
     },
     {
       "id": 6,

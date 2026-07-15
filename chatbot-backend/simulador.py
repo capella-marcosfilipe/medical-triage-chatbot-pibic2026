@@ -43,6 +43,22 @@ class SimulacaoError(Exception):
     """Falha esperada do domínio da simulação (não um bug do script)."""
 
 
+def formatar_contexto_vitais(dados_fisiologicos: dict) -> str:
+    """Format physiological data as a short bracketed note.
+
+    Prefixed to the first `/chat` message of a simulated patient, standing in
+    for a smartwatch reading attached to the start of a triage conversation
+    (the production wiring from smartwatch data into the chat context does
+    not exist yet — see `RELATORIO_EXECUCAO_SIMULADOR_VITAIS.md`).
+    """
+    return (
+        "[Dados do smartwatch: FC {frequencia_cardiaca} bpm, "
+        "SpO2 {saturacao_oxigenio}%, "
+        "PA {pressao_arterial_sistolica}/{pressao_arterial_diastolica} mmHg, "
+        "Temp {temperatura_corporal}°C]"
+    ).format(**dados_fisiologicos)
+
+
 async def gerar_resposta_paciente(
     client: httpx.AsyncClient,
     api_key: str | None,
@@ -97,10 +113,14 @@ async def simular_paciente(
     api_key: str | None,
     mode: Literal["api", "gpu"],
 ) -> dict:
+    dados_fisiologicos_fixos = perfil.get("dados_fisiologicos_esperados")
+    sinais_vitais_fixos = dados_fisiologicos_fixos is not None
+
     log: dict = {
         "perfil_id": perfil["id"],
         "nome_ficticio": perfil["nome_ficticio"],
         "especialidade_esperada": perfil["especialidade_esperada"],
+        "sinais_vitais_fixos": sinais_vitais_fixos,
         "chamadas_http": [],
         "especialidade_nula_apesar_de_concluido": False,
         "erro": None,
@@ -131,6 +151,12 @@ async def simular_paciente(
         resp.raise_for_status()
         registrar_chamada("get_smartwatch_data", (time.perf_counter() - inicio) * 1000, resp.status_code)
 
+        # Chama o endpoint normalmente acima (métrica de latência íntegra para
+        # todos os 20 perfis). Para os 5 perfis vermelho/laranja, descarta o
+        # valor aleatório retornado e usa os sinais vitais fixos do perfil; os
+        # outros 15 seguem sem nenhum dado fisiológico entrando no contexto,
+        # como já era o comportamento antes desta mudança.
+
         chat_id: str | None = None
         historico_llm: list[dict] = []
         especialidade_retornada: str | None = None
@@ -142,11 +168,21 @@ async def simular_paciente(
             turno += 1
             historico_llm.append({"role": "user", "content": mensagem_paciente})
 
+            # Sinais vitais fixos entram só na mensagem enviada ao chatbot em
+            # teste (primeiro turno), não no histórico do paciente-ator
+            # simulado — este continua vendo/gerando apenas os sintomas
+            # verbais. Perfis sem sinais vitais fixos não sofrem alteração.
+            mensagem_para_chatbot = mensagem_paciente
+            if turno == 1 and sinais_vitais_fixos:
+                mensagem_para_chatbot = (
+                    f"{formatar_contexto_vitais(dados_fisiologicos_fixos)} {mensagem_paciente}"
+                )
+
             inicio = time.perf_counter()
             resp = await client.post(
                 f"{BACKEND_BASE_URL}/chat",
                 json={
-                    "message": mensagem_paciente,
+                    "message": mensagem_para_chatbot,
                     "engine": "nemotron",
                     "chat_id": chat_id,
                     # nota: o /chat do chatbot-backend hoje ignora este campo
