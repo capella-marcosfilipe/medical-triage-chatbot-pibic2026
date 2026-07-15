@@ -3,10 +3,14 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { SmartwatchService } from './smartwatch.service';
+import { TriagemService } from './triagem.service';
 import { environment } from '../../environments/environment';
+
+const SMARTWATCH_URL = `${environment.apiBaseUrl}/get_smartwatch_data/mock-device-001`;
 
 describe('SmartwatchService', () => {
   let service: SmartwatchService;
+  let triagem: TriagemService;
   let httpMock: HttpTestingController;
   let appRef: ApplicationRef;
 
@@ -15,6 +19,7 @@ describe('SmartwatchService', () => {
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(SmartwatchService);
+    triagem = TestBed.inject(TriagemService);
     httpMock = TestBed.inject(HttpTestingController);
     appRef = TestBed.inject(ApplicationRef);
   });
@@ -23,11 +28,23 @@ describe('SmartwatchService', () => {
     httpMock.verify();
   });
 
-  it('busca os dados fisiológicos ao chamar fetch()', async () => {
+  /** Drives TriagemService to a resolved session id, as the app flow does before smartwatch fetch. */
+  async function iniciarSessao(sessionId: string): Promise<void> {
+    triagem.setNomeCompleto('Ana Souza');
+    triagem.setEndereco('Rua A, 1');
+    triagem.confirmIdade(30);
+    TestBed.tick();
+    httpMock.expectOne(`${environment.apiBaseUrl}/start_session`).flush({ session_id: sessionId, message: 'ok' });
+    await appRef.whenStable();
+  }
+
+  it('busca os dados fisiológicos ao chamar fetch(), enviando o session_id da sessão ativa', async () => {
+    await iniciarSessao('session-1');
+
     service.fetch();
     TestBed.tick();
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/get_smartwatch_data/mock-device-001`);
+    const req = httpMock.expectOne(`${SMARTWATCH_URL}?session_id=session-1`);
     expect(req.request.method).toBe('GET');
     req.flush({
       dados_fisiologicos: {
@@ -43,10 +60,19 @@ describe('SmartwatchService', () => {
     expect(service.dadosFisiologicos()?.frequencia_cardiaca).toBe(80);
   });
 
-  it('reset() seguido de fetch() busca dados novos em vez de reaproveitar os antigos', async () => {
+  it('não busca dados enquanto não houver session_id disponível', async () => {
     service.fetch();
     TestBed.tick();
-    httpMock.expectOne(`${environment.apiBaseUrl}/get_smartwatch_data/mock-device-001`).flush({
+
+    httpMock.expectNone((r) => r.url.startsWith(SMARTWATCH_URL));
+  });
+
+  it('reset() seguido de fetch() busca dados novos em vez de reaproveitar os antigos', async () => {
+    await iniciarSessao('session-1');
+
+    service.fetch();
+    TestBed.tick();
+    httpMock.expectOne(`${SMARTWATCH_URL}?session_id=session-1`).flush({
       dados_fisiologicos: {
         frequencia_cardiaca: 70,
         saturacao_oxigenio: 97,
@@ -64,7 +90,7 @@ describe('SmartwatchService', () => {
     service.fetch();
     TestBed.tick();
 
-    const req = httpMock.expectOne(`${environment.apiBaseUrl}/get_smartwatch_data/mock-device-001`);
+    const req = httpMock.expectOne(`${SMARTWATCH_URL}?session_id=session-1`);
     req.flush({
       dados_fisiologicos: {
         frequencia_cardiaca: 91,
