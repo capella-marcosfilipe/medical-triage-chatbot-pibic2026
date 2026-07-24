@@ -24,9 +24,14 @@ NVIDIA_API_BASE_URL = "https://integrate.api.nvidia.com/v1"
 
 # --- Nemotron reasoning mode ---
 
-# System-message token that toggles the model's chain-of-thought reasoning
-# on/off (see app/llm/nemotron_service.py's _build_messages).
+# System-message tokens that toggle the model's chain-of-thought reasoning
+# on/off (see app/llm/nemotron_service.py's _build_messages). This model
+# defaults to reasoning ON when neither token is sent, so one of the two
+# must always be present — REASONING_DISABLE_TOKEN is what keeps the
+# structured-output contract (status/message/specialty/orientation JSON)
+# from competing with chain-of-thought tokens for the same max_tokens budget.
 REASONING_TRIGGER_TOKEN = "/think"
+REASONING_DISABLE_TOKEN = "/no_think"
 REASONING_MIN_THINKING_TOKENS = 256
 REASONING_MAX_THINKING_TOKENS = 1024
 

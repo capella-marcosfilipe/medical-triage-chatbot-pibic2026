@@ -7,6 +7,7 @@ from openai.types.chat import (ChatCompletionSystemMessageParam,
 from app.llm.engine import EngineMode, nemotron_engine
 from app.infrastructure.constants import (
     NEMOTRON_API_MODEL,
+    REASONING_DISABLE_TOKEN,
     REASONING_MAX_THINKING_TOKENS,
     REASONING_MIN_THINKING_TOKENS,
     REASONING_TRIGGER_TOKEN,
@@ -29,19 +30,23 @@ class NemotronService:
         }
     
     def _build_messages(
-        self, 
-        user_message: str, 
+        self,
+        user_message: str,
         use_reasoning: bool
     ) -> list[ChatCompletionUserMessageParam | ChatCompletionSystemMessageParam]:
-        """Build messages list with optional reasoning."""
-        messages: list[ChatCompletionUserMessageParam | ChatCompletionSystemMessageParam] = [
-            ChatCompletionUserMessageParam(role="user", content=user_message)
+        """Build messages list with explicit reasoning on/off.
+
+        The model defaults to chain-of-thought reasoning ON when neither
+        `/think` nor `/no_think` is sent, so the trigger token is always
+        included (never omitted) to make the choice explicit. Without this,
+        reasoning tokens silently compete with the structured JSON output
+        for the same `max_tokens` budget and can crowd it out entirely.
+        """
+        trigger = REASONING_TRIGGER_TOKEN if use_reasoning else REASONING_DISABLE_TOKEN
+        return [
+            ChatCompletionSystemMessageParam(role="system", content=trigger),
+            ChatCompletionUserMessageParam(role="user", content=user_message),
         ]
-        
-        if use_reasoning:
-            messages.insert(0, ChatCompletionSystemMessageParam(role="system", content=REASONING_TRIGGER_TOKEN))
-        
-        return messages
     
     def _generate_gpu(
         self,
@@ -129,30 +134,35 @@ class NemotronService:
             extra_body=extra_body
         )
         
-        # Extrair resposta (pode vir em content ou reasoning_content)
         choice = completion.choices[0]
         message = choice.message
-        
-        # Log para debug
-        logger.debug(f"[API] Response fields: content={bool(message.content)}, "
-                    f"has_reasoning={hasattr(message, 'reasoning_content')}")
-        
-        # Tentar pegar do content primeiro
+        reasoning = getattr(message, "reasoning_content", None)
+
+        logger.debug(
+            f"[API] finish_reason={choice.finish_reason}, "
+            f"content_len={len(message.content or '')}, reasoning_len={len(reasoning or '')}"
+        )
+
+        # NEVER fall back to reasoning_content as the response: it is raw
+        # chain-of-thought (often in English, often mid-sentence if
+        # max_tokens was exhausted before the final answer) and must not
+        # reach the patient. If content is empty, the caller's structured
+        # JSON parsing will fail and degrade to the safe fallback message.
+        if not message.content and reasoning:
+            logger.warning(
+                "[API] Model returned only reasoning_content (empty final content); "
+                f"finish_reason={choice.finish_reason}. Discarding reasoning text "
+                "instead of leaking it as the response."
+            )
+
         response = message.content
-        
-        # Se vazio e tem reasoning, pegar do reasoning_content
-        if not response and hasattr(message, 'reasoning_content'):
-            response = message.reasoning_content
-            logger.debug("[API] Using reasoning_content")
-        
-        # Se ainda vazio, verificar se tem refusal
-        if not response and hasattr(message, 'refusal'):
+        if not response and getattr(message, "refusal", None):
             response = message.refusal
             logger.warning("[API] Response was refused")
-        
+
         if not response:
-            logger.error(f"[API] Empty response! Message object: {message}")
-        
+            logger.error(f"[API] Empty response! finish_reason={choice.finish_reason}")
+
         return response or ""
     
     def generate_response(
