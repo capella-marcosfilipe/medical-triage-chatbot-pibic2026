@@ -201,8 +201,9 @@ class BaseWorker(ABC):
             latency_ms = (datetime.now() - start_time).total_seconds() * 1000
 
             # Parse the structured-output contract (see docs/structured_output_contract.md).
-            # Never raises: parsing failures degrade to status="ongoing" with the raw
-            # text as the message, logged via logger.warning inside parse_structured_response.
+            # Never raises: parsing failures degrade to status="ongoing" with a fixed,
+            # patient-safe message (raw text is logged, never surfaced) inside
+            # parse_structured_response.
             parsed = parse_structured_response(response_text)
 
             return ChatResponse(

@@ -20,6 +20,15 @@ DiagnosisStatus = Literal["ongoing", "diagnosis_concluded"]
 
 _MARKDOWN_FENCE_PATTERN = re.compile(r"^```(?:json)?\s*|\s*```$", re.IGNORECASE | re.MULTILINE)
 
+# Shown to the patient whenever the raw model output can't be parsed as the
+# structured contract (invalid/partial JSON, empty response, leaked
+# chain-of-thought, etc.). Never expose raw model text in its place: it may
+# be in English, mid-sentence, or reveal internal reasoning that was never
+# meant to be patient-facing.
+_SAFE_FALLBACK_MESSAGE = (
+    "Desculpe, não consegui processar sua mensagem corretamente. Pode reformular ou repetir?"
+)
+
 
 @dataclass(frozen=True)
 class StructuredLLMOutput:
@@ -37,8 +46,8 @@ def _strip_markdown_fences(raw_text: str) -> str:
 
 
 def _fallback(raw_text: str, reason: str) -> StructuredLLMOutput:
-    logger.warning(f"[structured_output] Falling back to raw text: {reason}")
-    return StructuredLLMOutput(status="ongoing", message=raw_text, specialty=None, orientation=None)
+    logger.warning(f"[structured_output] Falling back to safe message: {reason}. Raw text: {raw_text!r}")
+    return StructuredLLMOutput(status="ongoing", message=_SAFE_FALLBACK_MESSAGE, specialty=None, orientation=None)
 
 
 def parse_structured_response(raw_text: str) -> StructuredLLMOutput:
@@ -46,9 +55,11 @@ def parse_structured_response(raw_text: str) -> StructuredLLMOutput:
 
     Never raises: any parsing problem (invalid JSON, missing/invalid fields,
     a `specialty` outside the closed list) degrades to a safe fallback that
-    keeps the conversation going with `status="ongoing"` and the raw model
-    text as the message, logged via `logger.warning` for later monitoring of
-    the parsing failure rate.
+    keeps the conversation going with `status="ongoing"` and a fixed,
+    patient-safe message (never the raw model text, which may be in English,
+    truncated mid-sentence, or leak internal reasoning). The raw text is
+    still logged via `logger.warning` for later monitoring of the parsing
+    failure rate.
 
     Args:
         raw_text: Raw text returned by the LLM for this turn.
