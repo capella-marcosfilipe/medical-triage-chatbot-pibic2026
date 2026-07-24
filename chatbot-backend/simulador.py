@@ -143,11 +143,15 @@ async def simular_paciente(
         )
         resp.raise_for_status()
         registrar_chamada("start_session", (time.perf_counter() - inicio) * 1000, resp.status_code)
-        log["session_id"] = resp.json()["session_id"]
+        session_id = resp.json()["session_id"]
+        log["session_id"] = session_id
 
         smartwatch_id = f"sim-{perfil['id']}"
         inicio = time.perf_counter()
-        resp = await client.get(f"{BACKEND_BASE_URL}/get_smartwatch_data/{smartwatch_id}")
+        resp = await client.get(
+            f"{BACKEND_BASE_URL}/get_smartwatch_data/{smartwatch_id}",
+            params={"session_id": session_id},
+        )
         resp.raise_for_status()
         registrar_chamada("get_smartwatch_data", (time.perf_counter() - inicio) * 1000, resp.status_code)
 
@@ -157,7 +161,13 @@ async def simular_paciente(
         # outros 15 seguem sem nenhum dado fisiológico entrando no contexto,
         # como já era o comportamento antes desta mudança.
 
-        chat_id: str | None = None
+        # Semeia o primeiro chat_id com o session_id de /start_session (mesmo
+        # padrão do frontend em NemotronChatService.sendMessage()), em vez de
+        # deixar o backend gerar um chat_id novo e desconectado da sessão —
+        # é isso que faz nome/idade/endereço/sinais vitais chegarem ao
+        # patient_context. Os turnos seguintes usam o chat_id devolvido pelo
+        # servidor normalmente.
+        chat_id: str | None = session_id
         historico_llm: list[dict] = []
         especialidade_retornada: str | None = None
         diagnosis_status = "ongoing"
