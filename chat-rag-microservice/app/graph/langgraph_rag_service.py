@@ -65,6 +65,26 @@ class LangGraphRAGService:
     def _tokenize(text: str) -> set[str]:
         return set(re.findall(r"\w+", text.lower()))
 
+    @staticmethod
+    def _apply_memory_window(messages: list[BaseMessage]) -> list[BaseMessage]:
+        """Apply LANGGRAPH_MEMORY_WINDOW while always keeping the leading system message.
+
+        The first message of a session carries the mandatory JSON output
+        contract and the closed specialty list (see register_user_message).
+        A plain `messages[-window:]` slice silently drops it once a
+        conversation exceeds `window` total messages, degrading output
+        format compliance with no error or log. Pinning it keeps the
+        contract present for the entire conversation, regardless of length.
+        """
+        window = settings.LANGGRAPH_MEMORY_WINDOW
+        if len(messages) <= window:
+            return messages
+
+        has_system = isinstance(messages[0], SystemMessage)
+        head = messages[:1] if has_system else []
+        tail_size = window - len(head)
+        return head + messages[-tail_size:]
+
     def _load_knowledge_chunks(self, path: str) -> list[str]:
         if not os.path.exists(path):
             logger.warning(f"RAG knowledge base not found at {path}; continuing without retrieval context")
@@ -145,7 +165,7 @@ class LangGraphRAGService:
         messages = self.get_state(session_id)
 
         serialized: list[dict[str, str]] = []
-        for message in messages[-settings.LANGGRAPH_MEMORY_WINDOW :]:
+        for message in self._apply_memory_window(messages):
             if isinstance(message, SystemMessage):
                 role = "system"
             elif isinstance(message, HumanMessage):
@@ -218,7 +238,7 @@ class LangGraphRAGService:
         """Build final prompt combining memory window and RAG context."""
         await self._rehydrate_if_needed(session_id)
         messages = self.get_state(session_id)
-        memory_window = messages[-settings.LANGGRAPH_MEMORY_WINDOW :]
+        memory_window = self._apply_memory_window(messages)
 
         lines: list[str] = []
         for message in memory_window:
