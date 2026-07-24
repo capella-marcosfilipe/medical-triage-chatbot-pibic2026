@@ -21,7 +21,7 @@ Aceito contribuições e sugestões para melhorias! Entre em contato comigo via 
 │   FastAPI   │ ← Recebe requisições HTTP
 └──────┬──────┘
        │
-         └─→ POST /chat?mode={auto|gpu|api}
+         └─→ POST /v1/chat?mode={auto|gpu|api}
            │
            ├─→ mode=auto  → Roteia para GPU ou API
            ├─→ mode=gpu   → Força GPU queue
@@ -49,13 +49,12 @@ Aceito contribuições e sugestões para melhorias! Entre em contato comigo via 
 
 **Fluxo atual:**
 
-1. Cliente envia POST para `/chat?mode={auto|gpu|api}`
-2. API retorna `job_id` e `chat_id` imediatamente (status: PENDING)
+1. Cliente envia POST para `/v1/chat?mode={auto|gpu|api}`
+2. API retorna `job_id` imediatamente (status: PENDING)
 3. Mensagem é publicada na fila apropriada (GPU ou API)
 4. Worker consome mensagem e processa (status: PROCESSING)
 5. Resultado é salvo no Redis (status: COMPLETED ou FAILED)
-6. Cliente consulta GET `/chat/status/{job_id}` para obter o resultado estruturado
-7. Cliente pode retomar a conversa em `GET /chat/{chat_id}`
+6. Cliente consulta GET `/v1/chat/status/{job_id}` para obter o resultado estruturado
 
 ---
 
@@ -67,23 +66,26 @@ Aceito contribuições e sugestões para melhorias! Entre em contato comigo via 
 
 ## Endpoints disponíveis
 
-- `POST /chat?mode={auto|gpu|api}`: Interage com o modelo Nemotron com modo configurável via query parameter (assíncrono)
+Todas as rotas ficam sob o prefixo `/v1` (montado em `app/main.py`).
+
+- `POST /v1/chat?mode={auto|gpu|api}`: Interage com o modelo Nemotron com modo configurável via query parameter (assíncrono)
   - `mode=auto` (default): Roteia para GPU local preferencialmente, ou API da NVIDIA como fallback
   - `mode=gpu`: Força execução exclusiva em GPU local
   - `mode=api`: Força execução exclusiva via API oficial da NVIDIA
-- `GET /chat/status/{job_id}`: Consulta o status e resultado de um job
-- `GET /chat/{chat_id}`: Retorna o histórico completo da conversa
-- `GET /chat/info`: Fornece informações sobre os modos disponíveis (GPU local e API oficial da NVIDIA)
+- `GET /v1/chat/status/{job_id}`: Consulta o status e resultado de um job
+- `GET /v1/chat/info`: Fornece informações sobre os modos disponíveis (GPU local e API oficial da NVIDIA)
 
 Swagger UI disponível em `/docs` para testes interativos.
 
 ## Formato das requisições
 
-As requisições para o endpoint de chat (`POST /chat`) devem ser feitas no formato JSON com a seguinte estrutura mínima:
+As requisições para o endpoint de chat (`POST /v1/chat`) devem ser feitas no formato JSON. `session_id` (mínimo 8 caracteres) e `idempotency_key` são obrigatórios (ver `app/domain/request.py`):
 
 ```json
 {
-  "message": "Sua mensagem aqui"
+  "session_id": "sessao-do-paciente-123",
+  "message": "Sua mensagem aqui",
+  "idempotency_key": "uuid-gerado-pelo-cliente"
 }
 ```
 
@@ -91,7 +93,9 @@ Outros campos opcionais podem ser incluídos conforme necessário. Exemplo compl
 
 ```json
 {
+  "session_id": "sessao-do-paciente-123",
   "message": "Olá, como você está?",
+  "patient_context": {"idade": 35, "queixa_principal": "febre"},
   "max_tokens": 256,
   "temperature": 0.7,
   "use_reasoning": true,
@@ -103,14 +107,14 @@ Outros campos opcionais podem ser incluídos conforme necessário. Exemplo compl
 
 ```bash
 # AUTO (default) - Prefere GPU, fallback para API
-POST /chat
-POST /chat?mode=auto
+POST /v1/chat
+POST /v1/chat?mode=auto
 
 # GPU - Força GPU local (retorna 503 se indisponível)
-POST /chat?mode=gpu
+POST /v1/chat?mode=gpu
 
 # API - Força NVIDIA API (sempre disponível, suporta reasoning)
-POST /chat?mode=api
+POST /v1/chat?mode=api
 ```
 
 ### Resposta Assíncrona (imediata)
@@ -127,7 +131,7 @@ A API retorna imediatamente com um job_id:
 
 ### Consultar Status do Job
 
-Use o endpoint `/chat/status/{job_id}`:
+Use o endpoint `/v1/chat/status/{job_id}`:
 
 **Processando:**
 
