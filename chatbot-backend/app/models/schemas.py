@@ -32,12 +32,6 @@ class ObterDadosSmartWatchResponse(BaseModel):
     dados_fisiologicos: DadosFisiologicos
 
 
-class ChatGeminiRequest(BaseModel):
-    """Request for chatting with Gemini AI."""
-    session_id: str = Field(..., description="Session identifier")
-    user_message: str = Field(..., description="User's message")
-
-
 class FichaDeAtendimento(BaseModel):
     """Complete medical record."""
     session_id: str
@@ -53,13 +47,6 @@ class FichaDeAtendimento(BaseModel):
     nivel_urgencia: Optional[str] = None
     especialidade_medica: Optional[str] = None
     orientacao_ao_medico: Optional[str] = None
-
-
-class ChatGeminiResponse(BaseModel):
-    """Response from chat with Gemini AI."""
-    bot_message: str = Field(..., description="Bot's response message")
-    status: str = Field(..., description="Conversation status: 'ongoing' or 'final'")
-    ficha_de_atendimento: Optional[FichaDeAtendimento] = None
 
 
 class ObterFichaCompletaResponse(BaseModel):

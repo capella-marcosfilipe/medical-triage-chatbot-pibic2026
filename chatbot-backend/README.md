@@ -1,18 +1,18 @@
 # Chatbot Triagem Médica - Backend API
 
-Sistema de triagem médica inteligente usando FastAPI e Google Gemini AI. Este projeto é compatível com o frontend legado [chatbot-triagem-medica-front](https://github.com/capella-marcosfilipe/chatbot-triagem-medica-front).
+Sistema de triagem médica inteligente usando FastAPI, delegando o chat com o LLM ao microserviço `chat-rag-microservice` (LangGraph + Nemotron). Este projeto é compatível com o frontend legado [chatbot-triagem-medica-front](https://github.com/capella-marcosfilipe/chatbot-triagem-medica-front).
 
 ## 🏗️ Arquitetura
 
 - **FastAPI**: Framework web moderno e rápido para construção de APIs
-- **Google Gemini AI**: LLM (Large Language Model) para conversação inteligente
+- **chat-rag-microservice**: microserviço separado que roda o LLM (Nemotron) e o RAG sobre o Protocolo de Manchester
 - **Pydantic**: Validação de dados e serialização
 - **Python 3.8+**: Linguagem de programação
 
 ## 📋 Funcionalidades
 
 - ✅ API REST completa para triagem médica
-- ✅ Integração com Google Gemini AI
+- ✅ Integração com o chat-rag-microservice (LangGraph + Nemotron)
 - ✅ Simulador de dados de smartwatch (frequência cardíaca, saturação de O2, pressão arterial, temperatura)
 - ✅ Gerenciamento de sessões de pacientes
 - ✅ Coleta estruturada de informações médicas
@@ -26,7 +26,7 @@ Sistema de triagem médica inteligente usando FastAPI e Google Gemini AI. Este p
 
 - Python 3.8 ou superior
 - pip (gerenciador de pacotes Python)
-- Chave da API do Google Gemini ([obter aqui](https://ai.google.dev/))
+- O `chat-rag-microservice` rodando (ele exige `NVIDIA_API_KEY`, obtida em [build.nvidia.com](https://build.nvidia.com)) — o `chatbot-backend` em si não requer nenhuma chave de API própria
 
 ### Passos de Instalação
 
@@ -54,10 +54,7 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Edite o arquivo `.env` e adicione sua chave da API do Google Gemini:
-```
-GOOGLE_API_KEY=sua_chave_aqui
-```
+Os valores padrão de `.env.example` já funcionam para desenvolvimento local; ajuste `FRONTEND_URL`/portas se necessário.
 
 5. **Execute o servidor:**
 ```bash
@@ -212,9 +209,6 @@ GET /api/v1/obter_ficha_completa/{session_id}
 Edite o arquivo `.env` para personalizar as configurações:
 
 ```bash
-# Google Gemini API
-GOOGLE_API_KEY=sua_chave_da_api_gemini
-
 # Configurações da Aplicação
 APP_HOST=0.0.0.0
 APP_PORT=8001
@@ -304,7 +298,7 @@ chatbot-triagem-medica-pibic25-26/
 │   │   └── schemas.py               # Modelos Pydantic
 │   └── services/
 │       ├── __init__.py
-│       ├── gemini_service.py        # Serviço Gemini AI
+│       ├── microservice_client.py   # Cliente HTTP para o chat-rag-microservice
 │       ├── session_manager.py       # Gerenciamento de sessões
 │       └── smartwatch_simulator.py  # Simulador de smartwatch
 ├── main.py                          # Aplicação principal FastAPI
@@ -336,7 +330,7 @@ pip freeze > requirements.txt
 1. Crie uma conta no [Render](https://render.com)
 2. Conecte seu repositório GitHub
 3. Crie um novo Web Service
-4. Configure as variáveis de ambiente (GOOGLE_API_KEY)
+4. Configure as variáveis de ambiente (ver `.env.example`, principalmente `CHATBOT_MICROSERVICE_URL` apontando para o `chat-rag-microservice`)
 5. O Render detectará automaticamente o `requirements.txt` e o Python
 
 ### Deploy no Heroku
@@ -347,7 +341,7 @@ echo "web: uvicorn main:app --host 0.0.0.0 --port \$PORT" > Procfile
 
 # Deploy
 heroku create seu-app-name
-heroku config:set GOOGLE_API_KEY=sua_chave
+heroku config:set CHATBOT_MICROSERVICE_URL=https://sua-instancia-do-chat-rag-microservice
 git push heroku main
 ```
 
@@ -367,5 +361,5 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 - [Frontend Legacy](https://github.com/capella-marcosfilipe/chatbot-triagem-medica-front)
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [Google Gemini AI](https://ai.google.dev/)
+- [NVIDIA build.nvidia.com (Nemotron API)](https://build.nvidia.com/)
 - [Pydantic](https://docs.pydantic.dev/)
