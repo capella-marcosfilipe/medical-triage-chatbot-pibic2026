@@ -13,8 +13,10 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import csv
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -41,6 +43,65 @@ simulação."""
 
 class SimulacaoError(Exception):
     """Falha esperada do domínio da simulação (não um bug do script)."""
+
+
+_CAMPOS_CSV_RESUMO = [
+    "perfil_id",
+    "nome_ficticio",
+    "sinais_vitais_fixos",
+    "especialidade_esperada",
+    "especialidade_retornada",
+    "especialidade_bateu",
+    "especialidade_nula_apesar_de_concluido",
+    "diagnosis_status_final",
+    "turnos",
+    "limite_de_turnos_atingido",
+    "session_id",
+    "chat_id",
+    "erro",
+]
+
+_CAMPOS_CSV_CHAMADAS = ["perfil_id", "chamada", "endpoint", "duracao_ms", "status_code"]
+
+# Normaliza "chat_enqueue_turno_3" / "chat_status_turno_3" para "chat_enqueue" /
+# "chat_status", agrupando chamadas do mesmo endpoint entre turnos para o
+# cálculo de latência (média/mediana/p95/máxima) por endpoint.
+_PADRAO_SUFIXO_TURNO = re.compile(r"_turno_\d+$")
+
+
+def escrever_csv_resumo(resultados: list[dict], caminho: str) -> None:
+    """Write one summary row per simulated patient, for spreadsheet/plotting tools.
+
+    Uses `restval=""` since a patient that failed early (e.g. start_session
+    raised) won't have fields set past that point in its log dict.
+    """
+    with open(caminho, "w", newline="", encoding="utf-8") as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=_CAMPOS_CSV_RESUMO, restval="", extrasaction="ignore")
+        escritor.writeheader()
+        escritor.writerows(resultados)
+
+
+def escrever_csv_chamadas(resultados: list[dict], caminho: str) -> None:
+    """Write one row per HTTP call across all patients.
+
+    Kept granular (not pre-aggregated) so latency stats (mean/median/p95/max)
+    can be computed per endpoint afterwards, e.g. with pandas groupby.
+    """
+    with open(caminho, "w", newline="", encoding="utf-8") as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=_CAMPOS_CSV_CHAMADAS)
+        escritor.writeheader()
+        for resultado in resultados:
+            perfil_id = resultado.get("perfil_id")
+            for chamada in resultado.get("chamadas_http", []):
+                escritor.writerow(
+                    {
+                        "perfil_id": perfil_id,
+                        "chamada": chamada["chamada"],
+                        "endpoint": _PADRAO_SUFIXO_TURNO.sub("", chamada["chamada"]),
+                        "duracao_ms": chamada["duracao_ms"],
+                        "status_code": chamada["status_code"],
+                    }
+                )
 
 
 def formatar_contexto_vitais(dados_fisiologicos: dict) -> str:
@@ -268,6 +329,14 @@ def main() -> None:
         "--perfis", default="pacientes_sinteticos.json", help="Caminho para o JSON de pacientes sintéticos."
     )
     parser.add_argument("--saida", default="log_simulacao.json", help="Arquivo de log JSON de saída.")
+    parser.add_argument(
+        "--saida-csv-resumo", default="resultados_resumo.csv", help="CSV com uma linha por paciente simulado."
+    )
+    parser.add_argument(
+        "--saida-csv-chamadas",
+        default="resultados_chamadas.csv",
+        help="CSV com uma linha por chamada HTTP (granular, para análise de latência por endpoint).",
+    )
     args = parser.parse_args()
 
     caminho_perfis = Path(args.perfis)
@@ -287,7 +356,12 @@ def main() -> None:
     resultados = asyncio.run(executar(perfis, args.mode, api_key))
 
     Path(args.saida).write_text(json.dumps(resultados, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Log salvo em {args.saida} ({len(resultados)} paciente(s) simulado(s)).")
+    escrever_csv_resumo(resultados, args.saida_csv_resumo)
+    escrever_csv_chamadas(resultados, args.saida_csv_chamadas)
+    print(
+        f"Log salvo em {args.saida}, resumo em {args.saida_csv_resumo} e chamadas em "
+        f"{args.saida_csv_chamadas} ({len(resultados)} paciente(s) simulado(s))."
+    )
 
 
 if __name__ == "__main__":
