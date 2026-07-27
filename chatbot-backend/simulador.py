@@ -53,6 +53,9 @@ _CAMPOS_CSV_RESUMO = [
     "especialidade_retornada",
     "especialidade_bateu",
     "especialidade_nula_apesar_de_concluido",
+    "nivel_urgencia_esperado",
+    "nivel_urgencia_obtido",
+    "nivel_urgencia_bateu",
     "diagnosis_status_final",
     "turnos",
     "limite_de_turnos_atingido",
@@ -181,6 +184,7 @@ async def simular_paciente(
         "perfil_id": perfil["id"],
         "nome_ficticio": perfil["nome_ficticio"],
         "especialidade_esperada": perfil["especialidade_esperada"],
+        "nivel_urgencia_esperado": perfil.get("nivel_urgencia_esperado"),
         "sinais_vitais_fixos": sinais_vitais_fixos,
         "chamadas_http": [],
         "especialidade_nula_apesar_de_concluido": False,
@@ -231,6 +235,7 @@ async def simular_paciente(
         chat_id: str | None = session_id
         historico_llm: list[dict] = []
         especialidade_retornada: str | None = None
+        nivel_urgencia_obtido: str | None = None
         diagnosis_status = "ongoing"
         turno = 0
         mensagem_paciente = perfil["sintomas"]
@@ -283,6 +288,7 @@ async def simular_paciente(
                 # Lê o campo estruturado direto (ver docs/structured_output_contract.md
                 # no chat-rag-microservice) em vez de extrair por substring do texto livre.
                 especialidade_retornada = content.get("specialty")
+                nivel_urgencia_obtido = content.get("risk_level")
                 if especialidade_retornada is None:
                     # status concluído sem specialty indica falha de parsing do JSON
                     # estruturado no chat-rag-microservice — dado relevante para a
@@ -298,6 +304,13 @@ async def simular_paciente(
         log["especialidade_bateu"] = (
             especialidade_retornada is not None
             and especialidade_retornada.lower() == perfil["especialidade_esperada"].lower()
+        )
+        log["nivel_urgencia_obtido"] = nivel_urgencia_obtido
+        nivel_urgencia_esperado = log["nivel_urgencia_esperado"]
+        log["nivel_urgencia_bateu"] = (
+            nivel_urgencia_obtido is not None
+            and nivel_urgencia_esperado is not None
+            and nivel_urgencia_obtido.lower() == nivel_urgencia_esperado.lower()
         )
         log["limite_de_turnos_atingido"] = turno >= MAX_TURNS and diagnosis_status != "diagnosis_concluded"
     except (httpx.HTTPError, SimulacaoError) as exc:
