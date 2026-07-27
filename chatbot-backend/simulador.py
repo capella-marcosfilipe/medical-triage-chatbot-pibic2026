@@ -148,7 +148,11 @@ async def gerar_resposta_paciente(
         return "Sim, é isso mesmo. Não tenho mais nada a acrescentar."
 
     system_prompt = PATIENT_SYSTEM_PROMPT_TEMPLATE.format(**perfil)
-    messages = [{"role": "system", "content": system_prompt}, *historico]
+    messages = [
+        {"role": "system", "content": "/no_think"},
+        {"role": "system", "content": system_prompt},
+        *historico,
+    ]
     resposta = await client.post(
         NVIDIA_API_URL,
         headers={"Authorization": f"Bearer {api_key}"},
@@ -163,7 +167,15 @@ async def gerar_resposta_paciente(
     )
     resposta.raise_for_status()
     dados = resposta.json()
-    return dados["choices"][0]["message"]["content"].strip()
+    conteudo = dados["choices"][0]["message"]["content"]
+    if not conteudo:
+        print(
+            f"[AVISO] Resposta vazia do paciente-ator (perfil {perfil['id']}); "
+            "usando fala de fallback.",
+            file=sys.stderr,
+        )
+        return "Sim, é isso mesmo. Não tenho mais nada a acrescentar."
+    return conteudo.strip()
 
 
 async def aguardar_conclusao_job(client: httpx.AsyncClient, job_id: str) -> dict:
@@ -228,18 +240,6 @@ async def simular_paciente(
         resp.raise_for_status()
         registrar_chamada("get_smartwatch_data", (time.perf_counter() - inicio) * 1000, resp.status_code)
 
-        # Chama o endpoint normalmente acima (métrica de latência íntegra para
-        # todos os 20 perfis). Para os 5 perfis vermelho/laranja, descarta o
-        # valor aleatório retornado e usa os sinais vitais fixos do perfil; os
-        # outros 15 seguem sem nenhum dado fisiológico entrando no contexto,
-        # como já era o comportamento antes desta mudança.
-
-        # Semeia o primeiro chat_id com o session_id de /start_session (mesmo
-        # padrão do frontend em NemotronChatService.sendMessage()), em vez de
-        # deixar o backend gerar um chat_id novo e desconectado da sessão —
-        # é isso que faz nome/idade/endereço/sinais vitais chegarem ao
-        # patient_context. Os turnos seguintes usam o chat_id devolvido pelo
-        # servidor normalmente.
         chat_id: str | None = session_id
         historico_llm: list[dict] = []
         especialidade_retornada: str | None = None
