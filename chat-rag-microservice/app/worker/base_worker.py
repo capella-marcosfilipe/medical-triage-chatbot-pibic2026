@@ -214,6 +214,7 @@ class BaseWorker(ABC):
                 message=parsed.message,
                 specialty=parsed.specialty,
                 orientation=parsed.orientation,
+                risk_level=parsed.risk_level,
             )
         
         except Exception as e:

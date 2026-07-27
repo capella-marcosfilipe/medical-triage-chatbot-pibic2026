@@ -5,28 +5,34 @@ implements.
 """
 import pytest
 
-from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS, NIVEIS_URGENCIA_CONHECIDOS
 from app.llm.structured_output import _SAFE_FALLBACK_MESSAGE, parse_structured_response
 
 
 def test_parseia_json_limpo_ongoing():
-    raw = '{"status": "ongoing", "message": "Há quanto tempo você sente essa dor?", "specialty": null, "orientation": null}'
+    raw = (
+        '{"status": "ongoing", "message": "Há quanto tempo você sente essa dor?", '
+        '"specialty": null, "orientation": null, "risk_level": null}'
+    )
     result = parse_structured_response(raw)
     assert result.status == "ongoing"
     assert result.message == "Há quanto tempo você sente essa dor?"
     assert result.specialty is None
     assert result.orientation is None
+    assert result.risk_level is None
 
 
 def test_parseia_json_limpo_concluido_com_especialidade_valida():
     raw = (
         '{"status": "diagnosis_concluded", "message": "Triagem concluída.", '
-        '"specialty": "Cardiologia", "orientation": "Paciente com dor torácica típica."}'
+        '"specialty": "Cardiologia", "orientation": "Paciente com dor torácica típica.", '
+        '"risk_level": "vermelho"}'
     )
     result = parse_structured_response(raw)
     assert result.status == "diagnosis_concluded"
     assert result.specialty == "Cardiologia"
     assert result.orientation == "Paciente com dor torácica típica."
+    assert result.risk_level == "vermelho"
 
 
 @pytest.mark.parametrize(
@@ -59,6 +65,7 @@ def test_json_malformado_cai_no_fallback_sem_excecao(malformado):
     assert result.message == _SAFE_FALLBACK_MESSAGE
     assert result.specialty is None
     assert result.orientation is None
+    assert result.risk_level is None
 
 
 def test_texto_vazio_cai_no_fallback():
@@ -66,6 +73,7 @@ def test_texto_vazio_cai_no_fallback():
     assert result.status == "ongoing"
     assert result.message == _SAFE_FALLBACK_MESSAGE
     assert result.specialty is None
+    assert result.risk_level is None
 
 
 def test_raciocinio_bruto_vazado_cai_no_fallback_seguro():
@@ -92,6 +100,7 @@ def test_raciocinio_bruto_vazado_cai_no_fallback_seguro():
     assert "headache" not in result.message
     assert result.specialty is None
     assert result.orientation is None
+    assert result.risk_level is None
 
 
 def test_especialidade_fora_da_lista_fechada_e_descartada():
@@ -114,3 +123,26 @@ def test_todas_as_12_especialidades_sao_aceitas():
         )
         result = parse_structured_response(raw)
         assert result.specialty == especialidade
+
+
+def test_nivel_urgencia_fora_da_lista_fechada_e_descartado():
+    raw = (
+        '{"status": "diagnosis_concluded", "message": "Triagem concluída.", '
+        '"specialty": "Cardiologia", "orientation": "resumo", "risk_level": "VERMELHO"}'
+    )
+    result = parse_structured_response(raw)
+    assert result.status == "diagnosis_concluded"
+    assert result.specialty == "Cardiologia"
+    assert result.orientation == "resumo"
+    assert result.risk_level is None
+
+
+def test_todos_os_5_niveis_de_urgencia_sao_aceitos():
+    assert len(NIVEIS_URGENCIA_CONHECIDOS) == 5
+    for nivel in NIVEIS_URGENCIA_CONHECIDOS:
+        raw = (
+            f'{{"status": "diagnosis_concluded", "message": "ok", '
+            f'"specialty": "Clínica Geral", "orientation": null, "risk_level": "{nivel}"}}'
+        )
+        result = parse_structured_response(raw)
+        assert result.risk_level == nivel

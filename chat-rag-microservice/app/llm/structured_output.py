@@ -1,8 +1,8 @@
 """Parsing and sanitization for the LLM structured-output contract.
 
 Every triage LLM turn is expected to return a single JSON object shaped like
-`{"status": ..., "message": ..., "specialty": ..., "orientation": ...}` (see
-`docs/structured_output_contract.md`). This module is deliberately free of
+`{"status": ..., "message": ..., "specialty": ..., "orientation": ..., "risk_level": ...}`
+(see `docs/structured_output_contract.md`). This module is deliberately free of
 any heavy dependency (no LangGraph/Redis/OpenAI imports) so it stays trivial
 to unit test in isolation.
 """
@@ -13,7 +13,7 @@ import re
 from dataclasses import dataclass
 from typing import Literal
 
-from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS, NIVEIS_URGENCIA_CONHECIDOS
 from app.infrastructure.logger import logger
 
 DiagnosisStatus = Literal["ongoing", "diagnosis_concluded"]
@@ -38,6 +38,7 @@ class StructuredLLMOutput:
     message: str
     specialty: str | None
     orientation: str | None
+    risk_level: str | None
 
 
 def _strip_markdown_fences(raw_text: str) -> str:
@@ -47,14 +48,16 @@ def _strip_markdown_fences(raw_text: str) -> str:
 
 def _fallback(raw_text: str, reason: str) -> StructuredLLMOutput:
     logger.warning(f"[structured_output] Falling back to safe message: {reason}. Raw text: {raw_text!r}")
-    return StructuredLLMOutput(status="ongoing", message=_SAFE_FALLBACK_MESSAGE, specialty=None, orientation=None)
+    return StructuredLLMOutput(
+        status="ongoing", message=_SAFE_FALLBACK_MESSAGE, specialty=None, orientation=None, risk_level=None
+    )
 
 
 def parse_structured_response(raw_text: str) -> StructuredLLMOutput:
     """Parse one LLM turn against the structured-output contract.
 
     Never raises: any parsing problem (invalid JSON, missing/invalid fields,
-    a `specialty` outside the closed list) degrades to a safe fallback that
+    a `specialty`/`risk_level` outside its closed list) degrades to a safe fallback that
     keeps the conversation going with `status="ongoing"` and a fixed,
     patient-safe message (never the raw model text, which may be in English,
     truncated mid-sentence, or leak internal reasoning). The raw text is
@@ -102,9 +105,18 @@ def parse_structured_response(raw_text: str) -> StructuredLLMOutput:
         logger.warning(f"[structured_output] orientation had an unexpected type: {type(orientation).__name__}")
         orientation = None
 
+    risk_level = data.get("risk_level")
+    if risk_level is not None:
+        if not isinstance(risk_level, str) or risk_level not in NIVEIS_URGENCIA_CONHECIDOS:
+            logger.warning(
+                f"[structured_output] risk_level {risk_level!r} is not in the closed list; discarding it"
+            )
+            risk_level = None
+
     return StructuredLLMOutput(
         status=status,
         message=message,
         specialty=specialty,
         orientation=orientation,
+        risk_level=risk_level,
     )

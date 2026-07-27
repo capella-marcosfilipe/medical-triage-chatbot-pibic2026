@@ -23,6 +23,9 @@ class ChatResponse(BaseModel):
     message: str = Field(default="", description="Same text as `response`, named per the structured contract.")
     specialty: Optional[str] = Field(default=None, description="One of the 12 known specialties, or None.")
     orientation: Optional[str] = Field(default=None, description="Clinical summary for the attending physician.")
+    risk_level: Optional[str] = Field(
+        default=None, description="One of the 5 Manchester Protocol risk colors (lowercase), or None."
+    )
 
 
 class ChatAsyncResponse(BaseModel):
