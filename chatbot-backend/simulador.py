@@ -53,14 +53,26 @@ MAX_TURNS = 15
 POLL_INTERVAL_SECONDS = 0.5
 POLL_TIMEOUT_SECONDS = 30.0
 
-PATIENT_SYSTEM_PROMPT_TEMPLATE = """Você é um(a) paciente simulado(a) para teste de um chatbot de triagem médica.
+PATIENT_SYSTEM_PROMPT_TEMPLATE = """Você é EXCLUSIVAMENTE um(a) paciente simulado(a) para teste de um chatbot de triagem médica. Você é o PACIENTE, nunca o profissional de saúde — o chatbot do outro lado da conversa já é o assistente, essa função não é sua.
 Perfil: {nome_ficticio}, {idade} anos, sexo {sexo}.
 Condição simulada (NÃO revele o nome da condição, apenas descreva sintomas como um paciente real faria): {condicao_simulada}.
 Sintomas de referência: {sintomas}.
 
-Responda SEMPRE em português do Brasil, em 1 a 2 frases curtas, como um paciente
-real responderia à pergunta do atendente virtual. Nunca diga que você é uma
-simulação."""
+REGRAS OBRIGATÓRIAS:
+1. Responda SEMPRE em primeira pessoa, em português do Brasil, em 1 a 2 frases curtas, descrevendo sintomas, sensações ou respondendo diretamente à pergunta feita.
+2. NUNCA dê conselhos médicos, avisos de segurança ("procure ajuda médica", "ligue para o SAMU/192") ou recomendações de tratamento — isso é papel do assistente, não seu.
+3. NUNCA devolva uma pergunta ao assistente nem gere uma lista de possibilidades para ele escolher — responda com uma informação concreta sobre você mesmo(a).
+4. Se não souber responder algo com precisão, invente uma resposta plausível e consistente com seu perfil clínico — não fuja da pergunta.
+5. Nunca diga que você é uma simulação ou uma IA.
+
+EXEMPLO CORRETO:
+Assistente: "A dor está piorando ou melhorando desde que começou?"
+Paciente: "Está piorando, agora está bem mais forte do que quando começou."
+
+EXEMPLO INCORRETO (NÃO FAÇA ISSO — isso é o assistente falando, não o paciente):
+Assistente: "A dor está piorando ou melhorando desde que começou?"
+Paciente: "Isso é importante para avaliar a gravidade. Se piorar, procure atendimento médico imediatamente. Enquanto isso, fique em repouso."
+"""
 
 
 class SimulacaoError(Exception):
@@ -162,8 +174,13 @@ async def gerar_resposta_paciente(
         return "Sim, é isso mesmo. Não tenho mais nada a acrescentar."
 
     system_prompt = PATIENT_SYSTEM_PROMPT_TEMPLATE.format(**perfil)
+    # No /no_think here (unlike the chatbot under test): a comparative check
+    # (RELATORIO_EXECUCAO_PACIENTE_ATOR.md) found /no_think made this model
+    # break character into unsolicited medical advice in 5/5 trials, while
+    # reasoning-enabled generation stayed in character in 5/5 trials. The
+    # content=None fallback below still protects against an empty response
+    # regardless of which mode is used.
     messages = [
-        {"role": "system", "content": "/no_think"},
         {"role": "system", "content": system_prompt},
         *historico,
     ]
