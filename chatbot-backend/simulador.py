@@ -15,9 +15,9 @@ import argparse
 import asyncio
 import csv
 import json
+import logging
 import os
 import re
-import sys
 import time
 from pathlib import Path
 from typing import Literal
@@ -31,6 +31,20 @@ from dotenv import load_dotenv
 # compose, which already load their own .env files on their own.
 # Vars already exported in the shell still take precedence (override=False).
 load_dotenv(Path(__file__).resolve().parent / ".env")
+
+# logging.getLogger(__name__) is a de facto singleton — every call with the
+# same name returns the same logger instance, and basicConfig only attaches
+# a handler to the root logger once. This replaces the old scattered
+# print(..., file=sys.stderr) calls with visible per-step progress logs.
+logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s", datefmt="%H:%M:%S")
+logger = logging.getLogger(__name__)
+
+# httpx/httpcore also log at INFO ("HTTP Request: ...") — one line per call,
+# duplicating the more informative per-step logs below. Silenced separately
+# instead of lowering the root level, so warnings from those libraries still
+# surface if something goes wrong at the transport layer.
+logging.getLogger("httpx").setLevel(logging.WARNING)
+logging.getLogger("httpcore").setLevel(logging.WARNING)
 
 BACKEND_BASE_URL = os.getenv("CHATBOT_BACKEND_URL", "http://localhost:8001/api/v1")
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
@@ -169,11 +183,7 @@ async def gerar_resposta_paciente(
     dados = resposta.json()
     conteudo = dados["choices"][0]["message"]["content"]
     if not conteudo:
-        print(
-            f"[AVISO] Resposta vazia do paciente-ator (perfil {perfil['id']}); "
-            "usando fala de fallback.",
-            file=sys.stderr,
-        )
+        logger.warning(f"[{perfil['nome_ficticio']}] resposta vazia do paciente-ator; usando fala de fallback")
         return "Sim, é isso mesmo. Não tenho mais nada a acrescentar."
     return conteudo.strip()
 
@@ -216,6 +226,9 @@ async def simular_paciente(
             {"chamada": nome, "duracao_ms": round(duracao_ms, 2), "status_code": status_code}
         )
 
+    nome = perfil["nome_ficticio"]
+    logger.info(f"[{nome}] iniciando sessão")
+
     try:
         inicio = time.perf_counter()
         resp = await client.post(
@@ -230,6 +243,7 @@ async def simular_paciente(
         registrar_chamada("start_session", (time.perf_counter() - inicio) * 1000, resp.status_code)
         session_id = resp.json()["session_id"]
         log["session_id"] = session_id
+        logger.info(f"[{nome}] session_id={session_id}")
 
         smartwatch_id = f"sim-{perfil['id']}"
         inicio = time.perf_counter()
@@ -239,6 +253,7 @@ async def simular_paciente(
         )
         resp.raise_for_status()
         registrar_chamada("get_smartwatch_data", (time.perf_counter() - inicio) * 1000, resp.status_code)
+        logger.info(f"[{nome}] dados do smartwatch obtidos")
 
         chat_id: str | None = session_id
         historico_llm: list[dict] = []
@@ -250,6 +265,7 @@ async def simular_paciente(
 
         while turno < MAX_TURNS and diagnosis_status != "diagnosis_concluded":
             turno += 1
+            logger.info(f"[{nome}] turno {turno}: enviando mensagem")
             historico_llm.append({"role": "user", "content": mensagem_paciente})
 
             # Sinais vitais fixos entram só na mensagem enviada ao chatbot em
@@ -279,6 +295,7 @@ async def simular_paciente(
             registrar_chamada(f"chat_enqueue_turno_{turno}", (time.perf_counter() - inicio) * 1000, resp.status_code)
             chat_id = enqueue["chat_id"]
             log["chat_id"] = chat_id
+            logger.info(f"[{nome}] turno {turno}: job {enqueue['job_id']} enfileirado, aguardando conclusão")
 
             inicio = time.perf_counter()
             status_payload = await aguardar_conclusao_job(client, enqueue["job_id"])
@@ -291,6 +308,7 @@ async def simular_paciente(
             resposta_bot = content.get("answer", "")
             diagnosis_status = content.get("diagnosis_status", "ongoing")
             historico_llm.append({"role": "assistant", "content": resposta_bot})
+            logger.info(f"[{nome}] turno {turno}: concluído (diagnosis_status={diagnosis_status})")
 
             if diagnosis_status == "diagnosis_concluded":
                 # Lê o campo estruturado direto (ver docs/structured_output_contract.md
@@ -302,9 +320,16 @@ async def simular_paciente(
                     # estruturado no chat-rag-microservice — dado relevante para a
                     # análise de qualidade, não um bug deste script.
                     log["especialidade_nula_apesar_de_concluido"] = True
+                logger.info(
+                    f"[{nome}] triagem concluída: specialty={especialidade_retornada!r} "
+                    f"risk_level={nivel_urgencia_obtido!r}"
+                )
                 break
 
             mensagem_paciente = await gerar_resposta_paciente(client, api_key, perfil, historico_llm)
+
+        if diagnosis_status != "diagnosis_concluded":
+            logger.info(f"[{nome}] limite de turnos atingido ({turno}) sem concluir a triagem")
 
         log["turnos"] = turno
         log["diagnosis_status_final"] = diagnosis_status
@@ -322,6 +347,7 @@ async def simular_paciente(
         )
         log["limite_de_turnos_atingido"] = turno >= MAX_TURNS and diagnosis_status != "diagnosis_concluded"
     except (httpx.HTTPError, SimulacaoError) as exc:
+        logger.error(f"[{nome}] falhou: {exc}")
         log["erro"] = str(exc)
 
     return log
@@ -330,7 +356,8 @@ async def simular_paciente(
 async def executar(perfis: list[dict], mode: str, api_key: str | None) -> list[dict]:
     resultados = []
     async with httpx.AsyncClient() as client:
-        for perfil in perfis:
+        for indice, perfil in enumerate(perfis, start=1):
+            logger.info(f"=== Paciente {indice}/{len(perfis)}: {perfil['nome_ficticio']} ===")
             resultado = await simular_paciente(client, perfil, api_key, mode)
             resultados.append(resultado)
     return resultados
@@ -368,18 +395,18 @@ def main() -> None:
 
     api_key = os.getenv("NVIDIA_API_KEY")
     if not api_key:
-        print(
-            "[AVISO] NVIDIA_API_KEY não definida — o paciente sintético vai responder de forma "
-            "determinística (sem LLM), apenas para validar que o script não quebra.",
-            file=sys.stderr,
+        logger.warning(
+            "NVIDIA_API_KEY não definida — o paciente sintético vai responder de forma "
+            "determinística (sem LLM), apenas para validar que o script não quebra."
         )
 
+    logger.info(f"Iniciando simulação de {len(perfis)} paciente(s) (mode={args.mode})")
     resultados = asyncio.run(executar(perfis, args.mode, api_key))
 
     Path(args.saida).write_text(json.dumps(resultados, ensure_ascii=False, indent=2), encoding="utf-8")
     escrever_csv_resumo(resultados, args.saida_csv_resumo)
     escrever_csv_chamadas(resultados, args.saida_csv_chamadas)
-    print(
+    logger.info(
         f"Log salvo em {args.saida}, resumo em {args.saida_csv_resumo} e chamadas em "
         f"{args.saida_csv_chamadas} ({len(resultados)} paciente(s) simulado(s))."
     )
