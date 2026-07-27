@@ -23,6 +23,14 @@ from pathlib import Path
 from typing import Literal
 
 import httpx
+from dotenv import load_dotenv
+
+# Loads chatbot-backend/.env (same directory as this script, regardless of
+# cwd) so NVIDIA_API_KEY doesn't have to be exported manually — this script
+# runs standalone in a local shell, unlike the FastAPI app and docker
+# compose, which already load their own .env files on their own.
+# Vars already exported in the shell still take precedence (override=False).
+load_dotenv(Path(__file__).resolve().parent / ".env")
 
 BACKEND_BASE_URL = os.getenv("CHATBOT_BACKEND_URL", "http://localhost:8001/api/v1")
 NVIDIA_API_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
