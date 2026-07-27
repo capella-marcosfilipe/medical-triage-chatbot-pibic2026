@@ -265,7 +265,6 @@ async def simular_paciente(
 
         while turno < MAX_TURNS and diagnosis_status != "diagnosis_concluded":
             turno += 1
-            logger.info(f"[{nome}] turno {turno}: enviando mensagem")
             historico_llm.append({"role": "user", "content": mensagem_paciente})
 
             # Sinais vitais fixos entram só na mensagem enviada ao chatbot em
@@ -277,6 +276,7 @@ async def simular_paciente(
                 mensagem_para_chatbot = (
                     f"{formatar_contexto_vitais(dados_fisiologicos_fixos)} {mensagem_paciente}"
                 )
+            logger.info(f"[{nome}] turno {turno}: enviando: {mensagem_para_chatbot!r}")
 
             inicio = time.perf_counter()
             resp = await client.post(
@@ -308,7 +308,9 @@ async def simular_paciente(
             resposta_bot = content.get("answer", "")
             diagnosis_status = content.get("diagnosis_status", "ongoing")
             historico_llm.append({"role": "assistant", "content": resposta_bot})
-            logger.info(f"[{nome}] turno {turno}: concluído (diagnosis_status={diagnosis_status})")
+            logger.info(
+                f"[{nome}] turno {turno}: recebido (diagnosis_status={diagnosis_status}): {resposta_bot!r}"
+            )
 
             if diagnosis_status == "diagnosis_concluded":
                 # Lê o campo estruturado direto (ver docs/structured_output_contract.md
