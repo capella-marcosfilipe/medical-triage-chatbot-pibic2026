@@ -57,6 +57,20 @@ ESPECIALIDADES_CONHECIDAS = (
     "Otorrinolaringologia",
 )
 
+# Closed list of Manchester Protocol risk colors the LLM must choose from
+# when status == "diagnosis_concluded", lowercase (the retrieved Manchester
+# rules store `cor` uppercase, e.g. "VERMELHO" — the model must still emit
+# the lowercase form here). Duplicated in
+# chatbot-backend/pacientes_sinteticos.json (nivel_urgencia_esperado) and
+# simulador.py for the same reason as ESPECIALIDADES_CONHECIDAS above.
+NIVEIS_URGENCIA_CONHECIDOS = (
+    "vermelho",
+    "laranja",
+    "amarelo",
+    "verde",
+    "azul",
+)
+
 # --- ChromaDB (Manchester/Maringá knowledge base) ---
 
 CHROMA_DISTANCE_METRIC = "cosine"

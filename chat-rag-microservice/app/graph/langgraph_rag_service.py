@@ -13,7 +13,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
-from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS
+from app.infrastructure.constants import ESPECIALIDADES_CONHECIDAS, NIVEIS_URGENCIA_CONHECIDOS
 from app.infrastructure.settings import settings
 from app.infrastructure.cache import redis_cache
 from app.infrastructure.logger import logger
@@ -198,6 +198,7 @@ class LangGraphRAGService:
                 context_text = "\n".join(f"- {key}: {value}" for key, value in patient_context.items())
 
             especialidades_lista = ", ".join(ESPECIALIDADES_CONHECIDAS)
+            niveis_urgencia_lista = ", ".join(NIVEIS_URGENCIA_CONHECIDOS)
             system_prompt = (
                 "Você é um assistente de triagem médica. Não forneça diagnóstico final. "
                 "Colete dados com empatia e objetividade para encaminhamento clínico.\n"
@@ -206,10 +207,17 @@ class LangGraphRAGService:
                 "sem cercas de código Markdown e sem texto fora do JSON, no formato:\n"
                 '{"status": "ongoing" | "diagnosis_concluded", "message": "texto para o paciente", '
                 '"specialty": null ou uma das especialidades abaixo, "orientation": null ou um resumo '
-                "clínico objetivo para o médico}.\n"
+                'clínico objetivo para o médico, "risk_level": null ou uma das cores de risco abaixo}.\n'
                 f"Quando status for \"diagnosis_concluded\", 'specialty' deve ser exatamente uma destas "
                 f"{len(ESPECIALIDADES_CONHECIDAS)} opções (nunca uma variação livre): {especialidades_lista}. "
-                "Use \"Clínica Geral\" quando nenhuma especialidade mais específica se aplicar claramente."
+                "Use \"Clínica Geral\" quando nenhuma especialidade mais específica se aplicar claramente.\n"
+                f"Quando status for \"diagnosis_concluded\", 'risk_level' deve ser exatamente uma destas "
+                f"{len(NIVEIS_URGENCIA_CONHECIDOS)} cores do Protocolo de Manchester (nunca uma variação "
+                f"livre): {niveis_urgencia_lista}. Baseie essa classificação nas "
+                "[REGRAS DE TRIAGEM RECUPERADAS] deste turno (campo 'Cor', vindo em maiúsculas — responda "
+                "sempre em minúsculas). Se nenhuma regra recuperada corresponder ao quadro do paciente, use "
+                "julgamento clínico geral; \"azul\" é para quadros não urgentes sem fluxograma agudo "
+                "correspondente."
             )
             if context_text:
                 system_prompt += f"\n\nContexto do paciente:\n{context_text}"
