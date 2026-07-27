@@ -40,7 +40,13 @@ class Settings(BaseSettings):
     
     # Cache
     CACHE_TTL: int = 3600
-    IDEMPOTENCY_TTL: int = 86400
+    # 30s: generous enough to absorb a client retry after a network timeout,
+    # short enough to never mistake a legitimate repeated patient utterance
+    # (same chat_id, same text, minutes apart) for a technical duplicate —
+    # see RELATORIO_INVESTIGACAO_ANOMALIA_PILOTO.md for the incident this
+    # fixes. Was 86400 (24h), shared by both the endpoint-level and
+    # worker-level idempotency caches (app/jobs/idempotency.py).
+    IDEMPOTENCY_TTL: int = 30
     JOB_TTL: int = 86400  # 24h
     
     # Worker Settings
