@@ -31,6 +31,7 @@ class NLPJobContent(BaseModel):
     diagnosis_status: Literal["ongoing", "diagnosis_concluded"]
     specialty: Optional[str] = None
     orientation: Optional[str] = None
+    risk_level: Optional[str] = None
 
 
 class ChatHistoryMessage(BaseModel):

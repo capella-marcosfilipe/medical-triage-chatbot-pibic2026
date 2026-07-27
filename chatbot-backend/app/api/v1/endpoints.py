@@ -89,20 +89,25 @@ def _infer_diagnosis_status(answer: str) -> Literal["ongoing", "diagnosis_conclu
 
 def _resolve_diagnosis_content(
     response_payload: dict,
-) -> tuple[Literal["ongoing", "diagnosis_concluded"], Optional[str], Optional[str]]:
-    """Resolve (diagnosis_status, specialty, orientation) for a completed job.
+) -> tuple[Literal["ongoing", "diagnosis_concluded"], Optional[str], Optional[str], Optional[str]]:
+    """Resolve (diagnosis_status, specialty, orientation, risk_level) for a completed job.
 
     Prefers the structured fields returned by chat-rag-microservice
-    (`status`/`specialty`/`orientation`). Falls back to `_infer_diagnosis_status`
-    over the raw `response` text only when the microservice response doesn't
-    carry the structured fields yet.
+    (`status`/`specialty`/`orientation`/`risk_level`). Falls back to
+    `_infer_diagnosis_status` over the raw `response` text only when the
+    microservice response doesn't carry the structured fields yet.
     """
     structured_status = response_payload.get("status")
     if structured_status in ("ongoing", "diagnosis_concluded"):
-        return structured_status, response_payload.get("specialty"), response_payload.get("orientation")
+        return (
+            structured_status,
+            response_payload.get("specialty"),
+            response_payload.get("orientation"),
+            response_payload.get("risk_level"),
+        )
 
     answer = response_payload.get("response", "")
-    return _infer_diagnosis_status(answer), None, None
+    return _infer_diagnosis_status(answer), None, None, None
 
 
 @router.post("/chat", response_model=ChatNemotronEnqueueResponse, status_code=202)
@@ -176,13 +181,14 @@ async def chat_with_nemotron_status(
         if response_payload:
             answer = response_payload.get("response", "")
             session_manager.sync_assistant_message(chat_id, answer)
-            diagnosis_status, specialty, orientation = _resolve_diagnosis_content(response_payload)
+            diagnosis_status, specialty, orientation, risk_level = _resolve_diagnosis_content(response_payload)
             content = NLPJobContent(
                 answer=answer,
                 processing_time_ms=response_payload.get("latency_ms"),
                 diagnosis_status=diagnosis_status,
                 specialty=specialty,
                 orientation=orientation,
+                risk_level=risk_level,
             )
 
         return NLPJobStatusResponse(
