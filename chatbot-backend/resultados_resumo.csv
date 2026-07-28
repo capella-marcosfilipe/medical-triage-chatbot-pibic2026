@@ -1,0 +1,22 @@
+perfil_id,nome_ficticio,sinais_vitais_fixos,especialidade_esperada,especialidade_retornada,especialidade_bateu,especialidade_nula_apesar_de_concluido,nivel_urgencia_esperado,nivel_urgencia_obtido,nivel_urgencia_bateu,diagnosis_status_final,turnos,limite_de_turnos_atingido,session_id,chat_id,erro
+1,Antônio Ferreira,True,Cardiologia,,False,False,vermelho,,False,ongoing,15,True,cfc0c098-a18d-4345-b511-7dbe4afcf83f,cfc0c098-a18d-4345-b511-7dbe4afcf83f,
+2,Marisa Ondina Campos,True,Neurologia,,False,False,vermelho,,False,ongoing,15,True,49e347d8-e175-4428-a4a4-dc7a44761085,49e347d8-e175-4428-a4a4-dc7a44761085,
+3,Kauê Rodrigues Lima,True,Pneumologia,,False,False,laranja,,False,ongoing,15,True,625b2bd3-b486-47e0-bcc5-a96b6199bbe6,625b2bd3-b486-47e0-bcc5-a96b6199bbe6,
+4,Isabel Trindade,True,Gastroenterologia,,False,False,laranja,,False,ongoing,15,True,e5769d34-6dbd-4c0b-b72e-0233b14843ca,e5769d34-6dbd-4c0b-b72e-0233b14843ca,
+5,Wesley do Nascimento,True,Ortopedia,,False,False,laranja,,False,ongoing,15,True,1dd1a793-9780-43af-a908-6d8387fe7dd8,1dd1a793-9780-43af-a908-6d8387fe7dd8,
+6,Elza Guimarães,False,Pneumologia,,False,False,amarelo,,False,ongoing,15,True,ec0637b4-d312-4c3d-8542-f6ebf05e50fa,ec0637b4-d312-4c3d-8542-f6ebf05e50fa,
+7,Thiago Almeida Souza,False,Neurologia,,False,False,amarelo,,False,ongoing,15,True,9dc40d98-18be-4bf4-b64c-334a37174220,9dc40d98-18be-4bf4-b64c-334a37174220,
+8,Cecília Prado Martins,False,Pediatria,,False,False,amarelo,,False,ongoing,15,True,308cac40-53d2-49b7-8da3-809977288f19,308cac40-53d2-49b7-8da3-809977288f19,
+9,Rogério Batista,False,Clínica Geral,,False,False,amarelo,,False,ongoing,15,True,7056c754-e122-44ac-b589-4b7bb9e66e96,7056c754-e122-44ac-b589-4b7bb9e66e96,
+10,Aline Ferreira Dutra,False,Urologia,Urologia,True,False,verde,amarelo,False,diagnosis_concluded,15,False,441b9d94-ff7d-45bb-bacc-135aab6c357a,441b9d94-ff7d-45bb-bacc-135aab6c357a,
+11,Heitor Sampaio,False,Dermatologia,,False,False,verde,,False,ongoing,15,True,487bebc8-19a1-46eb-b5e9-cc45bcdd8d49,487bebc8-19a1-46eb-b5e9-cc45bcdd8d49,
+12,Vanessa Cordeiro Reis,False,Psiquiatria,,False,False,verde,,False,ongoing,15,True,bf30fc3a-7689-4753-996d-4f90b3c08c7f,bf30fc3a-7689-4753-996d-4f90b3c08c7f,
+13,Douglas Pereira Nunes,False,Oftalmologia,,False,False,verde,,False,ongoing,15,True,1020c06a-f3b3-402e-afa9-3a1edd22aea1,1020c06a-f3b3-402e-afa9-3a1edd22aea1,
+14,Priscila Vasconcelos,False,Otorrinolaringologia,,False,False,amarelo,,False,ongoing,15,True,1e2dc7b8-66a7-4371-a740-9beb3911a174,1e2dc7b8-66a7-4371-a740-9beb3911a174,
+15,Edmilson Carvalho,False,Ortopedia,,False,False,verde,,False,ongoing,15,True,63d604b7-6e77-4b43-8bfc-91b73b7bbd75,63d604b7-6e77-4b43-8bfc-91b73b7bbd75,
+16,Juliana Aparecida Ribeiro,False,Clínica Geral,,False,False,azul,,False,ongoing,15,True,f2e0ab05-090b-403e-b15a-47532a76d516,f2e0ab05-090b-403e-b15a-47532a76d516,
+17,Gabriel Henrique Costa,False,Dermatologia,,False,False,azul,,False,ongoing,15,True,18350b70-22a8-4a2e-ae29-38cb63c110b3,18350b70-22a8-4a2e-ae29-38cb63c110b3,
+18,Solange Meireles,False,Clínica Geral,,False,False,azul,,False,ongoing,15,True,86222fdf-3c40-4469-ab98-ed15e4a22dc5,86222fdf-3c40-4469-ab98-ed15e4a22dc5,
+19,Fábio Renan Souza,False,Gastroenterologia,,False,False,verde,,False,ongoing,15,True,78a519e7-81bf-48b9-9969-843e0aa3b001,78a519e7-81bf-48b9-9969-843e0aa3b001,
+20,Natália Borges Lira,False,Neurologia,,,False,azul,,,,,,1f10dcde-6972-40f2-9b25-3c518e7720e8,1f10dcde-6972-40f2-9b25-3c518e7720e8,"Client error '422 Unprocessable Entity' for url 'http://localhost:8001/api/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/422"
